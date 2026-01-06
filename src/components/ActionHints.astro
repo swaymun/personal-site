@@ -1,0 +1,82 @@
+---
+interface Props {
+  showSelect?: boolean;
+  showBack?: boolean;
+  customHints?: Array<{ button: 'A' | 'B' | 'X' | 'Y'; label: string }>;
+}
+
+const { showSelect = true, showBack = false, customHints = [] } = Astro.props;
+
+const defaultHints = [
+  ...(showSelect ? [{ button: 'A' as const, label: 'Select' }] : []),
+  ...(showBack ? [{ button: 'B' as const, label: 'Back' }] : []),
+];
+
+const hints = customHints.length > 0 ? customHints : defaultHints;
+
+const buttonColors = {
+  A: 'var(--btn-a-green)',
+  B: 'var(--btn-b-red)',
+  X: 'var(--btn-x-blue)',
+  Y: 'var(--btn-y-yellow)',
+};
+---
+
+<footer class="action-hints" aria-label="Keyboard shortcuts">
+  <div class="hints-container">
+    {hints.map((hint) => (
+      <div class="hint">
+        <span
+          class="button-icon"
+          style={`background-color: ${buttonColors[hint.button]}`}
+          aria-hidden="true"
+        >
+          {hint.button}
+        </span>
+        <span class="hint-label">{hint.label}</span>
+      </div>
+    ))}
+  </div>
+</footer>
+
+<style>
+  .action-hints {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-4) var(--space-8);
+    z-index: var(--z-nav);
+  }
+
+  .hints-container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .hint {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .button-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    text-transform: uppercase;
+  }
+
+  .hint-label {
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    font-weight: var(--font-weight-regular);
+  }
+</style>

@@ -1,0 +1,190 @@
+---
+// LB/RB Bumper Navigation Indicators
+interface Props {
+  sections?: string[];
+}
+
+const { sections = ['home', 'projects', 'about', 'contact'] } = Astro.props;
+---
+
+<div class="bumper-indicators" id="bumper-indicators" data-sections={JSON.stringify(sections)}>
+  <div class="bumper bumper--left" id="bumper-left" aria-hidden="true">
+    <span class="bumper-key">LB</span>
+    <svg class="bumper-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+    <span class="bumper-label" id="bumper-left-label"></span>
+  </div>
+
+  <div class="bumper bumper--right" id="bumper-right" aria-hidden="true">
+    <span class="bumper-label" id="bumper-right-label"></span>
+    <svg class="bumper-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+    <span class="bumper-key">RB</span>
+  </div>
+</div>
+
+<style>
+  .bumper-indicators {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+  }
+
+  .bumper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    color: #ffffff;
+    opacity: 0;
+    transition:
+      opacity 0.3s ease,
+      transform 0.2s ease;
+    backdrop-filter: blur(4px);
+    pointer-events: auto;
+    cursor: pointer;
+  }
+
+  .bumper-indicators.visible .bumper {
+    opacity: 0.6;
+  }
+
+  .bumper-indicators.visible .bumper:hover {
+    opacity: 1;
+  }
+
+  .bumper.hidden {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+
+  .bumper--left {
+    left: 16px;
+  }
+
+  .bumper--left:hover {
+    transform: translateY(-50%) translateX(-4px);
+  }
+
+  .bumper--right {
+    right: 16px;
+  }
+
+  .bumper--right:hover {
+    transform: translateY(-50%) translateX(4px);
+  }
+
+  .bumper-key {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+
+  .bumper-arrow {
+    width: 20px;
+    height: 20px;
+    opacity: 0.8;
+  }
+
+  .bumper-label {
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: capitalize;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+
+  @media (max-width: 768px) {
+    .bumper-indicators {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  import { audioManager } from '@/lib/audio/AudioManager';
+
+  const container = document.getElementById('bumper-indicators');
+  const leftBumper = document.getElementById('bumper-left');
+  const rightBumper = document.getElementById('bumper-right');
+  const leftLabel = document.getElementById('bumper-left-label');
+  const rightLabel = document.getElementById('bumper-right-label');
+
+  let sections: string[] = [];
+  let currentIndex = 0;
+
+  // Parse sections from data attribute
+  try {
+    const data = container?.dataset.sections;
+    if (data) sections = JSON.parse(data);
+  } catch {
+    sections = ['home', 'projects', 'about', 'contact'];
+  }
+
+  function updateBumpers(index: number) {
+    currentIndex = index;
+
+    // Update left bumper
+    if (index > 0) {
+      leftBumper?.classList.remove('hidden');
+      if (leftLabel) leftLabel.textContent = sections[index - 1];
+    } else {
+      leftBumper?.classList.add('hidden');
+    }
+
+    // Update right bumper
+    if (index < sections.length - 1) {
+      rightBumper?.classList.remove('hidden');
+      if (rightLabel) rightLabel.textContent = sections[index + 1];
+    } else {
+      rightBumper?.classList.add('hidden');
+    }
+  }
+
+  // Show bumpers after boot
+  function showBumpers() {
+    setTimeout(() => {
+      container?.classList.add('visible');
+      updateBumpers(0);
+    }, 500);
+  }
+
+  window.addEventListener('boot-complete', showBumpers);
+
+  // Fallback
+  setTimeout(() => {
+    if (!container?.classList.contains('visible')) {
+      showBumpers();
+    }
+  }, 6500);
+
+  // Listen for section changes
+  window.addEventListener('section-changed', ((e: CustomEvent) => {
+    updateBumpers(e.detail.index);
+  }) as EventListener);
+
+  // Click handlers
+  leftBumper?.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      audioManager.play('blade-switch');
+      window.dispatchEvent(new CustomEvent('bumper-navigate', { detail: { direction: -1 } }));
+    }
+  });
+
+  rightBumper?.addEventListener('click', () => {
+    if (currentIndex < sections.length - 1) {
+      audioManager.play('blade-switch');
+      window.dispatchEvent(new CustomEvent('bumper-navigate', { detail: { direction: 1 } }));
+    }
+  });
+</script>
