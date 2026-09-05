@@ -1,0 +1,19 @@
+{
+  "annotations": "All 15 addressed; Mini Crosswords removed per follow-up instead of linked.",
+  "checks": [
+    "Generated 24 ImageGen spine assets; contain/pad preserves case ratios",
+    "Desktop and 360px shelves inspected; album selection works; no broken loaded images or page overflow",
+    "Messages demo opens contacts, appends local message and canned reply; no outbound service",
+    "Notes sample text sits above ruling; original local note restored",
+    "Switch vector icons and GBA cartridge icon visually inspected",
+    "Duplicate handheld app headings removed; normal text-page headings preserved",
+    "Active hardware is preloaded using matching content-hashed URL; overlays reveal after decode"
+  ],
+  "cachePolicy": "Astro hashed hardware assets plus explicit 1-hour browser cache and stale-while-revalidate for mutable public image directories. Verify deployed headers before claiming effective cache duration.",
+  "references": [
+    "https://vercel.com/docs/project-configuration/vercel-json",
+    "https://vercel.com/docs/caching/cache-control-headers",
+    "https://www.apple.com/newsroom/2011/06/06New-Version-of-iOS-Includes-Notification-Center-iMessage-Newsstand-Twitter-Integration-Among-200-New-Features/"
+  ],
+  "limits": "Messages uses requested early iOS visual style; iPod iMessage debuted in iOS 5. Local demo only. No claim of a measured Lighthouse speed increase."
+}

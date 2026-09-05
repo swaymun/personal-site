@@ -57,3 +57,31 @@ test("collections include the clarified favorites and omit songs", () => {
   assert.equal((s.match(/class="record-choice sr-only"/g) || []).length, 16);
   assert.doesNotMatch(s, /Top 10 songs|Blonde/);
 });
+
+test("annotation cleanup preserves only requested collection content", () => {
+  const s = html("");
+  for (const copy of [
+    "Mini Crosswords",
+    "Four favorites from",
+    "Open a spine",
+    "Choose a spine",
+    "Pick a case",
+    "Here are some games inspired",
+  ])
+    assert.ok(!s.includes(copy));
+  assert.match(s, /href="#links">Elsewhere/);
+  assert.ok(s.includes('href="https://www.psu.edu/"'));
+  assert.equal((s.match(/spines\/[^" ]+\.webp/g) || []).length, 28);
+});
+test("each device preloads exactly its own hashed hardware image", () => {
+  assert.doesNotMatch(html(""), /rel="preload" as="image"/);
+  for (const id of ["gba", "psp", "ipod", "3ds", "switch"]) {
+    const s = html(id),
+      preload = s.match(/rel="preload" as="image" href="([^"]+)"/);
+    assert.ok(preload);
+    assert.ok(preload[1].startsWith(`/_astro/${id}.`));
+    assert.ok(s.includes(`class="hardware-art" src="${preload[1]}"`));
+  }
+  assert.doesNotMatch(html("ipod"), /content-phone|data-app="phone"/);
+  assert.match(html("ipod"), /content-messages/);
+});

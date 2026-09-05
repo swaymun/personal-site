@@ -86,7 +86,7 @@ export const apps = [
   "notes",
   "settings",
   "play",
-  "phone",
+  "messages",
   "browser",
 ] as const;
 export function appsForDevice(id: DeviceId): AppId[] {
@@ -100,7 +100,7 @@ export function appsForDevice(id: DeviceId): AppId[] {
         "links",
         "notes",
         "play",
-        "phone",
+        "messages",
         "browser",
         "music",
         "settings",
@@ -110,7 +110,7 @@ export function appsForDevice(id: DeviceId): AppId[] {
 export type AppId = (typeof apps)[number];
 export const titles: Record<AppId, string> = {
   play: "Play",
-  phone: "Phone",
+  messages: "Messages",
   browser: "Safari",
   home: "Home",
   work: "Work",

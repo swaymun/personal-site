@@ -1,4 +1,5 @@
 ---
+import { hardwareImages } from "../data/hardware";
 import { devices } from "../data/site";
 import "../styles/global.css";
 interface Props {
@@ -17,7 +18,7 @@ const { title = "Saimun Shahee", active = "home" } = Astro.props;
     /><meta
       name="description"
       content="Saimun Shahee. Software engineer, things I like, and a few handhelds I grew up with."
-    /><link rel="icon" href="/favicon.svg" /><title>
+    />{hardwareImages[active] && <link rel="preload" as="image" href={hardwareImages[active].src} fetchpriority="high" />}<link rel="icon" href="/favicon.svg" /><title>
       {title === "Saimun Shahee" ? title : `${title} · Saimun Shahee`}
     </title></head
   ><body

@@ -8,7 +8,6 @@ import {
   experience,
   companyUrls,
   projects,
-  devices,
   links,
 } from "../data/site";
 const posts = Object.values(
@@ -32,7 +31,7 @@ const posts = Object.values(
           "games",
           "writing",
           "links",
-        ].map((s) => <a href={`#${s}`}>{s[0].toUpperCase() + s.slice(1)}</a>)
+        ].map((s) => <a href={`#${s}`}>{s === "links" ? "Elsewhere" : s[0].toUpperCase() + s.slice(1)}</a>)
       }
     </nav>
     <section id="work">
@@ -49,7 +48,7 @@ const posts = Object.values(
           ))
         }
       </ul><p>
-        Penn State · BS Computer Science + Statistics <span class="muted"
+        <a href="https://www.psu.edu/">Penn State</a> · BS Computer Science + Statistics <span class="muted"
           >(2016–2020)</span>
       </p>
     </section>
@@ -62,31 +61,16 @@ const posts = Object.values(
             {p.description}
           </p>
         ))
-      }<p>Mini Crosswords <span class="muted">— link coming soon</span></p>
+      }
     </section>
     <section id="movies">
-      <h2>Movies</h2><p>
-        Four favorites from <a href="https://letterboxd.com/swaymun/"
-          >my Letterboxd</a
-        >.
-      </p><MovieShelf />
+      <h2>Movies</h2><MovieShelf />
     </section>
     <section id="music">
       <h2>Music</h2><AlbumShelf />
     </section>
     <section id="games">
-      <h2>Games</h2><p>
-        Here are some games inspired by the systems I grew up playing.
-      </p><ul>
-        {
-          devices.map((d) => (
-            <li>
-              <a href={`/${d.id}/?app=play`}>{d.game}</a>{" "}
-              <span class="muted">· {d.label}</span>
-            </li>
-          ))
-        }
-      </ul><h3>Some favorites</h3><GameShelf />
+      <h2>Games</h2><GameShelf />
     </section>
     <section id="writing">
       <h2>Writing</h2>{

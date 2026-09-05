@@ -16,6 +16,19 @@ import { browserUrl } from "./browser-url";
 import { albums, favoriteGames } from "../data/collection";
 import type { Game } from "../games/core";
 const root = document.querySelector<HTMLElement>("[data-device]")!;
+const hardware = root.querySelector<HTMLImageElement>(".hardware-art")!;
+const revealHardware = () =>
+  hardware.closest(".device")?.classList.add("hardware-ready");
+void hardware
+  .decode()
+  .then(revealHardware)
+  .catch(() => {
+    if (hardware.complete) revealHardware();
+    else {
+      hardware.addEventListener("load", revealHardware, { once: true });
+      hardware.addEventListener("error", revealHardware, { once: true });
+    }
+  });
 const id = root.dataset.device as DeviceId;
 const device = devices.find((d) => d.id === id)!;
 const apps = appsForDevice(id);
@@ -90,7 +103,7 @@ const xmbLabels: Record<AppId, string[]> = {
   music: ["Record collection"],
   games: ["Game shelf"],
   play: [device.game],
-  phone: ["Contacts"],
+  messages: ["Conversations"],
   browser: ["Browse"],
   writing: ["Posts"],
   links: ["Find me online"],
@@ -110,7 +123,7 @@ function updateXmbPreview() {
     music: [albums.map((a) => `${a.title} · ${a.artist}`).join("\n")],
     games: [favoriteGames.map((g) => g.title).join("\n")],
     play: [device.genre + " Move with the D-pad. × attacks; ○ dodges."],
-    phone: ["A few very fictional contacts."],
+    messages: ["A few very fictional contacts."],
     browser: ["A tiny browser."],
     writing: ["Nothing published yet."],
     links: ["Email · GitHub · LinkedIn · X · Letterboxd"],
@@ -344,21 +357,44 @@ function openApp(app: AppId, historyUpdate = true) {
         : "Storage is unavailable; records could not be reset.";
     });
   }
-  if (app === "phone") {
+  if (app === "messages") {
+    const list = $(".message-list"),
+      thread = $(".message-thread"),
+      bubbles = $("#message-bubbles");
+    let reply = "";
+    const addBubble = (text: string, sent = false) => {
+      const bubble = document.createElement("p");
+      bubble.className = sent ? "message-bubble sent" : "message-bubble";
+      bubble.textContent = text;
+      bubbles.append(bubble);
+      bubbles.scrollTop = bubbles.scrollHeight;
+    };
     body
       .querySelectorAll<HTMLButtonElement>("[data-contact]")
       .forEach((contact) =>
         contact.addEventListener("click", () => {
-          $(".contact-list").hidden = true;
-          $(".call-screen").hidden = false;
-          $("#caller-name").textContent = contact.dataset.contact!;
-          $("#caller-number").textContent = contact.dataset.number!;
-          $("#call-status").textContent = contact.dataset.message!;
+          list.hidden = true;
+          thread.hidden = false;
+          $("#message-contact").textContent = contact.dataset.contact!;
+          reply = contact.dataset.reply!;
+          bubbles.replaceChildren();
+          addBubble(contact.querySelector("span")!.textContent!);
         }),
       );
-    $("#hang-up").addEventListener("click", () => {
-      $(".call-screen").hidden = true;
-      $(".contact-list").hidden = false;
+    $("#message-back").addEventListener("click", () => {
+      thread.hidden = true;
+      list.hidden = false;
+    });
+    $("#message-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const field = $<HTMLInputElement>("#message-text");
+      if (!field.value.trim()) return;
+      addBubble(field.value.trim(), true);
+      field.value = "";
+      if (reply) {
+        addBubble(reply);
+        reply = "";
+      }
     });
   }
   if (app === "browser") {

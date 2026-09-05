@@ -1,6 +1,7 @@
 ---
+import { hardwareImages } from "../data/hardware";
 import type { devices } from "../data/site";
 interface Props { device: (typeof devices)[number]; }
 const { device } = Astro.props;
 ---
-<img class="hardware-art" src={`/hardware/${device.id}.webp`} width={device.width} height={device.height} alt="" aria-hidden="true" decoding="async" fetchpriority="high" />
+<img class="hardware-art" src={hardwareImages[device.id].src} width={device.width} height={device.height} alt="" aria-hidden="true" decoding="async" fetchpriority="high" />

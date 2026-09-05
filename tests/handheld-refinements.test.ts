@@ -43,7 +43,7 @@ test("each device separates favorites from play; iPod apps are unique", () => {
     assert.equal(new Set(apps).size, apps.length);
   }
   const html = readFileSync("dist/ipod/index.html", "utf8");
-  assert.equal((html.match(/data-app="phone"/g) || []).length, 1);
+  assert.equal((html.match(/data-app="messages"/g) || []).length, 1);
   assert.equal((html.match(/data-app="music"/g) || []).length, 1);
   assert.doesNotMatch(html, /id="expand"|id="text-link"|ios-page-dots|tel:/);
 });

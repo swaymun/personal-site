@@ -1,5 +1,5 @@
 ---
-import { bio, experience, links, projects, companyUrls, devices } from "../data/site";
+import { bio, experience, links, projects, companyUrls } from "../data/site";
 import type { Section } from "../data/site";
 import AlbumShelf from "./AlbumShelf.astro";
 import GameShelf from "./GameShelf.astro";
@@ -51,7 +51,7 @@ const posts = Object.values(
         <h2>Education</h2>
         <>
           <p>
-            Penn State University
+            <a href="https://www.psu.edu/">Penn State University</a>
             <br />
             BS Computer Science + Statistics
             <>
@@ -61,7 +61,7 @@ const posts = Object.values(
           </p>
           <h2>Projects</h2>
           {projects.map(project => <p><a href={project.url}>{project.title}</a><br />{project.description}</p>)}
-          <p>Mini Crosswords <span class="muted">— link coming soon</span></p>
+
         </>
       </>
     )
@@ -71,10 +71,7 @@ const posts = Object.values(
       <>
         <>
           <h1>Movies</h1>
-          <p>
-            Four favorites from{" "}
-            <a href="https://letterboxd.com/swaymun/">my Letterboxd</a>.
-          </p>
+
           <MovieShelf />
         </>
       </>
@@ -93,15 +90,7 @@ const posts = Object.values(
       <>
         <>
           <h1>Games</h1>
-          {!compact && <h2>Little games to play</h2>}
-          {!compact && <ul>
-            {devices.map((d) => (
-              <li>
-                <a href={`/${d.id}/?app=play`}>{d.game}</a>{" "}
-                <span class="muted">— {d.label}</span>
-              </li>
-            ))}
-          </ul>}
+
           <GameShelf />
         </>
       </>

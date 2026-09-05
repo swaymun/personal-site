@@ -10,7 +10,7 @@ interface Props {
 }
 const { device: d } = Astro.props;
 const apps = appsForDevice(d.id);
-const dockApps = ["phone", "browser", "music", "settings"] as const;
+const dockApps = ["messages", "browser", "music", "settings"] as const;
 const appTitle = (app: keyof typeof titles) => app === "play" ? d.game : titles[app];
 type Control = {
   key: string;
@@ -336,7 +336,10 @@ const [sx, sy, sw, sh] = d.screen;
       </template>
     ))
   }
-  <template id="content-phone"><div class="phone-app"><p class="muted">Pretend calls. Real bad reception.</p><div class="contact-list">{[["Steve Jobs", "408-555-0101", "One more thing… please leave a message."], ["Spider-Man", "212-555-0102", "Can't talk. Hanging around Queens."], ["John Pork", "212-555-0103", "John Pork is calling. You called first."]].map(([name,number,message]) => <button data-contact={name} data-number={number} data-message={message}><strong>{name}</strong><span>{number}</span></button>)}</div><div class="call-screen" hidden><strong id="caller-name"></strong><p id="caller-number"></p><p id="call-status" role="status"></p><button id="hang-up">End pretend call</button></div></div></template>
+  <template id="content-messages"><div class="messages-app">
+    <div class="message-list"><p class="message-demo">Demo conversations · only on this iPod</p>{[["Steve Jobs", "One more thing…", "Have you tried turning it off and on again?"], ["Spider-Man", "Running a little late.", "Stuck in web traffic. Be there soon."], ["John Pork", "You there?", "Finally. I've been trying to reach you."]].map(([name,preview,reply]) => <button data-contact={name} data-reply={reply}><strong>{name}</strong><span>{preview}</span><b aria-hidden="true">›</b></button>)}</div>
+    <div class="message-thread" hidden><div class="message-thread-bar"><button id="message-back">‹ Messages</button><strong id="message-contact"></strong></div><div id="message-bubbles" role="log" aria-live="polite"></div><form id="message-form"><label class="sr-only" for="message-text">Demo message</label><input id="message-text" placeholder="Text Message" autocomplete="off" maxlength="280" required/><button>Send</button></form></div>
+  </div></template>
   <template id="content-browser"><div class="browser-app"><form id="browser-form"><label class="sr-only" for="browser-address">Website address</label><input id="browser-address" value="/browser-start/" autocomplete="off" spellcheck="false" /><button>Go</button></form><a id="browser-external" href="/browser-start/" target="_blank" rel="noopener noreferrer">Open in tab ↗</a><iframe id="browser-frame" title="Mini browser" src="/browser-start/" sandbox="allow-scripts allow-forms allow-popups" referrerpolicy="no-referrer"></iframe><p class="muted">If a site blocks embedding, open it in a tab.</p></div></template>
   <template id="content-notes"
     ><div class="notes-app">
@@ -350,7 +353,7 @@ const [sx, sy, sw, sh] = d.screen;
   >
   <template id="content-settings"
     ><div class="settings-app">
-      <h2>Settings</h2><label
+      <label
         ><input id="settings-sound" type="checkbox" /> Enable sound</label
       ><p>Boot and menu sounds play only after you enable them.</p><button
         id="reset-scores">Reset game records</button
