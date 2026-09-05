@@ -5,11 +5,11 @@ import { favoriteGames } from '../data/collection';
 <div class="game-shelf" aria-label="Favorite games">
 {favoriteGames.map((game,i)=><details name="game-case" class={`game-case case-${game.kind}`} open={i===0} style={`--case-height:${game.height};--case-width:${game.width};--spine-width:${game.spine}`}>
   <summary aria-label={`Show ${game.title} case`} title={`${game.title} · ${game.platform}`}>
-    <img class="game-spine" src={`/games/spines/${game.id}.svg`} alt="" width="64" height="800" loading="lazy"/>
+    <img class="game-spine" src={`/games/spines/${game.id}.svg`} alt="" width="64" height={Math.round(64*game.height/game.spine)} loading="lazy"/>
   </summary>
   <a class="game-cover" href={game.url} aria-label={`${game.title} — ${game.platform}`}><img src={`/games/${game.id}.webp`} alt={`${game.title}, ${game.platform}`} loading="lazy" width={game.width*2} height={game.kind==='digital'?game.width*2:game.height*2}/>{game.kind==='digital' && <small>iOS · digital</small>}</a>
 </details>)}
 </div>
 <p class="muted shelf-hint">Pick a case from the shelf.</p>
-<details class="collection-titles"><summary>All favorite games</summary><ul>{favoriteGames.map(game=><li><a href={game.url}>{game.title}</a> <span class="muted">· {game.platform}</span></li>)}</ul></details>
+
 </div>

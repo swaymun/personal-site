@@ -52,9 +52,13 @@ for (const [folder, items] of [
     ]).toString("base64");
     const title = caps ? a.title.toUpperCase() : a.title;
     const subtitle = a.artist || a.platform;
-    const titleSize = title.length > 34 ? 26 : title.length > 22 ? 32 : 40;
-    // Wide artwork is designed horizontally, then rotated into a 64 × 800 spine.
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="800" viewBox="0 0 64 800" preserveAspectRatio="none"><title>${esc(a.title)} — ${esc(subtitle)}</title><g transform="translate(64 0) rotate(90)"><rect width="800" height="64" fill="${bg}"/><image href="data:image/webp;base64,${art}" x="0" y="0" width="800" height="64" preserveAspectRatio="xMidYMid slice" opacity=".12"/><rect width="800" height="64" fill="${bg}" opacity=".55"/><image href="data:image/webp;base64,${art}" x="7" y="7" width="50" height="50"/><path d="M68 8v48M748 8v48" stroke="${ink}" opacity=".4"/><text x="82" y="42" fill="${ink}" font-family="${font}" font-size="${titleSize}" font-weight="${caps ? 700 : 400}" ${title.length > 28 ? 'textLength="510" lengthAdjust="spacingAndGlyphs"' : ""}>${esc(title)}</text><text x="733" y="15" transform="rotate(180 733 15)" fill="${ink}" font-family="Arial" font-size="10" letter-spacing="1">${esc(subtitle.toUpperCase())}</text><path d="M767 15v34m5-34v34m3-34v34m7-34v34m3-34v34" stroke="${ink}" opacity=".5"/><path d="M0 1h800M0 63h800" stroke="${ink}" opacity=".25"/></g></svg>`;
+    const thickness = 64;
+    const length = Math.round(
+      folder === "games" ? (thickness * a.height) / a.spine : 1067,
+    );
+    // Extend the canvas to the case ratio; lay out type at its natural proportions.
+    const titleSize = Math.min(40, (length - 180) / (title.length * 0.68));
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${thickness}" height="${length}" viewBox="0 0 ${thickness} ${length}"><title>${esc(a.title)} — ${esc(subtitle)}</title><g transform="translate(64 0) rotate(90)"><rect width="${length}" height="64" fill="${bg}"/><image href="data:image/webp;base64,${art}" width="${length}" height="64" preserveAspectRatio="xMidYMid slice" opacity=".12"/><rect width="${length}" height="64" fill="${bg}" opacity=".55"/><image href="data:image/webp;base64,${art}" x="7" y="7" width="50" height="50"/><path d="M68 8v48M${length - 42} 8v48" stroke="${ink}" opacity=".4"/><text x="82" y="35" fill="${ink}" font-family="${font}" font-size="${titleSize}" font-weight="${caps ? 700 : 400}">${esc(title)}</text><text x="82" y="53" fill="${ink}" font-family="Arial" font-size="9" letter-spacing=".6">${esc(subtitle.toUpperCase())}</text><path d="M${length - 29} 15v34m5-34v34m3-34v34m7-34v34m3-34v34" stroke="${ink}" opacity=".5"/><path d="M0 1h${length}M0 63h${length}" stroke="${ink}" opacity=".25"/></g></svg>`;
     writeFileSync(`public/${folder}/spines/${a.id}.svg`, svg);
   }
 }

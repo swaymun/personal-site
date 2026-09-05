@@ -8,5 +8,6 @@
     "https://www.interco.fr/fournitures-biblioth\u00e8ques-m\u00e9diath\u00e8ques-cdi-boitier-nintendo-switch-transparent-ref-20-14-72-421",
     "https://leantec.es/tienda/protector-de-caja-pet-para-juegos-gameboy-color-y-advance-gbc-gba/"
   ],
-  "albumSpines": "Original SVG spine designs composed from sourced album cover artwork, individual palettes and typography; not retail scans. No turntable or vinyl assets used."
+  "albumSpines": "Original SVG spine designs composed from sourced album cover artwork, individual palettes and typography; not retail scans. No turntable or vinyl assets used.",
+  "spineSizing": "Game SVG canvas lengths are computed from case height/spine thickness; album SVG canvases use a fixed 64:1067 display ratio. Artwork backgrounds extend/crop to the canvas, lettering is laid out without glyph stretching, and images render at intrinsic aspect ratio. Album thickness is stylized, not a measurement of a specific pressing."
 }

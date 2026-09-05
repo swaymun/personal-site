@@ -6,7 +6,10 @@
     "No turntable or vinyl markup in built Home",
     "All eight iOS grid icons measured 40.109375px square at desktop and 360px viewport",
     "Album selection updated to U and Bonito Generation through native labels",
-    "360px page has no horizontal overflow or broken loaded images"
+    "360px page has no horizontal overflow or broken loaded images",
+    "Spine natural and rendered aspect ratios match within 0.001 on desktop and 360px",
+    "Game spine SVG canvases match each case height/thickness ratio",
+    "Removed both All favorite albums/games disclosures"
   ],
   "scope": "Album display, image spines and iOS icon sizing; no full game/audio regression this pass"
 }

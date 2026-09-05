@@ -1982,14 +1982,6 @@ input:focus-visible,
   margin-top: 7px;
   line-height: 1.2;
 }
-.collection-titles {
-  font-size: 0.85em;
-  margin: 12px 0 24px;
-}
-.collection-titles summary {
-  cursor: pointer;
-  color: var(--muted, #666);
-}
 .album-collection {
   border: 0;
   margin: 24px 0 0;
@@ -2010,10 +2002,9 @@ input:focus-visible,
   border-bottom: 5px solid #b5a18a;
   padding: 12px 3px 0;
   min-width: 0;
-  height: 280px;
 }
 .record-rack label {
-  height: 100%;
+  height: auto;
   flex: 1;
   min-width: 0;
   max-width: 22px;
@@ -2065,9 +2056,6 @@ input:focus-visible,
   grid-template-columns: 1fr;
   gap: 12px;
 }
-.compact .record-rack {
-  height: 125px;
-}
 .compact .record-rack label {
   font-size: 6px;
   padding: 3px 0;
@@ -2096,9 +2084,6 @@ input:focus-visible,
   .album-layout {
     gap: 14px;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  }
-  .record-rack {
-    height: 190px;
   }
   .record-rack label {
     font-size: 7px;
@@ -2131,9 +2116,6 @@ input:focus-visible,
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
   gap: 8px;
 }
-.compact .record-rack {
-  height: 90px;
-}
 .compact .record-rack label {
   font-size: 5px;
 }
@@ -2160,21 +2142,14 @@ input:focus-visible,
 .game-spine {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: fill;
+  height: auto;
+  object-fit: contain;
 }
 .game-case summary {
+  display: block;
   padding: 0;
   writing-mode: initial;
 }
 .album-layout {
   align-items: start;
-}
-@media (max-width: 500px) {
-  .record-rack {
-    height: 180px;
-  }
-}
-.compact .record-rack {
-  height: 90px;
 }

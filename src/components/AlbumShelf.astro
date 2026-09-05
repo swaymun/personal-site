@@ -6,7 +6,7 @@ const rules = albums.map((album,i)=>`#record-${album.id}:checked ~ .album-layout
 <legend class="sr-only">Choose an album</legend>
 {albums.map((album,i)=><input class="record-choice sr-only" type="radio" name="record" id={`record-${album.id}`} checked={i===0} aria-label={`${album.title} — ${album.artist}`}/>)}
 <div class="album-layout">
-  <div class="record-rack" aria-label="Record shelf">{albums.map(album=><label for={`record-${album.id}`} title={`${album.title} — ${album.artist}`} style={`--sleeve-color:${album.color};--sleeve-ink:${album.ink}`}><img src={`/music/spines/${album.id}.svg`} alt={`${album.title} — ${album.artist}`} width="64" height="800" loading="lazy"/></label>)}</div>
+  <div class="record-rack" aria-label="Record shelf">{albums.map(album=><label for={`record-${album.id}`} title={`${album.title} — ${album.artist}`} style={`--sleeve-color:${album.color};--sleeve-ink:${album.ink}`}><img src={`/music/spines/${album.id}.svg`} alt={`${album.title} — ${album.artist}`} width="64" height="1067" loading="lazy"/></label>)}</div>
   <div class="album-selection">
     <div class="album-display">{albums.map((album,i)=><a class={`selected-record record-${i}`} href={album.url} aria-label={`${album.title} by ${album.artist}`}><img src={`/music/${album.id}.webp`} alt={`${album.title} album cover`} width="320" height="320" loading="lazy"/></a>)}</div>
     <div class="record-caption">{albums.map((album,i)=><p class={`selected-record record-${i}`}><strong>{album.title}</strong><br/><span class="muted">{album.artist}</span></p>)}</div>
@@ -15,4 +15,3 @@ const rules = albums.map((album,i)=>`#record-${album.id}:checked ~ .album-layout
 <style set:html={rules}/>
 </fieldset>
 <p class="muted shelf-hint">Choose a spine to see the album.</p>
-<details class="collection-titles"><summary>All favorite albums</summary><ul>{albums.map(album=><li><a href={album.url}>{album.title}</a> <span class="muted">· {album.artist}</span></li>)}</ul></details>
