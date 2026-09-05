@@ -1,0 +1,42 @@
+{
+  "date": "2026-09-05",
+  "tests": 16,
+  "lighthouse": {
+    "lighthouse-writing": {
+      "performance": 100,
+      "accessibility": 100
+    },
+    "lighthouse-work": {
+      "performance": 100,
+      "accessibility": 100
+    },
+    "lighthouse-links": {
+      "performance": 100,
+      "accessibility": 100
+    },
+    "lighthouse-home": {
+      "performance": 100,
+      "accessibility": 100
+    },
+    "lighthouse-music": {
+      "performance": 100,
+      "accessibility": 100
+    },
+    "lighthouse-movies": {
+      "performance": 100,
+      "accessibility": 100
+    },
+    "lighthouse-games": {
+      "performance": 100,
+      "accessibility": 100
+    }
+  },
+  "widthsChecked": [
+    360,
+    390,
+    768,
+    1440
+  ],
+  "appRoutesChecked": 45,
+  "audioPerceptualVerification": false
+}

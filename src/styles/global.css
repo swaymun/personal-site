@@ -1259,3 +1259,98 @@ input:focus-visible,
 .lower-game-help strong {
   font-size: 1.3em;
 }
+.switch .launcher {
+  padding: 2% 4%;
+}
+.switch .launcher-heading {
+  margin-bottom: 1%;
+}
+.switch .app-grid {
+  padding: 1cqw;
+}
+.switch-utilities {
+  padding: 1cqw 0;
+}
+.switch-utilities button {
+  width: 6cqw;
+  height: 6cqw;
+  padding: 1.2cqw;
+}
+.expanded .screen #game-overlay {
+  font-size: clamp(12px, 2.5cqw, 18px);
+  gap: clamp(6px, 2cqw, 16px);
+}
+.expanded .screen #game-overlay strong {
+  font-size: clamp(22px, 5cqw, 40px);
+}
+.expanded .screen #game-overlay button {
+  font-size: clamp(14px, 2.5cqw, 18px);
+  padding: 8px 20px;
+  min-height: 40px;
+}
+/* Hidden overflow must not scroll when focus moves into a compact game overlay. */
+.screen {
+  overflow: clip;
+}
+.handheld-page:not(.expanded) .screen #game-overlay {
+  font-size: 3cqw;
+  gap: 2cqw;
+  padding: 3%;
+}
+.handheld-page:not(.expanded) .screen #game-overlay strong {
+  font-size: 5.5cqw;
+}
+.handheld-page:not(.expanded) .screen #game-overlay button {
+  font-size: 3cqw;
+  padding: 1.5cqw 4cqw;
+}
+.switch-utilities button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.switch-utilities svg {
+  display: block;
+  flex-shrink: 0;
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .handheld-page.expanded {
+    position: relative;
+  }
+  .expanded .device-stage {
+    width: calc(100% - 190px);
+  }
+  .expanded .device {
+    height: calc(100dvh - 120px) !important;
+  }
+  .expanded .expanded-controls {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 175px;
+    flex-direction: column;
+    gap: 10px !important;
+    margin: 0;
+  }
+  .expanded .expanded-controls > div {
+    justify-content: center;
+  }
+  .expanded .device-tools {
+    width: calc(100% - 190px);
+  }
+  .expanded .screen #game-overlay {
+    padding: 3%;
+    gap: 7px;
+  }
+  .expanded .screen #game-overlay strong {
+    font-size: 26px;
+  }
+  .expanded .screen #game-overlay p {
+    font-size: 14px;
+  }
+  .expanded .screen #game-overlay button {
+    min-height: 32px;
+    font-size: 14px;
+    padding: 5px 15px;
+  }
+}

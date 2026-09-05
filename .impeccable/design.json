@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-05T06:37:35.806025+00:00",
+  "title": "Design System: Saimun Shahee",
+  "extensions": {
+    "shadows": [
+      {
+        "name": "hardware-cast",
+        "value": "0 14px 17px #00000018",
+        "purpose": "CSS drop-shadow for device silhouette; removed in expanded view."
+      },
+      {
+        "name": "physical-button",
+        "value": "0 2px 2px #0008",
+        "purpose": "Raised physical control."
+      },
+      {
+        "name": "physical-button-pressed",
+        "value": "inset 0 2px 3px #0009",
+        "purpose": "Depressed physical control."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile",
+        "value": "600px"
+      },
+      {
+        "name": "wide-device-spacing",
+        "value": "800px"
+      },
+      {
+        "name": "short-landscape-height",
+        "value": "500px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Text link",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "Underlined link used throughout the outer text site.",
+      "html": "<a class=\"ds-link\" href=\"#example\">Work</a>",
+      "css": ".ds-link{font:16px/1.65 Arial,Helvetica,sans-serif;color:var(--link,#1856a5);text-underline-offset:3px}.ds-link:focus-visible{outline:3px solid var(--focus,#246bc1);outline-offset:4px}"
+    },
+    {
+      "name": "Main navigation",
+      "kind": "nav",
+      "description": "Centered wrapping links with a bold current page.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"#home\" aria-current=\"page\">Home</a><a href=\"#gba\">GBA SP</a><a href=\"#psp\">PSP</a><a href=\"#ipod\">iPod</a><a href=\"#3ds\">3DS</a><a href=\"#switch\">Switch</a></nav>",
+      "css": ".ds-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:12px 27px;font:14px/1.65 Arial,Helvetica,sans-serif}.ds-nav a{color:var(--link,#1856a5);text-underline-offset:3px}.ds-nav a[aria-current=\"page\"]{color:#242424;font-weight:700;text-decoration:none}.ds-nav a:focus-visible{outline:3px solid var(--focus,#246bc1);outline-offset:4px}@media(max-width:600px){.ds-nav{gap:10px 19px;font-size:13px}}"
+    },
+    {
+      "name": "App action",
+      "kind": "button",
+      "refersTo": "app-action",
+      "description": "Compact action inside a container-scaled device app.",
+      "html": "<div class=\"ds-app\"><button class=\"ds-action\">Play</button></div>",
+      "css": ".ds-app{container-type:inline-size;max-width:320px}.ds-action{padding:2cqw 4cqw;background:#245d89;color:white;border:0;border-radius:3px;font:16px Arial,Helvetica,sans-serif;cursor:pointer}.ds-action:focus-visible{outline:3px solid var(--focus,#246bc1);outline-offset:4px}"
+    },
+    {
+      "name": "Notes field",
+      "kind": "input",
+      "refersTo": "notes-field",
+      "description": "Yellow writing surface inside the Notes app.",
+      "html": "<div class=\"ds-notes\"><textarea class=\"ds-note\" aria-label=\"Notes\" placeholder=\"Write a note\"></textarea></div>",
+      "css": ".ds-notes{container-type:inline-size;max-width:320px}.ds-note{min-height:120px;width:100%;resize:none;border:1px solid #c0ad67;background:#fff4c4;padding:3cqw;color:#3e3824;font:4cqw/1.6 Arial,Helvetica,sans-serif;caret-color:#66490b}.ds-note:focus-visible{outline:3px solid var(--focus,#246bc1);outline-offset:4px}"
+    },
+    {
+      "name": "Expanded touch control",
+      "kind": "button",
+      "description": "Larger control for expanded play and touch devices.",
+      "html": "<button class=\"ds-touch\" aria-label=\"Confirm or action\">A</button>",
+      "css": ".ds-touch{min-width:46px;min-height:46px;border:1px solid #b6bfc3;border-radius:6px;background:#f4f6f7;color:#263a47;touch-action:none;user-select:none;font:16px Arial,Helvetica,sans-serif;cursor:pointer}.ds-touch.pressed{background:#c5dce7}.ds-touch:focus-visible{outline:3px solid var(--focus,#246bc1);outline-offset:4px}"
+    }
+  ],
+  "narrative": {
+    "overview": "White personal text pages and detailed playable handhelds, with era-specific menus.",
+    "keyCharacteristics": [
+      "System Arial",
+      "Blue underlined links",
+      "Centered wrapping navigation",
+      "Detailed SVG hardware",
+      "Distinct device launchers"
+    ],
+    "rules": [
+      {
+        "name": "Device-local depth",
+        "body": "Keep gloss, shadows, and hardware gradients within their device context.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Keep text readable independently of handheld interaction.",
+      "Preserve device proportions and era-specific menu selection."
+    ],
+    "donts": [
+      "Do not introduce decorative page containers.",
+      "Do not clip labels or focused overlay actions."
+    ]
+  }
+}

@@ -204,3 +204,8 @@ test("fishing requires a timed bite, completes five catches and supports loss", 
   }
   assert.equal(lost.status, "lost");
 });
+
+test("iPod grid uses four-column vertical navigation", () => {
+  assert.equal(nextSelection(0, "down", 9, 4), 4);
+  assert.equal(nextSelection(4, "up", 9, 4), 0);
+});

@@ -39,18 +39,16 @@ const gameImports = {
 const canvas = $<HTMLCanvasElement>("#game-canvas"),
   ctx = canvas.getContext("2d")!;
 function updateClock() {
-  root
-    .querySelectorAll(".clock")
-    .forEach(
-      (el) =>
-        (el.textContent = new Date().toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-        })),
-    );
+  root.querySelectorAll(".clock").forEach(
+    (el) =>
+      (el.textContent = new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      })),
+  );
 }
 updateClock();
-const clockTimer = setInterval(updateClock, 60000);
+let clockTimer = setInterval(updateClock, 60000);
 function setSound(on: boolean) {
   audio.setEnabled(on);
   const button = $("#sound-toggle");
@@ -292,7 +290,7 @@ async function launchGame() {
     canvas.width = game.width;
     canvas.height = game.height;
     game.draw(ctx);
-    setOverlay(device.game, device.instructions, "Play");
+    setOverlay(device.game, device.genre, "Play");
     $("#game-resume").focus({ preventScroll: true });
   } catch {
     if (token !== loadToken) return;
@@ -443,7 +441,7 @@ function dispatch(action: Action) {
         selected,
         action,
         apps.length,
-        id === "psp" || id === "switch" ? 1 : 3,
+        id === "psp" || id === "switch" ? 1 : id === "ipod" ? 4 : 3,
       ),
     );
     void audio.play();
@@ -559,4 +557,12 @@ function restoreUrl() {
   else menu(false);
 }
 window.addEventListener("popstate", restoreUrl);
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) {
+    restoreUrl();
+    updateClock();
+    clearInterval(clockTimer);
+    clockTimer = setInterval(updateClock, 60000);
+  }
+});
 restoreUrl();
