@@ -1,15 +1,6 @@
 ---
 import { favoriteGames } from '../data/collection';
+import MediaShelf from './MediaShelf.astro';
+const items = favoriteGames.map(game=>({...game,subtitle:game.platform,thickness:game.spine,spine:`/games/spines/${game.id}.webp`,cover:`/games/${game.id}.webp`}));
 ---
-<div class="game-collection">
-<div class="game-shelf" aria-label="Favorite games">
-{favoriteGames.map((game,i)=><details name="game-case" class={`game-case case-${game.kind}`} open={i===0} style={`--case-height:${game.height};--case-width:${game.width};--spine-width:${game.spine}`}>
-  <summary aria-label={`Show ${game.title} case`} title={`${game.title} · ${game.platform}`}>
-    <img class="game-spine" src={`/games/spines/${game.id}.webp`} alt="" width="64" height={Math.round(64*game.height/game.spine)} loading="lazy"/>
-  </summary>
-  <a class="game-cover" href={game.url} aria-label={`${game.title} — ${game.platform}`}><img src={`/games/${game.id}.webp`} alt={`${game.title}, ${game.platform}`} loading="lazy" width={game.width*2} height={game.kind==='digital'?game.width*2:game.height*2}/>{game.kind==='digital' && <small>iOS · digital</small>}</a>
-</details>)}
-</div>
-
-
-</div>
+<MediaShelf kind="game" label="Favorite games" items={items}/>

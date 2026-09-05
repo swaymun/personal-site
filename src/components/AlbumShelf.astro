@@ -2,7 +2,7 @@
 import { albums } from '../data/collection';
 const rules = albums.map((album,i)=>`#record-${album.id}:checked ~ .album-layout .record-${i}{display:block} #record-${album.id}:checked ~ .album-layout label[for="record-${album.id}"]{transform:translateY(-8px);outline:2px solid currentColor;outline-offset:2px} #record-${album.id}:focus-visible ~ .album-layout label[for="record-${album.id}"]{outline:3px solid #245d9c;outline-offset:3px}`).join('\n');
 ---
-<fieldset class="album-collection">
+<fieldset class="album-collection" data-collection>
 <legend class="sr-only">Choose an album</legend>
 {albums.map((album,i)=><input class="record-choice sr-only" type="radio" name="record" id={`record-${album.id}`} checked={i===0} aria-label={`${album.title} — ${album.artist}`}/>)}
 <div class="album-layout">

@@ -271,9 +271,7 @@ function menu(historyUpdate = true) {
 function fitCollection() {
   const content = body.querySelector<HTMLElement>(".compact");
   if (!content) return;
-  const shelf = content.querySelector<HTMLElement>(
-    ".movie-shelf, .album-collection, .game-collection",
-  );
+  const shelf = content.querySelector<HTMLElement>("[data-collection]");
   if (!shelf) return;
   const style = getComputedStyle(body);
   const width =
@@ -655,6 +653,23 @@ function dispatch(action: Action) {
   if (currentApp) {
     if (action === "back") {
       menu();
+      return;
+    }
+    const choices = [
+      ...body.querySelectorAll<HTMLInputElement>(
+        "[data-collection] input[type=radio]",
+      ),
+    ];
+    if (
+      choices.length &&
+      ["up", "down", "left", "right", "l", "r"].includes(action)
+    ) {
+      const direction = ["up", "left", "l"].includes(action) ? -1 : 1;
+      const index = choices.findIndex((choice) => choice.checked);
+      const next =
+        choices[(index + direction + choices.length) % choices.length];
+      next.checked = true;
+      next.dispatchEvent(new Event("change", { bubbles: true }));
       return;
     }
     if (["up", "l", "left"].includes(action)) scrollPage(-1);

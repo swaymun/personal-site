@@ -1,0 +1,18 @@
+---
+interface Item { id: string; title: string; subtitle?: string; spine: string; cover: string; url: string; height: number; width: number; thickness: number; }
+interface Props { kind: string; label: string; items: Item[]; }
+const {kind,label,items} = Astro.props;
+const rules = items.map((item,i)=>`#${kind}-${item.id}:checked ~ .media-layout .media-${i}{display:block} #${kind}-${item.id}:checked ~ .media-layout label[for="${kind}-${item.id}"]{transform:translateY(-5px);outline:2px solid currentColor;outline-offset:2px} #${kind}-${item.id}:focus-visible ~ .media-layout label[for="${kind}-${item.id}"]{outline:3px solid #245d9c;outline-offset:3px}`).join('\n');
+---
+<fieldset class={`media-collection media-${kind}`} data-collection>
+  <legend class="sr-only">{label}. Use arrow keys to choose.</legend>
+  {items.map((item,i)=><input class="media-choice sr-only" type="radio" name={kind} id={`${kind}-${item.id}`} checked={i===0} aria-label={item.title}/>)}
+  <div class="media-layout">
+    <div class="media-rack" aria-label={`${label} spines`}>{items.map(item=><label for={`${kind}-${item.id}`} title={item.title} style={`--spine-height:${item.height};--spine-thickness:${item.thickness}`}><img src={item.spine} alt={item.title} width={item.thickness*4} height={item.height*4} loading="lazy"/></label>)}</div>
+    <div class="media-selection">
+      <div class="media-display">{items.map((item,i)=><a class={`selected-media media-${i}`} href={item.url} aria-label={item.title}><img src={item.cover} alt={`${item.title} cover`} width={item.width*4} height={item.height*4} loading="lazy" style={`--cover-width:${item.width};--cover-height:${item.id==='temple-run'?item.width:item.height}`}/></a>)}</div>
+      <div class="record-caption">{items.map((item,i)=><p class={`selected-media media-${i}`}><strong>{item.title}</strong>{item.subtitle && <><br/><span class="muted">{item.subtitle}</span></>}</p>)}</div>
+    </div>
+  </div>
+  <style set:html={rules}/>
+</fieldset>

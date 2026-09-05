@@ -14,14 +14,7 @@ test("Work preserves project and education; every text page has a heading and no
   const s = html("work");
   assert.ok(s.includes("https://github.com/swaymun/system-design-excalidraws"));
   assert.ok(s.includes("Penn State"));
-  for (const page of [
-    "work",
-    "movies",
-    "music",
-    "games",
-    "writing",
-    "links",
-  ]) {
+  for (const page of ["work", "movies", "music", "games", "writing", "links"]) {
     assert.match(html(page), /<h1>/);
     assert.doesNotMatch(html(page), /<script/);
   }
@@ -39,7 +32,7 @@ test("Home contains corrected dates, projects and native movie shelf", () => {
   const s = html("");
   assert.ok(s.includes("May 2026"));
   assert.ok(s.includes("Stagehand Animation Studio"));
-  assert.equal((s.match(/name="favorite-film"/g) || []).length, 4);
+  assert.equal((s.match(/name="film"/g) || []).length, 4);
   assert.equal((s.match(/<h1>/g) || []).length, 1);
 });
 
@@ -86,9 +79,10 @@ test("each device preloads exactly its own hashed hardware image", () => {
 });
 
 test("Home warms hardware after load without loading games or sound", () => {
-  const s=html("");
+  const s = html("");
   assert.ok(s.includes("requestIdleCallback"));
   assert.ok(s.includes("scheduleWarmup"));
-  for(const id of ["gba","psp","ipod","3ds","switch"]) assert.ok(s.includes(`/_astro/${id}.`));
+  for (const id of ["gba", "psp", "ipod", "3ds", "switch"])
+    assert.ok(s.includes(`/_astro/${id}.`));
   assert.doesNotMatch(s, /<script[^>]+src=|\/video\/|\/audio\//);
 });
