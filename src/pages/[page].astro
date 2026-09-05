@@ -1,10 +1,38 @@
 ---
-import Site from '../layouts/Site.astro';
-import Content from '../components/Content.astro';
-import Handheld from '../components/Handheld.astro';
-import {devices,sections,titles} from '../data/site';
-import type {Section} from '../data/site';
-export function getStaticPaths(){return [...devices.map(device=>({params:{page:device.id},props:{device}})),...sections.filter(s=>s!=='home').map(section=>({params:{page:section},props:{section}}))];}
-const {device,section}=Astro.props;
+import Site from "../layouts/Site.astro";
+import Content from "../components/Content.astro";
+import Handheld from "../components/Handheld.astro";
+import { devices, sections, titles } from "../data/site";
+import type { Section } from "../data/site";
+export function getStaticPaths() {
+  return [
+    ...devices.map((device) => ({
+      params: { page: device.id },
+      props: { device },
+    })),
+    ...sections
+      .filter((s) => s !== "home")
+      .map((section) => ({ params: { page: section }, props: { section } })),
+  ];
+}
+const { device, section } = Astro.props;
 ---
-<Site title={device?.name ?? titles[section as Section]} active={device?.id ?? 'home'}>{device?<Handheld device={device}/>:<article class="text-page"><Content section={section as Section}/><p class="back-home"><a href="/">← Home</a></p></article>}</Site>
+
+<Site
+  title={device?.name ?? titles[section as Section]}
+  active={device?.id ?? "home"}
+  >{
+    device ? (
+      <Handheld device={device} />
+    ) : (
+      <article class="text-page">
+        <>
+          <Content section={section as Section} />
+          <p class="back-home">
+            <a href="/">← Home</a>
+          </p>
+        </>
+      </article>
+    )
+  }</Site
+>

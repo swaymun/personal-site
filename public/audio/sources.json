@@ -1,1 +1,61 @@
-{"status":"Recordings being prepared; missing clips fail silently.","uiEffects":"Original synthesized sine tones, 440 and 660 Hz, 60 ms. These are not authentic console recordings."}
+{
+  "verification": "Source titles and metadata checked; files decoded and inspected for audible signal and clipping. Perceptual listening is unverified because the tool audio input was unavailable.",
+  "uiEffects": "Original synthesized sine tones for select/action; not authentic console recordings.",
+  "clips": {
+    "gba": {
+      "file": "gba-boot.mp3",
+      "source": "https://www.youtube.com/watch?v=6_ZD3FxMcvQ",
+      "title": "original game boy advance startup",
+      "uploader": "arscanum",
+      "cropStartSeconds": 0.25,
+      "cropDurationSeconds": 3.55,
+      "description": "GBA startup recording",
+      "sourceLicense": "Not specified by source; no license claim made",
+      "retrieved": "2026-09-05"
+    },
+    "psp": {
+      "file": "psp-boot.mp3",
+      "source": "https://www.youtube.com/watch?v=PlFkIjbWg2M",
+      "title": "PSP Startup Sound",
+      "uploader": "Yaseen Ajina",
+      "cropStartSeconds": 0.82,
+      "cropDurationSeconds": 2.35,
+      "description": "PSP startup recording",
+      "sourceLicense": "Not specified by source; no license claim made",
+      "retrieved": "2026-09-05"
+    },
+    "ipod": {
+      "file": "ipod-boot.mp3",
+      "source": "https://www.youtube.com/watch?v=kvzni3nCpa4",
+      "title": "iOS 6 RAW System Sounds",
+      "uploader": "Jack Casterella",
+      "cropStartSeconds": 13.34,
+      "cropDurationSeconds": 0.55,
+      "description": "iOS 6 system effect excerpt",
+      "sourceLicense": "Not specified by source; no license claim made",
+      "retrieved": "2026-09-05"
+    },
+    "3ds": {
+      "file": "3ds-boot.mp3",
+      "source": "https://www.youtube.com/watch?v=z3CItT7BAGA",
+      "title": "Home Menu - Nintendo 3DS",
+      "uploader": "Nostalgia OST",
+      "cropStartSeconds": 0,
+      "cropDurationSeconds": 4,
+      "description": "3DS HOME Menu music excerpt; not a boot jingle",
+      "sourceLicense": "Not specified by source; no license claim made",
+      "retrieved": "2026-09-05"
+    },
+    "switch": {
+      "file": "switch-boot.mp3",
+      "source": "https://www.youtube.com/watch?v=tmRNnOMdOvU",
+      "title": "Nintendo Switch startup",
+      "uploader": "DiegoDj DiToro",
+      "cropStartSeconds": 2.22,
+      "cropDurationSeconds": 0.65,
+      "description": "Switch startup click excerpt",
+      "sourceLicense": "Not specified by source; no license claim made",
+      "retrieved": "2026-09-05"
+    }
+  }
+}

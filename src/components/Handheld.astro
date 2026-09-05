@@ -1,46 +1,383 @@
 ---
-import {apps,titles,sections} from '../data/site';
-import type {devices} from '../data/site';
-import Hardware from './Hardware.astro';
-import Content from './Content.astro';
-import AppIcon from './AppIcon.astro';
-interface Props{device:typeof devices[number];}
-const {device:d}=Astro.props;
-type Control={key:string;label:string;x:number;y:number;w:number;h:number;kind?:string};
-const controls:Control[]=[];
-function button(key:string,label:string,x:number,y:number,w=30,h=w,kind='round'){controls.push({key,label,x,y,w,h,kind});}
-function dpad(x:number,y:number,size:number){button('up','↑',x,y-size,size,size,'dpad');button('down','↓',x,y+size,size,size,'dpad');button('left','←',x-size,y,size,size,'dpad');button('right','→',x+size,y,size,size,'dpad');}
-function face(x:number,y:number,size:number,gap:number,psp=false){button('action',psp?'×':'A',psp?x:x+gap,psp?y+gap:y,size);button('back',psp?'○':'B',psp?x+gap:x,psp?y:y+gap,size);button('secondary',psp?'□':'Y',x-gap,y,size);button('extra',psp?'△':'X',x,y-gap,size);}
-if(d.id==='gba'){dpad(101,422,25);button('action','A',279,402,39);button('back','B',237,440,39);button('start','START',206,564,42,20,'pill');button('select','SELECT',148,564,42,20,'pill');button('home','⌂',180,351,26);button('l','L',52,318,60,19,'shoulder');button('r','R',308,318,60,19,'shoulder');button('power','Power',339,374,14,36,'power');}
-if(d.id==='psp'){dpad(99,148,28);face(801,149,34,41,true);button('home','HOME',105,342,55,18,'pill');button('select','SELECT',620,369,48,15,'pill');button('start','START',682,369,42,15,'pill');button('l','L',94,24,103,23,'shoulder');button('r','R',806,24,103,23,'shoulder');button('sound','♪',337,369,28,15,'pill');}
-if(d.id==='ipod'){button('home','Home',160,538,54,54,'invisible');button('power','Power',64,5,49,10,'power');}
-if(d.id==='3ds'){dpad(65,470,22);face(454,397,28,32);button('home','⌂',260,576,46,23,'pill');button('select','SELECT',185,576,47,19,'pill');button('start','START',335,576,47,19,'pill');button('l','L',56,314,63,18,'shoulder');button('r','R',464,314,63,18,'shoulder');}
-if(d.id==='switch'){dpad(77,252,26);face(923,128,30,36);button('home','⌂',925,354,34);button('select','−',113,53,26);button('start','+',887,53,26);button('l','L',77,9,80,18,'shoulder');button('r','R',923,9,80,18,'shoulder');}
-const style=(x:number,y:number,w:number,h:number)=>`left:${(x-w/2)/d.width*100}%;top:${(y-h/2)/d.height*100}%;width:${w/d.width*100}%;height:${h/d.height*100}%`;
-const [sx,sy,sw,sh]=d.screen;
+import { apps, titles, sections } from "../data/site";
+import type { devices } from "../data/site";
+import Hardware from "./Hardware.astro";
+import Content from "./Content.astro";
+import AppIcon from "./AppIcon.astro";
+interface Props {
+  device: (typeof devices)[number];
+}
+const { device: d } = Astro.props;
+type Control = {
+  key: string;
+  label: string;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  kind?: string;
+};
+const controls: Control[] = [];
+function button(
+  key: string,
+  label: string,
+  x: number,
+  y: number,
+  w = 30,
+  h = w,
+  kind = "round",
+) {
+  controls.push({ key, label, x, y, w, h, kind });
+}
+function dpad(x: number, y: number, size: number) {
+  button("up", "↑", x, y - size, size, size, "dpad");
+  button("down", "↓", x, y + size, size, size, "dpad");
+  button("left", "←", x - size, y, size, size, "dpad");
+  button("right", "→", x + size, y, size, size, "dpad");
+}
+function face(x: number, y: number, size: number, gap: number, psp = false) {
+  button("action", psp ? "×" : "A", psp ? x : x + gap, psp ? y + gap : y, size);
+  button("back", psp ? "○" : "B", psp ? x + gap : x, psp ? y : y + gap, size);
+  button("secondary", psp ? "□" : "Y", x - gap, y, size);
+  button("extra", psp ? "△" : "X", x, y - gap, size);
+}
+if (d.id === "gba") {
+  dpad(101, 422, 25);
+  button("action", "A", 279, 402, 39);
+  button("back", "B", 237, 440, 39);
+  button("start", "START", 206, 564, 42, 20, "pill");
+  button("select", "SELECT", 148, 564, 42, 20, "pill");
+  button("home", "⌂", 180, 351, 26);
+  button("l", "L", 52, 318, 60, 19, "shoulder");
+  button("r", "R", 308, 318, 60, 19, "shoulder");
+  button("power", "Power", 339, 374, 14, 36, "power");
+}
+if (d.id === "psp") {
+  dpad(99, 148, 28);
+  face(801, 149, 34, 41, true);
+  button("home", "HOME", 105, 342, 55, 18, "pill");
+  button("select", "SELECT", 620, 369, 48, 15, "pill");
+  button("start", "START", 682, 369, 42, 15, "pill");
+  button("l", "L", 94, 24, 103, 23, "shoulder");
+  button("r", "R", 806, 24, 103, 23, "shoulder");
+  button("sound", "♪", 337, 369, 28, 15, "pill");
+}
+if (d.id === "ipod") {
+  button("home", "Home", 160, 538, 54, 54, "invisible");
+  button("power", "Power", 64, 5, 49, 10, "power");
+}
+if (d.id === "3ds") {
+  dpad(65, 470, 22);
+  face(454, 397, 28, 32);
+  button("home", "⌂", 260, 576, 46, 23, "pill");
+  button("select", "SELECT", 185, 576, 47, 19, "pill");
+  button("start", "START", 335, 576, 47, 19, "pill");
+  button("l", "L", 56, 314, 63, 18, "shoulder");
+  button("r", "R", 464, 314, 63, 18, "shoulder");
+}
+if (d.id === "switch") {
+  dpad(77, 252, 26);
+  face(923, 128, 30, 36);
+  button("home", "⌂", 925, 354, 34);
+  button("select", "−", 113, 53, 26);
+  button("start", "+", 887, 53, 26);
+  button("l", "L", 77, 9, 80, 18, "shoulder");
+  button("r", "R", 923, 9, 80, 18, "shoulder");
+}
+const style = (x: number, y: number, w: number, h: number) =>
+  `left:${((x - w / 2) / d.width) * 100}%;top:${((y - h / 2) / d.height) * 100}%;width:${(w / d.width) * 100}%;height:${(h / d.height) * 100}%`;
+const [sx, sy, sw, sh] = d.screen;
 ---
+
 <div class={`handheld-page ${d.id}`} data-device={d.id} data-game={d.game}>
-<h1 class="sr-only">{d.name}</h1>
-<div class="device-stage"><div class="device" style={`--ratio:${d.width}/${d.height};--device-width:${d.width}px`}>
-<Hardware device={d}/>
-{d.id==='3ds'&&<div class="upper-screen"><div class="upper-time">Nintendo 3DS <span class="clock">12:00</span></div><AppIcon name="home"/><strong id="upper-title">Home</strong><span>Saimun Shahee</span></div>}
-{controls.map(c=><button class={`hardware-button ${c.kind}`} style={style(c.x,c.y,c.w,c.h)} data-input={c.key} aria-label={`${c.label} — ${c.key==='back'?'back / dodge':c.key==='action'?'confirm / action':c.key}`} title={c.key}>{c.label}</button>)}
-{['psp','3ds','switch'].includes(d.id)&&<div class="analog-stick" data-analog role="group" aria-label="Analog stick. Drag to move; arrow keys also work." style={style(d.id==='psp'?100:d.id==='3ds'?65:78,d.id==='psp'?266:d.id==='3ds'?372:124,d.id==='3ds'?56:68,d.id==='3ds'?56:68)}><span></span></div>}
-<div class="screen" style={`--screen-left:${sx/d.width*100}%;--screen-top:${sy/d.height*100}%;--screen-width:${sw/d.width*100}%;--screen-height:${sh/d.height*100}%`} tabindex="0" aria-label={`${d.label} interactive screen`}>
-<div class="screen-status"><span>{d.id==='ipod'?'iPod':d.id==='gba'?'SAIMUN':d.id==='switch'?'Saimun':'HOME'}</span><span class="clock">12:00</span><span aria-label="Battery full">▰</span></div>
-<div class="launcher" id="launcher"><div class="launcher-heading">{d.id==='gba'?'SELECT A CARTRIDGE':d.id==='ipod'?'':d.id==='psp'?'Saimun’s Memory Stick':'Choose an app'}</div><div class="app-grid">{apps.map((app,i)=><button class="app-button" data-app={app} data-index={i} aria-label={`Open ${titles[app]}`}><span class={`app-icon icon-${app}`}><AppIcon name={app}/></span><span>{titles[app]}</span></button>)}</div><div class="launcher-footer">{d.id==='gba'?'D-PAD: SELECT    A: OPEN':d.id==='psp'?'← → Category     × Enter':d.id==='ipod'?'Slide into something good.':'A Open    B Back'}</div></div>
-<div id="app-view" hidden><header class="app-toolbar"><button id="back-menu" aria-label="Back to device menu">‹ Menu</button><strong id="app-title">Home</strong></header><div id="app-body" tabindex="0"></div><footer class="app-pager"><button id="page-prev" aria-label="Previous content page">‹</button><span id="page-position">Scroll to read</span><button id="page-next" aria-label="Next content page">›</button></footer></div>
-<div id="game-view" hidden><canvas id="game-canvas" width="480" height="320" aria-label={`${d.game} game`} role="img"></canvas><div id="game-overlay"><strong id="game-heading">{d.game}</strong><p id="game-message">{d.genre}</p><button id="game-resume">Play</button><button id="game-restart" hidden>Restart</button><button id="game-exit">Exit game</button></div><div id="game-live" class="sr-only" aria-live="polite"></div><button id="game-pause" aria-label="Pause game">Ⅱ</button></div>
-<div id="boot" hidden><strong>{d.id==='gba'?'GAME BOY':d.id==='psp'?'PSP':d.id==='ipod'?'iPod':d.id==='3ds'?'Nintendo 3DS':'Nintendo Switch'}</strong><span>Saimun's handheld</span><button id="skip-boot">Skip startup</button></div>
-</div></div></div>
-<div class="device-caption"><span>{d.name}</span><span class="muted">{d.color}</span></div>
-<div class="device-tools"><button id="expand">Expand screen</button><a id="text-link" href="/">Read as text</a><button id="sound-toggle" aria-pressed="false">Sound off</button><button id="power">Restart device</button></div>
-<div class="expanded-controls" aria-label="Touch game controls"><div class="touch-dpad"><button data-input="up" aria-label="Move up">↑</button><button data-input="left" aria-label="Move left">←</button><button data-input="down" aria-label="Move down">↓</button><button data-input="right" aria-label="Move right">→</button></div><div><button data-input="action">{d.id==='psp'?'×':'A'}</button><button data-input="back">{d.id==='psp'?'○':'B'}</button><button data-input="start">Pause</button><button data-input="home">Menu</button></div></div>
-<p class="control-hint">{d.id==='ipod'?'Tap an app. The Home button takes you back.':'Click the buttons, or use arrow keys · Z / Enter to select · X / Esc to go back.'}</p>
-<details class="controls-help"><summary>Controls &amp; about this handheld</summary><p>{d.instructions}</p><p>Shoulder buttons switch apps or scroll a page. Start pauses a game. Home returns to the menu. Drag the analog stick or use arrow keys to move. Expand the screen for larger touch controls.</p><p>This is a small browser tribute, not an emulator. Personal content is identical in every handheld. Your notes and game records stay on this browser.</p></details>
-<noscript><p class="text-page">This handheld needs JavaScript. <a href="/">Read the ordinary text site instead.</a></p></noscript>
-{sections.map(section=><template id={`content-${section}`}><Content section={section} compact/>{section==='games'&&<div class="game-entry"><h2>{d.game}</h2><p>{d.genre}</p><p>{d.instructions}</p><p class="best-record"></p><button data-launch-game>Play {d.game}</button></div>}</template>)}
-<template id="content-notes"><div class="notes-app"><label for="notes-text">A note to yourself</label><textarea id="notes-text" placeholder="Write something here…" spellcheck="true"></textarea><p id="notes-status" role="status">Saved only in this browser.</p></div></template>
-<template id="content-settings"><div class="settings-app"><h2>Settings</h2><label><input id="settings-sound" type="checkbox"/> Enable sound</label><p>Boot and menu sounds play only after you enable them.</p><button id="reset-scores">Reset game records</button><p id="settings-status" role="status"></p><h2>Controls</h2><p>Arrows / WASD: move<br/>Z / Enter / Space: action<br/>X / Escape: back or dodge<br/>P / Start: pause<br/>Q / E: shoulders<br/>H: device menu</p><p>Notes and scores are local. No account, no uploads.</p><a href="/audio/sources.json">Audio source notes</a></div></template>
+  <h1 class="sr-only">{d.name}</h1>
+  <div class="device-stage">
+    <div
+      class="device"
+      style={`--ratio:${d.width}/${d.height};--device-width:${d.width}px`}
+    >
+      <Hardware device={d} />
+      {
+        d.id === "3ds" && (
+          <div class="upper-screen">
+            <>
+              <div class="upper-time">
+                Nintendo 3DS <span class="clock">12:00</span>
+              </div>
+              <AppIcon name="home" />
+              <strong id="upper-title">Home</strong>
+              <span>Saimun Shahee</span>
+            </>
+          </div>
+        )
+      }
+      {
+        controls.map((c) => (
+          <button
+            class={`hardware-button ${c.kind}`}
+            style={style(c.x, c.y, c.w, c.h)}
+            data-input={c.key}
+            aria-label={`${c.label} — ${c.key === "back" ? "back / dodge" : c.key === "action" ? "confirm / action" : c.key}`}
+            title={c.key}
+          >
+            {c.label}
+          </button>
+        ))
+      }
+      {
+        ["psp", "3ds", "switch"].includes(d.id) && (
+          <div
+            class="analog-stick"
+            data-analog
+            role="group"
+            aria-label="Analog stick. Drag to move; arrow keys also work."
+            style={style(
+              d.id === "psp" ? 100 : d.id === "3ds" ? 65 : 78,
+              d.id === "psp" ? 266 : d.id === "3ds" ? 372 : 124,
+              d.id === "3ds" ? 56 : 68,
+              d.id === "3ds" ? 56 : 68,
+            )}
+          >
+            <span />
+          </div>
+        )
+      }
+      <div class="lower-game-help">
+        <strong>Pocket Ruins</strong><span
+          >A / Z: sword<br />D-pad: move<br />Start: pause</span>
+      </div>
+      <div
+        class="screen"
+        style={`--screen-left:${(sx / d.width) * 100}%;--screen-top:${(sy / d.height) * 100}%;--screen-width:${(sw / d.width) * 100}%;--screen-height:${(sh / d.height) * 100}%`}
+        tabindex="0"
+        aria-label={`${d.label} interactive screen`}
+      >
+        <div class="screen-status">
+          <span
+            >{
+              d.id === "ipod"
+                ? "iPod"
+                : d.id === "gba"
+                  ? "SAIMUN"
+                  : d.id === "switch"
+                    ? "Saimun"
+                    : "HOME"
+            }</span
+          ><span class="clock">12:00</span><span aria-label="Battery full"
+            >▰</span>
+        </div>
+        <div class="launcher" id="launcher">
+          <div class="launcher-heading">
+            {
+              d.id === "gba"
+                ? "SELECT A CARTRIDGE"
+                : d.id === "ipod"
+                  ? ""
+                  : d.id === "psp"
+                    ? "Saimun’s Memory Stick"
+                    : "Choose an app"
+            }
+          </div><div class="app-grid">
+            {
+              apps.map((app, i) => (
+                <button
+                  class="app-button"
+                  data-app={app}
+                  data-index={i}
+                  aria-label={`Open ${titles[app]}`}
+                >
+                  <>
+                    <span class={`app-icon icon-${app}`}>
+                      <AppIcon name={app} />
+                    </span>
+                    <span>{titles[app]}</span>
+                  </>
+                </button>
+              ))
+            }
+          </div>{
+            d.id === "psp" && (
+              <div class="xmb-items" aria-label="Category items" />
+            )
+          }{
+            d.id === "ipod" && (
+              <div class="ipod-dock">
+                {(["home", "music", "links", "settings"] as const).map(
+                  (app) => (
+                    <button data-open={app}>
+                      <span class={`app-icon icon-${app}`}>
+                        <AppIcon name={app} />
+                      </span>
+                      {titles[app]}
+                    </button>
+                  ),
+                )}
+              </div>
+            )
+          }{
+            d.id === "switch" && (
+              <div class="switch-utilities">
+                {(["notes", "links", "settings"] as const).map((app) => (
+                  <button
+                    data-open={app}
+                    aria-label={`Open ${titles[app]} utility`}
+                  >
+                    <AppIcon name={app} />
+                  </button>
+                ))}
+              </div>
+            )
+          }<div class="launcher-footer">
+            {
+              d.id === "gba"
+                ? "D-PAD: SELECT    A: OPEN"
+                : d.id === "psp"
+                  ? "← → Category     × Enter"
+                  : d.id === "ipod"
+                    ? "Slide into something good."
+                    : "A Open    B Back"
+            }
+          </div>
+        </div>
+        <div id="app-view" hidden>
+          <header class="app-toolbar">
+            <button id="back-menu" aria-label="Back to device menu"
+              >‹ Menu</button
+            ><strong id="app-title">Home</strong>
+          </header><div id="app-body" tabindex="0"></div><footer
+            class="app-pager"
+          >
+            <button id="page-prev" aria-label="Previous content page">‹</button
+            ><span id="page-position">Scroll to read</span><button
+              id="page-next"
+              aria-label="Next content page">›</button>
+          </footer>
+        </div>
+        <div id="game-view" hidden>
+          <canvas
+            id="game-canvas"
+            width="480"
+            height="320"
+            aria-label={`${d.game} game`}
+            role="img"></canvas><div id="game-overlay">
+            <strong id="game-heading">{d.game}</strong><p id="game-message">
+              {d.genre}
+            </p><button id="game-resume">Play</button><button
+              id="game-restart"
+              hidden>Restart</button
+            ><button id="game-exit">Exit game</button>
+          </div><div id="game-live" class="sr-only" aria-live="polite">
+          </div><button id="game-pause" aria-label="Pause game">Ⅱ</button>
+        </div>
+        <div id="boot" hidden>
+          <strong
+            >{
+              d.id === "gba"
+                ? "GAME BOY"
+                : d.id === "psp"
+                  ? "PSP"
+                  : d.id === "ipod"
+                    ? "iPod"
+                    : d.id === "3ds"
+                      ? "Nintendo 3DS"
+                      : "Nintendo Switch"
+            }</strong
+          ><span>Saimun's handheld</span><button id="skip-boot"
+            >Skip startup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="device-caption">
+    <span>{d.name}</span><span class="muted">{d.color}</span>
+  </div>
+  <div class="device-tools">
+    <button id="expand">Expand screen</button><a id="text-link" href="/"
+      >Read as text</a
+    ><button id="sound-toggle" aria-pressed="false">Sound off</button><button
+      id="power">Restart device</button>
+  </div>
+  <div class="expanded-controls" aria-label="Touch game controls">
+    <div class="touch-dpad">
+      <button data-input="up" aria-label="Move up">↑</button><button
+        data-input="left"
+        aria-label="Move left">←</button
+      ><button data-input="down" aria-label="Move down">↓</button><button
+        data-input="right"
+        aria-label="Move right">→</button>
+    </div><div>
+      <button data-input="action">{d.id === "psp" ? "×" : "A"}</button><button
+        data-input="back">{d.id === "psp" ? "○" : "B"}</button
+      ><button data-input="start">Pause</button><button data-input="home"
+        >Menu</button>
+    </div>
+  </div>
+  <p class="control-hint">
+    {
+      d.id === "ipod"
+        ? "Tap an app. The Home button takes you back."
+        : "Click the buttons, or use arrow keys · Z / Enter to select · X / Esc to go back."
+    }
+  </p>
+  <details class="controls-help">
+    <summary>Controls &amp; about this handheld</summary><p>
+      {d.instructions}
+    </p><p>
+      Shoulder buttons switch apps or scroll a page. Start pauses a game. Home
+      returns to the menu. Drag the analog stick or use arrow keys to move.
+      Expand the screen for larger touch controls.
+    </p><p>
+      This is a small browser tribute, not an emulator. Personal content is
+      identical in every handheld. Your notes and game records stay on this
+      browser.
+    </p>
+  </details>
+  <noscript
+    ><p class="text-page">
+      This handheld needs JavaScript. <a href="/"
+        >Read the ordinary text site instead.</a>
+    </p></noscript
+  >
+  {
+    sections.map((section) => (
+      <template id={`content-${section}`}>
+        <Content section={section} compact />
+        {section === "games" && (
+          <div class="game-entry">
+            <h2>{d.game}</h2>
+            <p>{d.genre}</p>
+            <p>{d.instructions}</p>
+            <p class="best-record" />
+            <button data-launch-game>Play {d.game}</button>
+          </div>
+        )}
+      </template>
+    ))
+  }
+  <template id="content-notes"
+    ><div class="notes-app">
+      <label for="notes-text">A note to yourself</label><textarea
+        id="notes-text"
+        placeholder="Write something here…"
+        spellcheck="true"></textarea><p id="notes-status" role="status">
+        Saved only in this browser.
+      </p>
+    </div></template
+  >
+  <template id="content-settings"
+    ><div class="settings-app">
+      <h2>Settings</h2><label
+        ><input id="settings-sound" type="checkbox" /> Enable sound</label
+      ><p>Boot and menu sounds play only after you enable them.</p><button
+        id="reset-scores">Reset game records</button
+      ><p id="settings-status" role="status"></p><h2>Controls</h2><p>
+        Arrows / WASD: move<br />Z / Enter / Space: action<br />X / Escape: back
+        or dodge<br />P / Start: pause<br />Q / E: shoulders<br />H: device menu
+      </p><p>Notes and scores are local. No account, no uploads.</p><a
+        href="/audio/sources.json">Audio source notes</a>
+    </div></template
+  >
 </div>
-<script>import '../lib/handheld';</script>
+<script>
+  import "../lib/handheld";
+</script>

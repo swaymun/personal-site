@@ -1,0 +1,2 @@
+# The current Astro formatter drops adjacent children in this fragment-heavy template.
+src/components/Content.astro

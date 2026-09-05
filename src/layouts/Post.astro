@@ -1,5 +1,11 @@
 ---
-import Site from './Site.astro';
-const {frontmatter}=Astro.props;
+import Site from "./Site.astro";
+const { frontmatter } = Astro.props;
 ---
-<Site title={frontmatter.title}><article class="text-page"><h1>{frontmatter.title}</h1><p class="muted">{frontmatter.date}</p><slot/><p><a href="/writing/">← Writing</a></p></article></Site>
+
+<Site title={frontmatter.title}
+  ><article class="text-page">
+    <h1>{frontmatter.title}</h1><p class="muted">{frontmatter.date}</p><slot
+    /><p><a href="/writing/">← Writing</a></p>
+  </article></Site
+>

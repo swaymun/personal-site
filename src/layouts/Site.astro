@@ -1,7 +1,42 @@
 ---
-import { devices } from '../data/site';
-import '../styles/global.css';
-interface Props { title?: string; active?: string; }
-const {title='Saimun Shahee',active='home'}=Astro.props;
+import { devices } from "../data/site";
+import "../styles/global.css";
+interface Props {
+  title?: string;
+  active?: string;
+}
+const { title = "Saimun Shahee", active = "home" } = Astro.props;
 ---
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="description" content="Saimun Shahee. Software engineer, things I like, and a few handhelds I grew up with."/><link rel="icon" href="/favicon.svg"/><title>{title === 'Saimun Shahee' ? title : `${title} · Saimun Shahee`}</title></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><nav aria-label="Main navigation"><a href="/" aria-current={active==='home'?'page':undefined}>Home</a>{devices.map(d=><a href={`/${d.id}/`} aria-current={active===d.id?'page':undefined}>{d.label}</a>)}</nav></header><main id="main"><slot/></main></body></html>
+
+<!doctype html>
+<html lang="en">
+  <head
+    ><meta charset="utf-8" /><meta
+      name="viewport"
+      content="width=device-width,initial-scale=1"
+    /><meta
+      name="description"
+      content="Saimun Shahee. Software engineer, things I like, and a few handhelds I grew up with."
+    /><link rel="icon" href="/favicon.svg" /><title>
+      {title === "Saimun Shahee" ? title : `${title} · Saimun Shahee`}
+    </title></head
+  ><body
+    ><a class="skip-link" href="#main">Skip to content</a><header
+      class="site-header"
+    >
+      <nav aria-label="Main navigation">
+        <a href="/" aria-current={active === "home" ? "page" : undefined}
+          >Home</a
+        >{
+          devices.map((d) => (
+            <a
+              href={`/${d.id}/`}
+              aria-current={active === d.id ? "page" : undefined}
+            >
+              {d.label}
+            </a>
+          ))
+        }
+      </nav>
+    </header><main id="main"><slot /></main></body>
+</html>
