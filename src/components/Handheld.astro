@@ -1,5 +1,5 @@
 ---
-import { apps, titles, sections } from "../data/site";
+import { appsForDevice, titles, sections } from "../data/site";
 import type { devices } from "../data/site";
 import Hardware from "./Hardware.astro";
 import Content from "./Content.astro";
@@ -9,6 +9,9 @@ interface Props {
   device: (typeof devices)[number];
 }
 const { device: d } = Astro.props;
+const apps = appsForDevice(d.id);
+const dockApps = ["phone", "browser", "music", "settings"] as const;
+const appTitle = (app: keyof typeof titles) => app === "play" ? d.game : titles[app];
 type Control = {
   key: string;
   label: string;
@@ -68,11 +71,11 @@ if (d.id === "ipod") {
 }
 if (d.id === "3ds") {
   dpad(76, 497, 27);
-  face(501, 402, 35, 33);
-  button("home", "Home", 290, 563, 65, 25, "pill");
-  button("select", "SELECT", 198, 563, 65, 25, "pill");
-  button("start", "START", 380, 563, 65, 25, "pill");
-  button("power", "Power", 463, 549, 28);
+  face(502, 394, 35, 34);
+  button("home", "Home", 290, 551, 65, 25, "pill");
+  button("select", "SELECT", 200, 551, 65, 25, "pill");
+  button("start", "START", 380, 551, 65, 25, "pill");
+  button("power", "Power", 463, 537, 28);
   button("l", "L", 39, 303, 60, 23, "shoulder");
   button("r", "R", 543, 303, 60, 23, "shoulder");
 }
@@ -97,7 +100,11 @@ const [sx, sy, sw, sh] = d.screen;
       class="device"
       style={`--ratio:${d.width}/${d.height};--device-width:${d.width}px`}
     >
+      {d.id === "3ds" && <svg class="sr-only" aria-hidden="true"><defs><filter id="stereo-depth" x="-10%" y="-10%" width="120%" height="120%"><feOffset id="depth-offset" in="SourceGraphic" dx="0" dy="0" result="shift"/><feComponentTransfer in="shift" result="ghost"><feFuncA id="depth-opacity" type="linear" slope="0"/></feComponentTransfer><feBlend in="SourceGraphic" in2="ghost" mode="normal"/></filter></defs></svg>}
       <Hardware device={d} />
+      {["gba", "3ds"].includes(d.id) && <img class="closed-hardware" src={`/hardware/${d.id}-closed.webp`} alt={`${d.name}, closed`} loading="lazy" />}
+      {d.id === "3ds" && <input class="depth-slider" id="depth-slider" type="range" min="0" max="100" value="0" aria-label="3D depth" />}
+
       {
         d.id === "3ds" && (
           <div class="upper-screen">
@@ -133,16 +140,17 @@ const [sx, sy, sw, sh] = d.screen;
             role="group"
             aria-label="Analog stick. Drag to move; arrow keys also work."
             style={style(
-              d.id === "psp" ? 115 : d.id === "3ds" ? 76 : 74,
-              d.id === "psp" ? 318 : d.id === "3ds" ? 392 : 110,
+              d.id === "psp" ? 115 : d.id === "3ds" ? 78 : 74,
+              d.id === "psp" ? 318 : d.id === "3ds" ? 386 : 110,
               d.id === "3ds" ? 86 : 72,
               d.id === "3ds" ? 86 : 72,
             )}
           >
-            <span />
+            <span><img src={`/hardware/${d.id}-stick.webp`} alt="" draggable="false" /></span>
           </div>
         )
       }
+      {d.id === "switch" && <div class="analog-stick" data-analog role="group" aria-label="Right analog stick. Drag to move; arrow keys also work." style={style(925,228,72,72)}><span><img src="/hardware/switch-stick.webp" alt="" draggable="false" /></span></div>}
       <div class="lower-game-help">
         <strong>Pocket Ruins</strong><span
           >A / Z: sword<br />D-pad: move<br />Start: pause</span>
@@ -180,18 +188,18 @@ const [sx, sy, sw, sh] = d.screen;
             }
           </div><div class="app-grid">
             {
-              apps.map((app, i) => (
+              apps.filter(app => d.id !== "ipod" || !dockApps.includes(app as typeof dockApps[number])).map((app, i) => (
                 <button
                   class={`app-button app-${app}`}
                   data-app={app}
                   data-index={i}
-                  aria-label={`Open ${titles[app]}`}
+                  aria-label={`Open ${appTitle(app)}`}
                 >
                   <>
                     <span class={`app-icon icon-${app}`}>
                       <OsIcon name={app} device={d.id} />
                     </span>
-                    <span>{titles[app]}</span>
+                    <span>{app === "play" && d.id === "psp" ? "Game" : appTitle(app)}</span>
                   </>
                 </button>
               ))
@@ -202,10 +210,10 @@ const [sx, sy, sw, sh] = d.screen;
             )
           }{
             d.id === "ipod" && (
-              <div class="ios-page-dots" aria-hidden="true"><i></i><i></i></div><div class="ipod-dock">
-                {(["home", "music", "links", "settings"] as const).map(
+              <div class="ipod-dock">
+                {dockApps.map(
                   (app) => (
-                    <button data-open={app}>
+                    <button data-app={app} aria-label={`Open ${titles[app]}`}>
                       <span class={`app-icon icon-${app}`}>
                         <OsIcon name={app} device={d.id} />
                       </span>
@@ -271,6 +279,7 @@ const [sx, sy, sw, sh] = d.screen;
           </div><button id="game-pause" aria-label="Pause game">Ⅱ</button>
         </div>
         <div id="boot" hidden>
+          {["gba", "psp"].includes(d.id) && <video id="boot-video" playsinline muted preload="none" aria-label={`${d.name} startup animation`} />}
           <strong
             >{
               d.id === "gba"
@@ -293,25 +302,9 @@ const [sx, sy, sw, sh] = d.screen;
     <span>{d.name}</span><span class="muted">{d.color}</span>
   </div>
   <div class="device-tools">
-    <button id="expand">Expand screen</button><a id="text-link" href="/"
-      >Read as text</a
-    ><button id="sound-toggle" aria-pressed="false">Sound off</button><button
+    {["gba", "3ds"].includes(d.id) && <button id="hinge-toggle" aria-expanded="true">Close {d.label}</button>}
+    <button id="sound-toggle" aria-pressed="false">Sound off</button><button
       id="power">Restart device</button>
-  </div>
-  <div class="expanded-controls" aria-label="Touch game controls">
-    <div class="touch-dpad">
-      <button data-input="up" aria-label="Move up">↑</button><button
-        data-input="left"
-        aria-label="Move left">←</button
-      ><button data-input="down" aria-label="Move down">↓</button><button
-        data-input="right"
-        aria-label="Move right">→</button>
-    </div><div>
-      <button data-input="action">{d.id === "psp" ? "×" : "A"}</button><button
-        data-input="back">{d.id === "psp" ? "○" : "B"}</button
-      ><button data-input="start">Pause</button><button data-input="home"
-        >Menu</button>
-    </div>
   </div>
   <p class="control-hint">
     {
@@ -321,17 +314,13 @@ const [sx, sy, sw, sh] = d.screen;
     }
   </p>
   <details class="controls-help">
-    <summary>Controls &amp; about this handheld</summary><p>
+    <summary>Controls</summary><p>
       {d.instructions}
     </p><p>
       Shoulder buttons switch apps or scroll a page. Start pauses a game. Home
       returns to the menu. Drag the analog stick or use arrow keys to move.
-      Expand the screen for larger touch controls.
-    </p><p>
-      This is a small browser tribute, not an emulator. Personal content is
-      identical in every handheld. Your notes and game records stay on this
-      browser.
-    </p><p><a href="/credits/">Hardware and interface credits</a></p>
+
+    </p>
   </details>
   <noscript
     ><p class="text-page">
@@ -343,18 +332,12 @@ const [sx, sy, sw, sh] = d.screen;
     sections.map((section) => (
       <template id={`content-${section}`}>
         <Content section={section} compact />
-        {section === "games" && (
-          <div class="game-entry">
-            <h2>{d.game}</h2>
-            <p>{d.genre}</p>
-            <p>{d.instructions}</p>
-            <p class="best-record" />
-            <button data-launch-game>Play {d.game}</button>
-          </div>
-        )}
+
       </template>
     ))
   }
+  <template id="content-phone"><div class="phone-app"><p class="muted">Pretend calls. Real bad reception.</p><div class="contact-list">{[["Steve Jobs", "408-555-0101", "One more thing… please leave a message."], ["Spider-Man", "212-555-0102", "Can't talk. Hanging around Queens."], ["John Pork", "212-555-0103", "John Pork is calling. You called first."]].map(([name,number,message]) => <button data-contact={name} data-number={number} data-message={message}><strong>{name}</strong><span>{number}</span></button>)}</div><div class="call-screen" hidden><strong id="caller-name"></strong><p id="caller-number"></p><p id="call-status" role="status"></p><button id="hang-up">End pretend call</button></div></div></template>
+  <template id="content-browser"><div class="browser-app"><form id="browser-form"><label class="sr-only" for="browser-address">Website address</label><input id="browser-address" value="/browser-start/" autocomplete="off" spellcheck="false" /><button>Go</button></form><a id="browser-external" href="/browser-start/" target="_blank" rel="noopener noreferrer">Open in tab ↗</a><iframe id="browser-frame" title="Mini browser" src="/browser-start/" sandbox="allow-scripts allow-forms allow-popups" referrerpolicy="no-referrer"></iframe><p class="muted">If a site blocks embedding, open it in a tab.</p></div></template>
   <template id="content-notes"
     ><div class="notes-app">
       <label for="notes-text">A note to yourself</label><textarea
@@ -374,8 +357,7 @@ const [sx, sy, sw, sh] = d.screen;
       ><p id="settings-status" role="status"></p><h2>Controls</h2><p>
         Arrows / WASD: move<br />Z / Enter / Space: action<br />X / Escape: back
         or dodge<br />P / Start: pause<br />Q / E: shoulders<br />H: device menu
-      </p><p>Notes and scores are local. No account, no uploads.</p><a
-        href="/audio/sources.json">Audio source notes</a>
+      </p><p>Notes and scores are local. No account, no uploads.</p>
     </div></template
   >
 </div>

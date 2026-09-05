@@ -81,14 +81,42 @@ export const sections = [
   "links",
 ] as const;
 export type Section = (typeof sections)[number];
-export const apps = [...sections, "notes", "settings"] as const;
+export const apps = [
+  ...sections,
+  "notes",
+  "settings",
+  "play",
+  "phone",
+  "browser",
+] as const;
+export function appsForDevice(id: DeviceId): AppId[] {
+  return id === "ipod"
+    ? [
+        "home",
+        "work",
+        "movies",
+        "games",
+        "writing",
+        "links",
+        "notes",
+        "play",
+        "phone",
+        "browser",
+        "music",
+        "settings",
+      ]
+    : [...sections, "notes", "settings", "play"];
+}
 export type AppId = (typeof apps)[number];
 export const titles: Record<AppId, string> = {
+  play: "Play",
+  phone: "Phone",
+  browser: "Safari",
   home: "Home",
   work: "Work",
   movies: "Movies",
   music: "Music",
-  games: "Games",
+  games: "Favorites",
   writing: "Writing",
   links: "Links",
   notes: "Notes",
@@ -148,14 +176,14 @@ export const companyUrls: Record<string, string> = {
 export const projects = [
   {
     title: "Stagehand Animation Studio",
-    url: "https://stagehand-animation-studio.saimun-h-shahee.chatgpt.site",
+    url: "https://github.com/swaymun/stagehand-animation-studio",
     description:
       "A local-first, frame-by-frame animation studio with WebMCP tools.",
   },
   project,
   {
     title: "Cube Recall",
-    url: "https://cube-recall.saimun-h-shahee.chatgpt.site",
+    url: "https://github.com/swaymun/cube-recall",
     description: "An Anki-style Rubik’s Cube algorithm trainer.",
   },
 ];

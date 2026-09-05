@@ -1,0 +1,23 @@
+{
+  "clips": {
+    "gba": {
+      "source": "https://www.youtube.com/watch?v=6_ZD3FxMcvQ",
+      "uploader": "arscanum",
+      "title": "original game boy advance startup",
+      "startSeconds": 0,
+      "durationSeconds": 3.8,
+      "crop": "Full frame, scaled to 480x320"
+    },
+    "psp": {
+      "source": "https://www.youtube.com/watch?v=ykQfUcW14L8",
+      "uploader": "i12bretro",
+      "title": "Sony Playstation Portable (PSP) Boot Animation",
+      "startSeconds": 0,
+      "durationSeconds": 5.65,
+      "crop": "1264x704+8+8 from 1280x720, scaled to 480x272"
+    }
+  },
+  "encoding": "H.264 CRF24, AAC96k, loudnorm I=-20 TP=-2 LRA=7, faststart. Muted by default. Downloaded with yt-dlp on 2026-09-05.",
+  "verification": "Inspected sequential source frames and browser playback. Audio decoded and normalized; perceptual listening unavailable in the tool environment.",
+  "rights": "Original system artwork belongs to Nintendo/Sony. No open license asserted for uploader recordings."
+}

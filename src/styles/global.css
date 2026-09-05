@@ -632,111 +632,6 @@ input:focus-visible,
   color: #245381;
   text-decoration: underline;
 }
-.expanded-controls {
-  display: none;
-}
-.ipod.is-playing .expanded-controls {
-  display: flex;
-}
-.handheld-page.expanded .device {
-  filter: none;
-  aspect-ratio: auto !important;
-  width: min(850px, 100%) !important;
-  max-width: 850px !important;
-  height: min(64vh, 600px);
-}
-.handheld-page.expanded.ipod .device {
-  max-width: 400px !important;
-}
-.expanded .hardware-art,
-.expanded .hardware-button,
-.expanded .analog-stick,
-.expanded .upper-screen {
-  display: none;
-}
-.expanded .screen {
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 1px solid #b7c1c5;
-  --screen-left: 0;
-  --screen-top: 0;
-}
-.expanded .device-stage {
-  min-height: 0;
-}
-.expanded .screen #app-body {
-  font-size: clamp(14px, 2.6cqw, 19px);
-  padding: 4% 6%;
-}
-.expanded .screen .personal-content h1 {
-  font-size: clamp(22px, 4cqw, 30px);
-}
-.expanded .screen .personal-content h2,
-.expanded .screen #app-body h2 {
-  font-size: clamp(17px, 3cqw, 22px);
-  margin-top: 4cqw;
-}
-.expanded .screen .app-toolbar {
-  font-size: clamp(14px, 3cqw, 18px);
-  min-height: 8%;
-}
-.expanded .screen .app-pager {
-  font-size: 14px;
-  min-height: 6%;
-}
-.expanded .screen .app-pager button {
-  font-size: 24px;
-}
-.expanded .screen .screen-status {
-  font-size: 12px;
-  height: 6%;
-}
-.expanded .screen #app-view {
-  height: 94%;
-}
-.expanded .screen .notes-app textarea {
-  font-size: 17px;
-}
-.expanded .screen .notes-app p {
-  font-size: 13px;
-}
-.expanded .expanded-controls,
-.ipod.is-playing .expanded-controls {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  align-items: center;
-  margin: 22px auto;
-  max-width: 640px;
-  touch-action: none;
-}
-.expanded-controls > div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  max-width: 245px;
-}
-.expanded-controls button {
-  min-width: 46px;
-  min-height: 46px;
-  border: 1px solid #b6bfc3;
-  border-radius: 6px;
-  background: #f4f6f7;
-  color: #263a47;
-  touch-action: none;
-  user-select: none;
-}
-.expanded-controls button.pressed {
-  background: #c5dce7;
-}
-.expanded-controls .touch-dpad {
-  display: grid;
-  grid-template-columns: repeat(3, 46px);
-  grid-template-rows: repeat(2, 46px);
-  gap: 4px;
-  flex-shrink: 0;
-}
 .touch-dpad button:first-child {
   grid-column: 2;
 }
@@ -801,44 +696,11 @@ input:focus-visible,
     max-width: 310px;
     line-height: 1.8;
   }
-  .expanded .device {
-    height: 60vh !important;
-  }
-  .expanded .device-caption {
-    margin-top: 18px;
-  }
-  .expanded-controls {
-    gap: 15px !important;
-  }
-  .expanded-controls > div {
-    max-width: 160px;
-  }
-  .expanded .screen #game-overlay strong {
-    font-size: 7cqw;
-  }
   .screen .app-pager button {
     min-width: 13%;
   }
 }
 @media (max-height: 500px) and (orientation: landscape) {
-  .handheld-page.expanded {
-    margin-top: 18px;
-  }
-  .expanded .device {
-    height: 65vh !important;
-    max-width: 600px !important;
-  }
-  .expanded .device-caption,
-  .expanded .control-hint,
-  .expanded .controls-help {
-    display: none;
-  }
-  .expanded .expanded-controls {
-    margin: 12px auto;
-  }
-  .expanded .device-tools {
-    margin-top: 10px;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -849,31 +711,19 @@ input:focus-visible,
     transition: none !important;
   }
 }
-.expanded .screen #game-overlay {
-  font-size: clamp(12px, 2.5cqw, 18px);
-  gap: clamp(6px, 2cqw, 16px);
-}
-.expanded .screen #game-overlay strong {
-  font-size: clamp(22px, 5cqw, 40px);
-}
-.expanded .screen #game-overlay button {
-  font-size: clamp(14px, 2.5cqw, 18px);
-  padding: 8px 20px;
-  min-height: 40px;
-}
 /* Hidden overflow must not scroll when focus moves into a compact game overlay. */
 .screen {
   overflow: clip;
 }
-.handheld-page:not(.expanded) .screen #game-overlay {
+.handheld-page .screen #game-overlay {
   font-size: 3cqw;
   gap: 2cqw;
   padding: 3%;
 }
-.handheld-page:not(.expanded) .screen #game-overlay strong {
+.handheld-page .screen #game-overlay strong {
   font-size: 5.5cqw;
 }
-.handheld-page:not(.expanded) .screen #game-overlay button {
+.handheld-page .screen #game-overlay button {
   font-size: 3cqw;
   padding: 1.5cqw 4cqw;
 }
@@ -887,45 +737,6 @@ input:focus-visible,
   flex-shrink: 0;
 }
 @media (max-height: 500px) and (orientation: landscape) {
-  .handheld-page.expanded {
-    position: relative;
-  }
-  .expanded .device-stage {
-    width: calc(100% - 190px);
-  }
-  .expanded .device {
-    height: calc(100dvh - 120px) !important;
-  }
-  .expanded .expanded-controls {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 175px;
-    flex-direction: column;
-    gap: 10px !important;
-    margin: 0;
-  }
-  .expanded .expanded-controls > div {
-    justify-content: center;
-  }
-  .expanded .device-tools {
-    width: calc(100% - 190px);
-  }
-  .expanded .screen #game-overlay {
-    padding: 3%;
-    gap: 7px;
-  }
-  .expanded .screen #game-overlay strong {
-    font-size: 26px;
-  }
-  .expanded .screen #game-overlay p {
-    font-size: 14px;
-  }
-  .expanded .screen #game-overlay button {
-    min-height: 32px;
-    font-size: 14px;
-    padding: 5px 15px;
-  }
 }
 
 /* Front-facing product cutouts; hit areas follow the photographed controls. */
@@ -1193,22 +1004,6 @@ input:focus-visible,
   outline: 2px solid #fff;
   outline-offset: 2px;
 }
-.ios-page-dots {
-  display: flex;
-  justify-content: center;
-  gap: 3cqw;
-  padding: 3cqw 0;
-}
-.ios-page-dots i {
-  width: 1.7cqw;
-  height: 1.7cqw;
-  border-radius: 50%;
-  background: #ffffff60;
-  box-shadow: 0 1px 1px #0005;
-}
-.ios-page-dots i:first-child {
-  background: white;
-}
 .ipod-dock {
   display: flex;
   justify-content: space-around;
@@ -1413,19 +1208,19 @@ input:focus-visible,
 .\33 ds .screen #app-view {
   height: 100%;
 }
-.\33 ds.is-playing:not(.expanded) .screen {
+.\33 ds.is-playing .screen {
   left: 21.65%;
   top: 10.87%;
   width: 56.01%;
   height: 33.28%;
 }
-.\33 ds.is-playing:not(.expanded) .upper-screen {
+.\33 ds.is-playing .upper-screen {
   display: none;
 }
 .lower-game-help {
   display: none;
 }
-.\33 ds.is-playing:not(.expanded) .lower-game-help {
+.\33 ds.is-playing .lower-game-help {
   display: flex;
   position: absolute;
   left: 26.975%;
@@ -1608,34 +1403,7 @@ input:focus-visible,
 .switch .app-button {
   flex-basis: 22cqw;
 }
-/* Preserve the OS proportions when expanding its menu. Reading views stay tall. */
-.handheld-page.expanded:not([data-current-app]):not(.is-playing) .device {
-  height: auto !important;
-  aspect-ratio: 16 / 9 !important;
-}
-.handheld-page.expanded.ipod:not([data-current-app]):not(.is-playing) .device {
-  aspect-ratio: 2 / 3 !important;
-}
-.handheld-page.expanded.\33
-  ds:not([data-current-app]):not(.is-playing)
-  .device {
-  aspect-ratio: 4 / 3 !important;
-}
-.handheld-page.expanded.gba:not([data-current-app]):not(.is-playing) .device {
-  aspect-ratio: 3 / 2 !important;
-}
-.expanded .screen #app-view {
-  height: 94%;
-}
-.expanded.\33 ds .screen #app-view {
-  height: 100%;
-}
 @media (max-height: 500px) and (orientation: landscape) {
-  .handheld-page.expanded:not([data-current-app]):not(.is-playing) .device {
-    height: calc(100dvh - 120px) !important;
-    width: auto !important;
-    max-width: 100% !important;
-  }
 }
 
 /* Programmatic focus is useful for controls, but the LCD is not a button. */
@@ -1754,9 +1522,6 @@ input:focus-visible,
   margin: 0.6em 0;
   white-space: pre-line;
 }
-.ipod.is-playing .expanded-controls {
-  display: none;
-}
 .ipod #game-canvas {
   touch-action: none;
 }
@@ -1772,3 +1537,342 @@ input:focus-visible,
 .psp .xmb-preview::-webkit-scrollbar {
   display: none;
 }
+
+/* Physical controls retain real cap artwork while the socket stays still. */
+.device .analog-stick {
+  background: radial-gradient(
+    circle,
+    #15151b 0 48%,
+    #26242b 58%,
+    transparent 63%
+  );
+}
+.device .analog-stick span {
+  width: 94%;
+  height: 94%;
+  left: 3%;
+  top: 3%;
+  border: 0;
+  background: none;
+  box-shadow: 0 2px 3px #0006;
+  transition: transform 100ms ease-out;
+}
+.device .analog-stick:active span {
+  background: none;
+  border: 0;
+  transition: none;
+}
+.device .analog-stick span img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  user-select: none;
+}
+.\33 ds .device .analog-stick {
+  background: radial-gradient(
+    circle,
+    #bcb6cc 0 38%,
+    #302351 46%,
+    transparent 53%
+  );
+}
+.\33 ds .device .analog-stick span {
+  width: 76%;
+  height: 76%;
+  left: 12%;
+  top: 12%;
+}
+.closed-hardware {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.is-closed .device > :not(.closed-hardware) {
+  visibility: hidden;
+  pointer-events: none;
+}
+.is-closed .closed-hardware {
+  display: block;
+}
+.depth-slider {
+  position: absolute;
+  z-index: 5;
+  left: 95.5%;
+  top: 27%;
+  height: 10%;
+  width: 3%;
+  margin: 0;
+  writing-mode: vertical-lr;
+  direction: rtl;
+  appearance: none;
+  background: #171717;
+  border-radius: 2px;
+  cursor: ns-resize;
+}
+.depth-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 9px;
+  background: linear-gradient(#eee, #8c8e90, #ddd);
+  border: 1px solid #666;
+  border-radius: 1px;
+}
+.depth-slider::-moz-range-thumb {
+  width: 12px;
+  height: 9px;
+  background: #ccc;
+  border: 1px solid #666;
+  border-radius: 1px;
+}
+.\33 ds .upper-icon,
+.\33 ds .upper-screen > strong,
+.\33 ds.is-playing #game-canvas {
+  filter: url(#stereo-depth);
+}
+.screen,
+.upper-screen,
+.screen #app-view,
+.screen .app-toolbar,
+.screen .app-pager {
+  overflow: hidden;
+}
+.screen .app-toolbar,
+.screen .app-pager {
+  flex: 0 0 auto;
+  min-height: 0;
+  box-sizing: border-box;
+}
+.screen .app-toolbar {
+  height: 12%;
+}
+.screen .app-pager {
+  height: 10%;
+}
+.screen .app-toolbar strong {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 65%;
+}
+.screen #app-body {
+  overflow: auto;
+  overflow-wrap: anywhere;
+}
+.screen .app-pager button {
+  line-height: 1;
+  padding: 0;
+}
+.\33 ds .launcher {
+  display: grid;
+  grid-template-rows: 13% minmax(0, 1fr) 13%;
+  padding: 0;
+  overflow: hidden;
+}
+.\33 ds .ds-utilities {
+  margin: 0;
+  padding: 0 5%;
+  height: 100%;
+}
+.\33 ds .app-grid {
+  margin: 0;
+  padding: 3cqw 7cqw;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 2cqw;
+  overflow: auto;
+  align-items: center;
+}
+.\33 ds .app-icon {
+  width: 15cqw;
+  height: 15cqw;
+  padding: 1cqw;
+}
+.\33 ds .launcher-footer {
+  margin: 0;
+  height: 100%;
+}
+.\33 ds.is-playing .lower-game-help {
+  left: 27.491%;
+  top: 56.197%;
+  width: 44.674%;
+  height: 32.428%;
+  overflow: hidden;
+  padding: 2%;
+  font-size: clamp(7px, 1vw, 12px);
+}
+.ipod .launcher {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.ipod .app-grid {
+  display: grid;
+  grid-template-rows: repeat(2, 22cqw);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 3cqw 2cqw;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.ipod-dock {
+  flex: 0 0 25cqw;
+}
+.ipod .icon-phone {
+  color: white;
+  background: linear-gradient(#8feb69, #0a9b14);
+  border-radius: 3cqw;
+}
+.app-icon img {
+  object-fit: cover;
+}
+.switch .app-play .app-icon {
+  padding: 0;
+}
+.switch .app-play .app-icon img {
+  width: 100%;
+  height: 100%;
+}
+.phone-app .contact-list {
+  display: flex;
+  flex-direction: column;
+}
+.phone-app .contact-list button {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  padding: 1em 0.4em;
+  color: #222;
+  background: #fff;
+  font-size: inherit;
+}
+.phone-app .contact-list span {
+  color: #555;
+}
+.call-screen {
+  text-align: center;
+  padding: 10% 3%;
+}
+.call-screen > strong {
+  font-size: 1.4em;
+}
+#hang-up {
+  background: #ac2929;
+  color: white;
+  border: 0;
+  border-radius: 4px;
+  padding: 0.6em;
+  font-size: inherit;
+}
+.ipod[data-current-app="browser"] #app-body {
+  padding: 0;
+  overflow: hidden;
+}
+.ipod[data-current-app="browser"] .app-pager {
+  display: none;
+}
+.browser-app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+#browser-form {
+  display: flex;
+  gap: 2%;
+  padding: 3%;
+  flex: none;
+}
+#browser-address {
+  width: 0;
+  flex: 1;
+  min-width: 0;
+  padding: 2%;
+  font-size: inherit;
+}
+#browser-form button {
+  font-size: inherit;
+}
+#browser-frame {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  border: 0;
+  background: white;
+}
+.browser-app > a,
+.browser-app > p {
+  font-size: 0.85em;
+  margin: 2% 3%;
+}
+#boot-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  background: #000;
+}
+#boot:has(video) > strong,
+#boot:has(video) > span {
+  display: none;
+}
+#skip-boot {
+  position: absolute;
+  bottom: 3%;
+  right: 3%;
+  z-index: 1;
+  font-size: 3cqw;
+  padding: 1% 2%;
+  background: #0009;
+  color: white;
+  border: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .analog-stick span {
+    transition: none;
+  }
+}
+
+.ipod .icon-links {
+  background: linear-gradient(#75c2f6, #1470cb);
+  color: white;
+}
+.gba .app-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 2cqw 1cqw;
+}
+.gba .app-button {
+  font-size: 2.9cqw;
+  overflow: hidden;
+}
+.gba .app-icon {
+  width: 10cqw;
+  height: 10cqw;
+}
+.gba .app-button > span:last-child {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.switch .app-grid .app-icon {
+  padding: 0;
+  overflow: hidden;
+}
+.switch .app-grid .app-icon img {
+  width: 100%;
+  height: 100%;
+}
+.switch-utilities img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.psp .xmb-item-icon img { width:100%; height:100%; object-fit:contain; }
+.device-tools button:disabled { opacity:.4; cursor:default; }

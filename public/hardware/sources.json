@@ -66,6 +66,37 @@
       "creator": "Original geometry authored for this website",
       "reference": "https://www.gamesmen.com.au/console-psp-3000-black",
       "changes": "Wave contour and muted violet palette based on the visible XMB in the source product image; original SVG, not extracted firmware."
+    },
+    {
+      "id": "closed-handhelds",
+      "files": [
+        "/hardware/gba-closed.webp",
+        "/hardware/3ds-closed.webp"
+      ],
+      "creator": "ImageGen, based on the corresponding opened hardware reference",
+      "changes": "Generated closed hinge views. 3DS exterior silhouette traced to remove generated background; GBA trimmed. Resized WebP cutouts."
+    },
+    {
+      "id": "analog-caps",
+      "files": [
+        "/hardware/psp-stick.webp",
+        "/hardware/3ds-stick.webp",
+        "/hardware/switch-stick.webp"
+      ],
+      "source": "Same source photographs as each handheld above",
+      "changes": "Circular cap crops used as moving overlays, with stationary sockets. PSP crop 98x98+112+396, 3DS 132x132+90+706, Switch 86x86+46+89."
+    },
+    {
+      "id": "game-covers",
+      "files": "/ui/games/*.webp",
+      "creator": "Original ImageGen artwork",
+      "changes": "Five era-inspired game illustrations generated as a sheet, cropped to separate 256px square icons. Artwork is illustrative; games use simpler canvas graphics."
+    },
+    {
+      "id": "switch-app-covers",
+      "files": "/ui/switch/*.webp",
+      "creator": "Original ImageGen artwork",
+      "changes": "Nine app illustrations generated as a 3x3 sheet; each 418px cell cropped to a 256px WebP."
     }
   ]
 }

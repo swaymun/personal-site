@@ -74,3 +74,17 @@ export function nextSelection(
             : 0;
   return (index + step + count) % count;
 }
+
+/** Circular travel limit and a neutral zone shared by physical stick caps. */
+export function analogPosition(x: number, y: number) {
+  const distance = Math.max(1, Math.hypot(x, y));
+  x /= distance;
+  y /= distance;
+  return {
+    x,
+    y,
+    horizontal:
+      Math.abs(x) > 0.25 ? ((x < 0 ? "left" : "right") as Action) : null,
+    vertical: Math.abs(y) > 0.25 ? ((y < 0 ? "up" : "down") as Action) : null,
+  };
+}

@@ -1,4 +1,16 @@
-# Verification — September 5, 2026
+# Latest interaction refinement — September 5, 2026
+
+- Astro source checks/build and 20 Node tests pass. Added stick neutral-zone/travel/release, browser URL validation, unique app membership, and removed-control checks.
+- Inspected all 90 combinations of nine reading apps, five handhelds, and widths 360/1440: no page overflow, toolbar/body/footer overlap, or broken visible images. Clipped scrollable text stays within the app body.
+- Inspected single-page iOS, fictional contact selection/hang-up, sandboxed browser start page, illustrated Switch tiles, GBA menu/game launch, closed GBA/3DS, and 3DS depth slider through actual browser UI.
+- Source boot sequences inspected through sequential extracted frames; PSP video confirmed playing muted inside the browser screen. Video provenance and audio-listening limitations are in `public/video/sources.json`.
+- Analog caps use photographic crops and circular travel limits. Pointer handlers preserve independent sources and reset on release/cancel/blur. Browser automation did not expose a drag action, so a physical touch-device drag pass remains unverified; the movement calculation and source release were tested.
+- Expand mode and Read as text were removed at the user's request. Home remains the ordinary text route. Credits are no longer linked below handhelds; source manifests remain available.
+- Lighthouse scores below are historical, not rerun for these changes.
+
+## Earlier implementation verification (historical)
+
+
 
 ## Automated checks
 

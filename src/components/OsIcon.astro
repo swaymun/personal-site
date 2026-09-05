@@ -3,6 +3,6 @@ import AppIcon from "./AppIcon.astro";
 interface Props { name: string; device: string; }
 const { name, device } = Astro.props;
 const dsAssets = ["work", "movies", "music", "settings"];
-const image = device === "ipod" ? `/ui/ios/${name}.webp` : device === "3ds" && dsAssets.includes(name) ? `/ui/3ds/${name}.png` : null;
+const image = name === "play" ? `/ui/games/${device}.webp` : device === "switch" ? `/ui/switch/${name}.webp` : device === "ipod" && !["phone", "links"].includes(name) ? `/ui/ios/${name === "browser" ? "links" : name}.webp` : device === "3ds" && dsAssets.includes(name) ? `/ui/3ds/${name}.png` : null;
 ---
 {image ? <img src={image} alt="" width="64" height="64" decoding="async" /> : <AppIcon name={name} />}

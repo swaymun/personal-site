@@ -103,15 +103,15 @@ const posts = Object.values(
       <>
         <>
           <h1>Games</h1>
-          <h2>Little games to play</h2>
-          <ul>
+          {!compact && <h2>Little games to play</h2>}
+          {!compact && <ul>
             {devices.map((d) => (
               <li>
-                <a href={`/${d.id}/?app=games`}>{d.game}</a>{" "}
+                <a href={`/${d.id}/?app=play`}>{d.game}</a>{" "}
                 <span class="muted">— {d.label}</span>
               </li>
             ))}
-          </ul>
+          </ul>}
           <h2>Top 10 games</h2>
           <p>My favorites will go here.</p>
           <ol class="empty-list">
