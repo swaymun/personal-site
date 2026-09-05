@@ -28,3 +28,6 @@ npm-debug.log*
 
 # Cache
 .cache/
+
+# Local verification artifacts
+.impeccable/review/

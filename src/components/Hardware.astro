@@ -1,0 +1,79 @@
+---
+import type { devices } from '../data/site';
+interface Props {device:typeof devices[number];}
+const {device:d}=Astro.props;
+const id=d.id;
+const screws = id==='gba'?[[28,25],[332,25],[28,267],[332,267],[28,603],[332,603]]:id==='3ds'?[[35,25],[485,25],[35,279],[485,279]]:[];
+---
+<svg class="hardware-art" viewBox={`0 0 ${d.width} ${d.height}`} xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<defs>
+ <linearGradient id="cobalt" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#788bdd"/><stop offset=".35" stop-color="#405fbe"/><stop offset=".8" stop-color="#304998"/><stop offset="1" stop-color="#233678"/></linearGradient>
+ <linearGradient id="purple" x1="0" y1="0" x2=".7" y2="1"><stop stop-color="#66548d"/><stop offset=".45" stop-color="#37264f"/><stop offset="1" stop-color="#271b3c"/></linearGradient>
+ <linearGradient id="black" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#333538"/><stop offset=".12" stop-color="#111214"/><stop offset=".6" stop-color="#090a0b"/><stop offset="1" stop-color="#2a2c2f"/></linearGradient>
+ <linearGradient id="silver"><stop stop-color="#777d82"/><stop offset=".12" stop-color="#e0e4e7"/><stop offset=".5" stop-color="#a5a9ae"/><stop offset=".85" stop-color="#f2f4f5"/><stop offset="1" stop-color="#666a6e"/></linearGradient>
+ <linearGradient id="hinge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#263770"/><stop offset=".35" stop-color="#8093d9"/><stop offset=".6" stop-color="#4d68b8"/><stop offset="1" stop-color="#233777"/></linearGradient>
+</defs>
+{id==='gba'&&<>
+ <rect x="12" y="313" width="336" height="322" rx="29" fill="#20316c"/><rect x="10" y="304" width="340" height="321" rx="27" fill="url(#cobalt)" stroke="#253978" stroke-width="2"/>
+ <rect x="8" y="7" width="344" height="289" rx="24" fill="#263e82"/><rect x="8" y="3" width="344" height="285" rx="24" fill="url(#cobalt)" stroke="#a0ade1" stroke-width="1.5"/>
+ <rect x="34" y="33" width="292" height="231" rx="12" fill="#22262d" stroke="#1a2858" stroke-width="3"/>
+ <text x="180" y="253" text-anchor="middle" font-size="14" fill="#d2d4da" font-family="Arial" font-style="italic" font-weight="bold">GAME BOY ADVANCE <tspan font-size="11">SP</tspan></text>
+ <rect x="23" y="288" width="314" height="32" rx="14" fill="url(#hinge)" stroke="#293f85"/>{[60,300].map(x=><path d={`M${x} 290v27`} stroke="#273b79" stroke-width="2"/>)}
+ <path d="M61 408h27v-27h27v27h27v27h-27v27H88v-27H61z" fill="#233975" stroke="#637cc4" stroke-width="3"/>
+ <circle cx="180" cy="351" r="12" fill="#2b438f" stroke="#9aace4"/><circle cx="180" cy="351" r="5" fill="none" stroke="#adbce9"/>
+ {Array.from({length:5},(_,i)=><path d={`M${150-i*2} ${479+i*8}h${60+i*4}`} stroke="#233a7e" stroke-width="3" stroke-linecap="round"/>)}
+ <ellipse cx="180" cy="598" rx="30" ry="9" fill="none" stroke="#8b9dcf"/><text x="180" y="601" text-anchor="middle" font-size="8" fill="#d4dbef">Nintendo</text>
+ <rect x="339" y="354" width="7" height="18" rx="2" fill="#8fc957"/>
+ </>}
+{id==='psp'&&<>
+ <rect x="29" y="15" width="138" height="34" rx="13" fill="url(#silver)"/><rect x="733" y="15" width="138" height="34" rx="13" fill="url(#silver)"/>
+ <rect x="6" y="25" width="888" height="358" rx="94" fill="url(#silver)"/><rect x="9" y="22" width="882" height="354" rx="89" fill="url(#black)" stroke="#53565a" stroke-width="2"/>
+ <path d="M106 27h687" stroke="#777" opacity=".5"/><rect x="178" y="43" width="544" height="317" rx="5" fill="#080909" stroke="#414346"/>
+ <text x="109" y="67" fill="#d8dadd" font-family="Arial" font-size="17" text-anchor="middle" letter-spacing="2">SONY</text>
+ <text x="450" y="377" fill="#d8dadd" font-family="Arial" font-size="20" text-anchor="middle" letter-spacing="7">PSP</text>
+ <path d="M55 132h29v-29h31v29h29v31h-29v29H84v-29H55z" fill="#17191b" stroke="#555" stroke-width="2"/>
+ <circle cx="100" cy="266" r="33" fill="#101112" stroke="#3e4144" stroke-width="3"/>
+ {Array.from({length:7},(_,i)=><path d={`M${80+i*6} 247v38`} stroke="#373a3c"/>)}
+ <text x="820" y="315" fill="#c4c7cb" font-size="10">POWER</text><circle cx="863" cy="310" r="4" fill="#8bbb51"/>
+ {[164,736].map(x=><g>{[0,1,2,3].map(i=><circle cx={x} cy={165+i*10} r="2" fill="#56585b"/>)}</g>)}
+ </>}
+{id==='ipod'&&<>
+ <rect x="39" y="0" width="49" height="8" rx="3" fill="url(#silver)"/>
+ <rect x="4" y="111" width="6" height="40" rx="3" fill="#989da2"/><rect x="4" y="167" width="6" height="40" rx="3" fill="#989da2"/>
+ <rect x="8" y="5" width="304" height="602" rx="48" fill="url(#silver)" stroke="#92979b"/>
+ <rect x="14" y="11" width="292" height="590" rx="43" fill="#0d0e10" stroke="#37393b"/>
+ <path d="M53 20h214a32 32 0 0 1 30 29" fill="none" stroke="#666" opacity=".6"/>
+ <circle cx="160" cy="49" r="7" fill="#22282e"/><circle cx="160" cy="49" r="3" fill="#233948"/>
+ <rect x="30" y="85" width="260" height="386" fill="#050505"/>
+ <circle cx="160" cy="538" r="27" fill="#151719" stroke="#323438"/>
+ <rect x="152" y="530" width="16" height="16" rx="4" fill="none" stroke="#b7bac0" stroke-width="1.5"/>
+ </>}
+{id==='3ds'&&<>
+ <rect x="8" y="4" width="504" height="297" rx="28" fill="url(#purple)" stroke="#8b7caa" stroke-width="2"/>
+ <rect x="23" y="18" width="474" height="269" rx="18" fill="#131019" stroke="#21162e" stroke-width="3"/>
+ <rect x="97" y="49" width="326" height="201" rx="3" fill="#09090c"/>
+ <circle cx="260" cy="32" r="5" fill="#343441"/><circle cx="260" cy="32" r="2" fill="#192c40"/>
+ {[57,463].map(x=><g>{Array.from({length:6},(_,i)=><circle cx={x+(i%2)*7} cy={115+Math.floor(i/2)*9} r="2" fill="#6b6575"/>)}</g>)}
+ <text x="471" y="74" fill="#b7a9ca" font-size="10">3D</text><rect x="476" y="81" width="4" height="42" rx="2" fill="#756582"/>
+ <rect x="19" y="295" width="482" height="24" rx="10" fill="#4a375f" stroke="#6c568b"/>
+ <rect x="8" y="317" width="504" height="307" rx="30" fill="#291c3e"/><rect x="8" y="311" width="504" height="303" rx="30" fill="url(#purple)" stroke="#84739b" stroke-width="1.5"/>
+ <rect x="121" y="334" width="278" height="217" rx="6" fill="#18121f"/><rect x="135" y="345" width="250" height="190" fill="#0e0c14"/>
+ <circle cx="65" cy="372" r="31" fill="#21182b" stroke="#796789" stroke-width="2"/><circle cx="65" cy="372" r="24" fill="#c0bac9" stroke="#e0dbe4"/>
+ <path d="M30 458h22v-22h25v22h22v25H77v22H52v-22H30z" fill="#21172f" stroke="#715b87"/>
+ <rect x="237" y="565" width="46" height="23" rx="5" fill="#3e2d53" stroke="#806b9a"/>
+ <text x="260" y="604" text-anchor="middle" font-size="8" fill="#beafcf">HOME</text>
+ <circle cx="482" cy="590" r="4" fill="#6fbef9"/><circle cx="495" cy="590" r="4" fill="#e2a74b"/>
+ </>}
+{id==='switch'&&<>
+ <rect x="105" y="13" width="790" height="417" rx="20" fill="#292c2e" stroke="#101214" stroke-width="3"/>
+ <path d="M91 5H145V435H91Q6 435 6 351V89Q6 5 91 5" fill="#a5e2d1" stroke="#7fc6b4" stroke-width="2"/>
+ <path d="M855 5H909Q994 5 994 89V351Q994 435 909 435H855Z" fill="#a0d8ef" stroke="#79b4d3" stroke-width="2"/>
+ <path d="M16 130V89Q16 16 91 16h43" fill="none" stroke="#d8f6ed" stroke-width="3"/><path d="M866 16h43q74 0 74 73v41" fill="none" stroke="#d5f1fc" stroke-width="3"/>
+ <rect x="164" y="28" width="672" height="385" rx="6" fill="#080a0c"/>
+ <circle cx="78" cy="124" r="35" fill="#303537" stroke="#6c7778" stroke-width="4"/><circle cx="78" cy="124" r="26" fill="#3b4143" stroke="#1c2426" stroke-width="2"/>
+ <circle cx="922" cy="267" r="35" fill="#303537" stroke="#697b83" stroke-width="4"/><circle cx="922" cy="267" r="26" fill="#3b4143" stroke="#1c2426" stroke-width="2"/>
+ <rect x="60" y="331" width="27" height="27" rx="4" fill="#394344"/><circle cx="73.5" cy="344.5" r="8" fill="#202a2c"/>
+ <circle cx="925" cy="354" r="18" fill="#424d53" stroke="#748e98" stroke-width="3"/>
+ </>}
+{screws.map(([x,y])=><g><circle cx={x} cy={y} r="5" fill={id==='gba'?'#344a93':'#332443'}/><path d={`M${x-2} ${y}h4`} stroke={id==='gba'?'#7187cf':'#705987'}/></g>)}
+</svg>

@@ -1,0 +1,16 @@
+---
+import { bio,experience,movies,links,project,devices } from '../data/site';
+import type { Section } from '../data/site';
+interface Props {section:Section; compact?:boolean;}
+const {section,compact=false}=Astro.props;
+const posts=Object.values(import.meta.glob<{frontmatter:{title:string;date:string};url:string}>('../pages/writing/*.md',{eager:true})).sort((a,b)=>b.frontmatter.date.localeCompare(a.frontmatter.date));
+---
+<div class:list={['personal-content',{compact}]}>
+{section==='home'&&<><h1>Saimun Shahee</h1><p>Hi, I'm Saimun.</p><p>{bio}</p><p>This is my little corner of the internet. Some things about me, and a few handhelds I grew up with.</p>{!compact&&<><ul class="home-links"><li><a href="/work/">Work</a> — what I've been working on</li><li><a href="/movies/">Movies</a> — four favorites</li><li><a href="/music/">Music</a> — albums and songs</li><li><a href="/games/">Games</a> — favorites and little things to play</li><li><a href="/writing/">Writing</a> — a place for future notes</li><li><a href="/links/">Links</a> — elsewhere on the internet</li></ul><p class="handheld-invitation">The links up top are playable. Pick a handheld, press its buttons, and make yourself at home.</p></>}</>}
+{section==='work'&&<><h1>Work</h1>{experience.map(([company,role,period,team])=><section><h2>{company}</h2><p>{role}<br/><span class="muted">{period}</span><br/>{team}</p></section>)}<h2>Education</h2><p>Penn State University<br/>BS Computer Science + Statistics<br/><span class="muted">2016 – 2020</span></p><h2>Projects</h2><p><a href={project.url}>{project.title}</a><br/>{project.description}</p></>}
+{section==='movies'&&<><h1>Movies</h1><p>Four favorites from <a href="https://letterboxd.com/swaymun/">my Letterboxd</a>.</p><ol>{movies.map(([title,year,slug])=><li><a href={`https://letterboxd.com/film/${slug}/`}>{title}</a> <span class="muted">({year})</span></li>)}</ol></>}
+{section==='music'&&<><h1>Music</h1><p>Lists still to come. These are empty slots, not recommendations.</p>{['Top 10 albums','Top 10 songs'].map(title=><section><h2>{title}</h2><ol class="empty-list">{Array.from({length:10},()=> <li><span>Not added yet</span></li>)}</ol></section>)}</>}
+{section==='games'&&<><h1>Games</h1><h2>Little games to play</h2><ul>{devices.map(d=><li><a href={`/${d.id}/?app=games`}>{d.game}</a> <span class="muted">— {d.label}</span></li>)}</ul><h2>Top 10 games</h2><p>My favorites will go here.</p><ol class="empty-list">{Array.from({length:10},()=> <li><span>Not added yet</span></li>)}</ol></>}
+{section==='writing'&&<><h1>Writing</h1>{posts.length?<ul>{posts.map(p=><li><a href={p.url}>{p.frontmatter.title}</a> <span class="muted">{p.frontmatter.date}</span></li>)}</ul>:<p>Nothing here yet. A place for thoughts, projects, and things I'm learning.</p>}</>}
+{section==='links'&&<><h1>Elsewhere</h1><ul>{links.map(([label,url,handle])=><li><a href={url}>{label}</a> <span class="muted">— {handle}</span></li>)}</ul></>}
+</div>
