@@ -1,0 +1,14 @@
+{
+  "checks": [
+    "Production build and 21 tests passed",
+    "90 app views at 360px and 1440px: no horizontal body overflow",
+    "Compact collection height sized from actual remaining body space; duplicate headings hidden",
+    "Long album caption selection on GBA: zero vertical body overflow",
+    "PSP initial startup video playing unmuted; subsequent restart and full reload muted"
+  ],
+  "behavior": "Startup audio is recorded per device only after time advances while playing unmuted. Current playback can finish. Later startups stay silent. Browser storage failures retain the flag for the current page lifetime. Long text remains internally scrollable.",
+  "limitations": [
+    "Audio element state verified; no perceptual listening check",
+    "Very small screens necessarily show small collection artwork"
+  ]
+}

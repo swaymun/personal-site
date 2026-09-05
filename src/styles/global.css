@@ -2153,3 +2153,77 @@ input:focus-visible,
 .album-layout {
   align-items: start;
 }
+/* Fit collection media into the app's remaining viewport; prose scrolls inside it. */
+.screen #app-body {
+  min-width: 0;
+  overflow-x: hidden;
+}
+.screen .personal-content {
+  min-width: 0;
+  max-width: 100%;
+}
+.screen .personal-content a {
+  overflow-wrap: anywhere;
+}
+.compact .shelf-hint {
+  display: none;
+}
+.compact .movie-shelf {
+  height: min(140px, var(--collection-height, 140px));
+}
+.compact .game-shelf {
+  --case-scale: min(
+    calc(var(--collection-height, 150px) / 205),
+    calc(var(--collection-width, 250px) / 310)
+  );
+  padding-top: 0;
+}
+.compact .game-collection {
+  max-width: 100%;
+}
+.compact .album-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  align-items: start;
+}
+.compact .album-display {
+  width: min(
+    100%,
+    calc(var(--collection-height, 140px) - var(--caption-height, 28px))
+  );
+}
+.compact .record-rack {
+  max-width: calc((var(--collection-height, 140px) - 15px) * 0.96);
+  padding-top: 8px;
+}
+.compact .record-caption {
+  min-height: 0;
+  line-height: 1.2;
+}
+.compact .record-caption p {
+  margin-top: 3px;
+}
+.compact .record-rack label {
+  padding: 0;
+}
+.compact .game-cover small {
+  font-size: 5px;
+  margin-top: 2px;
+}
+.compact:has(.movie-shelf, .album-collection, .game-collection) > h1 {
+  display: none;
+}
+.compact:has(.movie-shelf) > p {
+  display: none;
+}
+.compact .record-caption p {
+  margin: 3px 0 0;
+}
+.compact .movie-shelf {
+  height: min(140px, calc(var(--collection-height, 144px) - 4px));
+}
+.compact .game-shelf {
+  --case-scale: min(
+    calc((var(--collection-height, 150px) - 5px) / 205),
+    calc(var(--collection-width, 250px) / 310)
+  );
+}

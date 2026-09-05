@@ -61,10 +61,12 @@ function updateClock() {
 }
 updateClock();
 let clockTimer = setInterval(updateClock, 60000);
+let startupHeard = readValue(`startup-heard:${id}`) === "1";
+let bootSoundAllowed = !startupHeard;
 function setSound(on: boolean) {
   audio.setEnabled(on);
   const video = root.querySelector<HTMLVideoElement>("#boot-video");
-  if (video) video.muted = !on;
+  if (video) video.muted = !on || !bootSoundAllowed;
   const button = $("#sound-toggle");
   button.textContent = on ? "Sound on" : "Sound off";
   button.setAttribute("aria-pressed", String(on));
@@ -253,7 +255,33 @@ function menu(historyUpdate = true) {
   if (historyUpdate) setUrl(null);
   choose(selected);
 }
+function fitCollection() {
+  const content = body.querySelector<HTMLElement>(".compact");
+  if (!content) return;
+  const shelf = content.querySelector<HTMLElement>(
+    ".movie-shelf, .album-collection, .game-collection",
+  );
+  if (!shelf) return;
+  const style = getComputedStyle(body);
+  const width =
+    body.clientWidth -
+    parseFloat(style.paddingLeft) -
+    parseFloat(style.paddingRight);
+  const before =
+    shelf.getBoundingClientRect().top -
+    body.getBoundingClientRect().top +
+    body.scrollTop;
+  const height = body.clientHeight - parseFloat(style.paddingBottom) - before;
+  content.style.setProperty("--collection-height", `${Math.max(30, height)}px`);
+  content.style.setProperty("--collection-width", `${Math.max(30, width)}px`);
+  const caption = content.querySelector<HTMLElement>(".record-caption");
+  content.style.setProperty(
+    "--caption-height",
+    `${caption ? caption.getBoundingClientRect().height + 4 : 28}px`,
+  );
+}
 function updatePage() {
+  fitCollection();
   const pages = Math.max(
     1,
     Math.ceil(body.scrollHeight / Math.max(1, body.clientHeight)),
@@ -358,6 +386,8 @@ function openApp(app: AppId, historyUpdate = true) {
   void audio.play("action");
 }
 body.addEventListener("scroll", updatePage, { passive: true });
+body.addEventListener("change", updatePage);
+body.addEventListener("toggle", updatePage, true);
 new ResizeObserver(updatePage).observe(body);
 function scrollPage(direction: number) {
   body.scrollBy({
@@ -502,10 +532,11 @@ function startup() {
   setUrl(null);
   if (!bootVideo || matchMedia("(prefers-reduced-motion: reduce)").matches)
     return;
+  bootSoundAllowed = !startupHeard && readValue(`startup-heard:${id}`) !== "1";
   boot.hidden = false;
   if (bootVideo) {
     bootVideo.src = `/video/${id}-boot.mp4`;
-    bootVideo.muted = !audio.enabled;
+    bootVideo.muted = !audio.enabled || !bootSoundAllowed;
     bootVideo.volume = 0.35;
     void bootVideo.play().catch(() => {
       if (!bootVideo.muted) {
@@ -514,11 +545,20 @@ function startup() {
       } else endBoot();
     });
     bootTimer = window.setTimeout(endBoot, 10000);
-  } else {
-    void audio.play("boot");
-    bootTimer = window.setTimeout(endBoot, 1000);
   }
 }
+bootVideo?.addEventListener("timeupdate", () => {
+  if (
+    bootVideo.currentTime > 0 &&
+    !bootVideo.paused &&
+    !bootVideo.muted &&
+    bootVideo.volume > 0 &&
+    !startupHeard
+  ) {
+    startupHeard = true;
+    writeValue(`startup-heard:${id}`, "1");
+  }
+});
 bootVideo?.addEventListener("ended", endBoot);
 bootVideo?.addEventListener("error", endBoot);
 $("#skip-boot").addEventListener("click", endBoot);
