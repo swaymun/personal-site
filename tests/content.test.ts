@@ -15,7 +15,6 @@ test("Work preserves project and education; every text page has a heading and no
   assert.ok(s.includes("https://github.com/swaymun/system-design-excalidraws"));
   assert.ok(s.includes("Penn State"));
   for (const page of [
-    "",
     "work",
     "movies",
     "music",
@@ -84,4 +83,12 @@ test("each device preloads exactly its own hashed hardware image", () => {
   }
   assert.doesNotMatch(html("ipod"), /content-phone|data-app="phone"/);
   assert.match(html("ipod"), /content-messages/);
+});
+
+test("Home warms hardware after load without loading games or sound", () => {
+  const s=html("");
+  assert.ok(s.includes("requestIdleCallback"));
+  assert.ok(s.includes("scheduleWarmup"));
+  for(const id of ["gba","psp","ipod","3ds","switch"]) assert.ok(s.includes(`/_astro/${id}.`));
+  assert.doesNotMatch(s, /<script[^>]+src=|\/video\/|\/audio\//);
 });
