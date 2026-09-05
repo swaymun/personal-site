@@ -30,7 +30,7 @@
       "file": "/hardware/3ds.webp",
       "source": "https://www.thevideogamecompany.com/cdn/shop/products/3DS-CONS-0004.png?v=1680631397",
       "creator": "Nintendo; distributed by The Video Game Company",
-      "changes": "White edge flood mask at 5% tolerance; trim; WebP quality 90."
+      "changes": "ImageGen high-resolution restoration of source photograph. Original shape preserved; dark LCD screens recalibrated for interactive overlays. Resized to 1164x1178 WebP quality 90. AI-restored artwork, not an untouched photograph."
     },
     {
       "id": "switch",

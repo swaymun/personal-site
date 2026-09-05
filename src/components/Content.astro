@@ -1,6 +1,7 @@
 ---
-import { bio, experience, movies, links, project, devices } from "../data/site";
+import { bio, experience, links, projects, companyUrls, devices } from "../data/site";
 import type { Section } from "../data/site";
+import MovieShelf from "./MovieShelf.astro";
 interface Props {
   section: Section;
   compact?: boolean;
@@ -20,40 +21,12 @@ const posts = Object.values(
       <>
         <h1>Saimun Shahee</h1>
         <p>Hi, I'm Saimun.</p>
-        <p>{bio}</p>
+        <p>{bio.split(/(Meta|Cash App|Amazon)/g).map(part => ['Meta','Cash App','Amazon'].includes(part) ? <a href={companyUrls[part === 'Cash App' ? 'Block' : part]}>{part}</a> : part)}</p>
         <p>
           This is my little corner of the internet. Some things about me, and a
           few handhelds I grew up with.
         </p>
-        {!compact && (
-          <>
-            <ul class="home-links">
-              <li>
-                <a href="/work/">Work</a> — what I've been working on
-              </li>
-              <li>
-                <a href="/movies/">Movies</a> — four favorites
-              </li>
-              <li>
-                <a href="/music/">Music</a> — albums and songs
-              </li>
-              <li>
-                <a href="/games/">Games</a> — favorites and little things to
-                play
-              </li>
-              <li>
-                <a href="/writing/">Writing</a> — a place for future notes
-              </li>
-              <li>
-                <a href="/links/">Links</a> — elsewhere on the internet
-              </li>
-            </ul>
-            <p class="handheld-invitation">
-              The links up top are playable. Pick a handheld, press its buttons,
-              and make yourself at home.
-            </p>
-          </>
-        )}
+
       </>
     )
   }
@@ -63,7 +36,7 @@ const posts = Object.values(
         <h1>Work</h1>
         {experience.map(([company, role, period, team]) => (
           <section>
-            <h2>{company}</h2>
+            <h2><a href={companyUrls[company]}>{company}</a></h2>
             <p>
               {role}
               <br />
@@ -85,11 +58,8 @@ const posts = Object.values(
             </>
           </p>
           <h2>Projects</h2>
-          <p>
-            <a href={project.url}>{project.title}</a>
-            <br />
-            {project.description}
-          </p>
+          {projects.map(project => <p><a href={project.url}>{project.title}</a><br />{project.description}</p>)}
+          <p>Mini Crosswords <span class="muted">— link coming soon</span></p>
         </>
       </>
     )
@@ -103,14 +73,7 @@ const posts = Object.values(
             Four favorites from{" "}
             <a href="https://letterboxd.com/swaymun/">my Letterboxd</a>.
           </p>
-          <ol>
-            {movies.map(([title, year, slug]) => (
-              <li>
-                <a href={`https://letterboxd.com/film/${slug}/`}>{title}</a>{" "}
-                <span class="muted">({year})</span>
-              </li>
-            ))}
-          </ol>
+          <MovieShelf />
         </>
       </>
     )

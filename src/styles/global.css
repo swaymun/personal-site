@@ -309,8 +309,7 @@ input:focus-visible,
   outline-offset: 1px;
 }
 .app-button.selected {
-  outline: 2px solid #287dba;
-  outline-offset: 2px;
+  background-color: #ffffff24;
 }
 .app-icon {
   display: flex;
@@ -1637,4 +1636,139 @@ input:focus-visible,
     width: auto !important;
     max-width: 100% !important;
   }
+}
+
+/* Programmatic focus is useful for controls, but the LCD is not a button. */
+.screen:focus-visible,
+#app-body:focus-visible {
+  outline: none;
+}
+.home-page > section {
+  margin-top: 2.5rem;
+  scroll-margin-top: 1rem;
+}
+.section-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1rem;
+}
+.work-summary {
+  list-style: none;
+  padding: 0;
+}
+.work-summary li {
+  margin-bottom: 0.85rem;
+}
+.movie-shelf {
+  display: flex;
+  align-items: stretch;
+  height: 260px;
+  max-width: 100%;
+  border-bottom: 3px solid #b1a38f;
+  padding: 0 4px;
+  gap: 3px;
+}
+.movie-shelf details {
+  display: flex;
+  position: relative;
+  flex: 0 0 34px;
+  background: var(--case-color);
+  color: white;
+  border-radius: 2px 2px 0 0;
+  box-shadow:
+    inset 2px 0 #ffffff30,
+    inset -2px 0 #0004;
+}
+.movie-shelf details[open] {
+  flex: 1;
+  max-width: 220px;
+  min-width: 0;
+}
+.movie-shelf summary {
+  cursor: pointer;
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 7px;
+  writing-mode: vertical-rl;
+  font-size: 13px;
+  list-style: none;
+  box-sizing: border-box;
+}
+.movie-shelf summary::-webkit-details-marker {
+  display: none;
+}
+.movie-shelf summary:focus-visible {
+  outline: 2px solid #0759c7;
+  outline-offset: 3px;
+  z-index: 2;
+}
+.movie-shelf .movie-cover {
+  display: block;
+  height: 100%;
+  margin-left: 34px;
+}
+.movie-cover img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  background: #171717;
+}
+.shelf-hint {
+  font-size: 0.8em;
+}
+.compact .movie-shelf {
+  height: 140px;
+}
+.compact .movie-shelf details {
+  flex-basis: 22px;
+}
+.compact .movie-shelf summary {
+  width: 22px;
+  font-size: 8px;
+  padding: 6px 3px;
+}
+.compact .movie-shelf .movie-cover {
+  margin-left: 22px;
+}
+.psp .xmb-items {
+  right: 48%;
+}
+.psp .xmb-preview {
+  position: absolute;
+  left: 56%;
+  right: 4%;
+  top: 43%;
+  bottom: 10%;
+  overflow: auto;
+  font-size: 2.3cqw;
+  line-height: 1.45;
+  color: #fff;
+  text-shadow: 0 1px 2px #30273d;
+}
+.psp .xmb-preview p {
+  margin: 0.6em 0;
+  white-space: pre-line;
+}
+.ipod.is-playing .expanded-controls {
+  display: none;
+}
+.ipod #game-canvas {
+  touch-action: none;
+}
+@media (max-width: 390px) {
+  .movie-shelf {
+    height: 230px;
+  }
+}
+
+.psp .xmb-preview {
+  scrollbar-width: none;
+}
+.psp .xmb-preview::-webkit-scrollbar {
+  display: none;
 }

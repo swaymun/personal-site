@@ -1,6 +1,111 @@
 ---
 import Site from "../layouts/Site.astro";
 import Content from "../components/Content.astro";
+import MovieShelf from "../components/MovieShelf.astro";
+import {
+  experience,
+  companyUrls,
+  projects,
+  devices,
+  links,
+} from "../data/site";
+const posts = Object.values(
+  import.meta.glob<{
+    frontmatter: { title: string; date: string };
+    url: string;
+  }>("./writing/*.md", { eager: true }),
+);
 ---
 
-<Site><article class="text-page"><Content section="home" /></article></Site>
+<Site
+  ><article class="text-page home-page">
+    <Content section="home" />
+    <nav class="section-links" aria-label="On this page">
+      {
+        [
+          "work",
+          "projects",
+          "movies",
+          "music",
+          "games",
+          "writing",
+          "links",
+        ].map((s) => <a href={`#${s}`}>{s[0].toUpperCase() + s.slice(1)}</a>)
+      }
+    </nav>
+    <section id="work">
+      <h2>Work</h2><ul class="work-summary">
+        {
+          experience.map(([company, role, period, team]) => (
+            <li>
+              <a href={companyUrls[company]}>{company}</a> · {team}
+              <br />
+              <span class="muted">
+                {role} · {period}
+              </span>
+            </li>
+          ))
+        }
+      </ul><p>
+        Penn State · BS Computer Science + Statistics <span class="muted"
+          >(2016–2020)</span>
+      </p>
+    </section>
+    <section id="projects">
+      <h2>Projects</h2>{
+        projects.map((p) => (
+          <p>
+            <a href={p.url}>{p.title}</a>
+            <br />
+            {p.description}
+          </p>
+        ))
+      }<p>Mini Crosswords <span class="muted">— link coming soon</span></p>
+    </section>
+    <section id="movies">
+      <h2>Movies</h2><p>
+        Four favorites from <a href="https://letterboxd.com/swaymun/"
+          >my Letterboxd</a
+        >.
+      </p><MovieShelf />
+    </section>
+    <section id="music">
+      <h2>Music</h2><p>My top ten albums and songs are still to come.</p><a
+        href="/music/">Album & song lists</a>
+    </section>
+    <section id="games">
+      <h2>Games</h2><p>
+        A few little games inside handhelds I grew up with.
+      </p><ul>
+        {
+          devices.map((d) => (
+            <li>
+              <a href={`/${d.id}/?app=games`}>{d.game}</a>{" "}
+              <span class="muted">· {d.label}</span>
+            </li>
+          ))
+        }
+      </ul><p class="muted">My top ten favorite games are still to come.</p>
+    </section>
+    <section id="writing">
+      <h2>Writing</h2>{
+        posts.length ? (
+          <ul>
+            {posts.map((p) => (
+              <li>
+                <a href={p.url}>{p.frontmatter.title}</a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Nothing published yet.</p>
+        )
+      }
+    </section>
+    <section id="links">
+      <h2>Elsewhere</h2><div class="section-links">
+        {links.map(([label, url]) => <a href={url}>{label}</a>)}
+      </div>
+    </section>
+  </article></Site
+>

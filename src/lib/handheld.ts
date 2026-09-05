@@ -1,4 +1,12 @@
-import { apps, titles, devices } from "../data/site";
+import {
+  apps,
+  titles,
+  devices,
+  bio,
+  experience,
+  projects,
+  movies,
+} from "../data/site";
 import type { AppId, DeviceId } from "../data/site";
 import { InputState, keyMap, nextSelection } from "./input";
 import type { Action } from "./input";
@@ -78,6 +86,45 @@ const xmbLabels: Record<AppId, string[]> = {
   notes: ["Your notebook"],
   settings: ["Sound & controls"],
 };
+function updateXmbPreview() {
+  const app = apps[selected];
+  const descriptions: Record<AppId, string[]> = {
+    home: [bio],
+    work: [
+      experience.map(([c, , p, t]) => `${c} · ${t} (${p})`).join("\n"),
+      "Penn State University · BS Computer Science + Statistics · 2016–2020",
+      projects.map((p) => p.title).join("\n"),
+    ],
+    movies: [movies.map(([title]) => title).join("\n")],
+    music: [
+      "My ten favorite albums. List still to come.",
+      "My ten favorite songs. List still to come.",
+    ],
+    games: [
+      device.genre + " Move with the D-pad. × attacks; ○ dodges.",
+      "My ten favorite games. List still to come.",
+    ],
+    writing: ["Nothing published yet."],
+    links: ["Email · GitHub · LinkedIn · X · Letterboxd"],
+    notes: ["A private notebook saved in this browser."],
+    settings: ["Sound, controls, and local game records."],
+  };
+  let preview = root.querySelector<HTMLElement>(".xmb-preview");
+  if (!preview) {
+    preview = document.createElement("aside");
+    preview.className = "xmb-preview";
+    preview.setAttribute("aria-live", "polite");
+    $("#launcher").append(preview);
+  }
+  const heading = document.createElement("strong");
+  heading.textContent = xmbLabels[app][subSelected];
+  const text = document.createElement("p");
+  text.textContent = descriptions[app][subSelected];
+  preview.replaceChildren(heading, text);
+  $(".xmb-items")
+    .querySelectorAll("button")
+    .forEach((b, i) => b.classList.toggle("selected", i === subSelected));
+}
 function renderXmb() {
   if (id !== "psp") return;
   const list = $(".xmb-items");
@@ -95,13 +142,20 @@ function renderXmb() {
     text.textContent = label;
     b.append(icon, text);
     b.classList.toggle("selected", i === subSelected);
+    const highlight = () => {
+      subSelected = i;
+      updateXmbPreview();
+    };
+    b.addEventListener("pointerenter", highlight);
+    b.addEventListener("focus", highlight);
     b.addEventListener("click", () => openXmb(i));
     list.append(b);
   });
+  updateXmbPreview();
 }
 function openXmb(index: number) {
   const app = apps[selected];
-  openApp(app);
+  openApp(app, true, app === "games" && index > 0);
   if (
     (app === "work" && index > 0) ||
     (app === "music" && index > 0) ||
@@ -157,10 +211,12 @@ function choose(index: number, focus = false) {
   }
   if (id === "switch") $(".launcher-heading").textContent = titles[apps[index]];
 }
-function setUrl(app: AppId | null) {
+function setUrl(app: AppId | null, favorites = false) {
   const url = new URL(location.href);
   if (app) url.searchParams.set("app", app);
   else url.searchParams.delete("app");
+  if (favorites) url.searchParams.set("view", "favorites");
+  else url.searchParams.delete("view");
   if (url.href !== location.href) history.pushState({ app }, "", url);
 }
 function stopGame() {
@@ -201,7 +257,16 @@ function updatePage() {
   $<HTMLButtonElement>("#page-next").disabled =
     body.scrollTop + body.clientHeight >= body.scrollHeight - 3;
 }
-function openApp(app: AppId, historyUpdate = true) {
+function openApp(app: AppId, historyUpdate = true, favorites = false) {
+  if (app === "games" && !favorites) {
+    currentApp = app;
+    root.dataset.currentApp = app;
+    selected = apps.indexOf(app);
+    $("#text-link").setAttribute("href", "/games/");
+    if (historyUpdate) setUrl(app);
+    void launchGame();
+    return;
+  }
   stopGame();
   currentApp = app;
   root.dataset.currentApp = app;
@@ -252,7 +317,7 @@ function openApp(app: AppId, historyUpdate = true) {
     best.textContent = `Best on this browser: ${readScore(id)}`;
     $("[data-launch-game]").addEventListener("click", launchGame);
   }
-  if (historyUpdate) setUrl(app);
+  if (historyUpdate) setUrl(app, favorites);
   requestAnimationFrame(updatePage);
   body.focus({ preventScroll: true });
   void audio.play("action");
@@ -316,8 +381,8 @@ async function launchGame() {
     canvas.width = game.width;
     canvas.height = game.height;
     game.draw(ctx);
-    setOverlay(device.game, device.genre, "Play");
-    $("#game-resume").focus({ preventScroll: true });
+    $("#game-live").textContent = device.instructions;
+    resume();
   } catch {
     if (token !== loadToken) return;
     setOverlay(
@@ -380,7 +445,7 @@ $("#game-restart").addEventListener("click", () => {
     resume();
   }
 });
-$("#game-exit").addEventListener("click", () => openApp("games", false));
+$("#game-exit").addEventListener("click", () => menu());
 $("#game-pause").addEventListener("click", () => {
   pause();
   $("#game-resume").focus({ preventScroll: true });
@@ -534,6 +599,29 @@ root.querySelectorAll<HTMLElement>("[data-analog]").forEach((stick) => {
   stick.addEventListener("pointercancel", end);
   stick.addEventListener("lostpointercapture", end);
 });
+if (id === "ipod") {
+  const steer = (e: PointerEvent) => {
+    if (!game || paused) return;
+    const rect = canvas.getBoundingClientRect();
+    input.press(
+      `screen:${e.pointerId}`,
+      e.clientX < rect.left + rect.width / 2 ? "left" : "right",
+    );
+  };
+  canvas.addEventListener("pointerdown", (e) => {
+    if (!game || paused) return;
+    e.preventDefault();
+    canvas.setPointerCapture(e.pointerId);
+    steer(e);
+  });
+  canvas.addEventListener("pointermove", (e) => {
+    if (canvas.hasPointerCapture(e.pointerId)) steer(e);
+  });
+  for (const event of ["pointerup", "pointercancel", "lostpointercapture"])
+    canvas.addEventListener(event, (e) =>
+      input.release(`screen:${(e as PointerEvent).pointerId}`),
+    );
+}
 function editing(target: EventTarget | null) {
   return (
     target instanceof HTMLElement &&
@@ -579,7 +667,12 @@ window.addEventListener("pagehide", () => {
 });
 function restoreUrl() {
   const app = new URL(location.href).searchParams.get("app");
-  if (app && apps.includes(app as AppId)) openApp(app as AppId, false);
+  if (app && apps.includes(app as AppId))
+    openApp(
+      app as AppId,
+      false,
+      new URL(location.href).searchParams.get("view") === "favorites",
+    );
   else menu(false);
 }
 window.addEventListener("popstate", restoreUrl);

@@ -1,0 +1,22 @@
+{
+  "after-hours": {
+    "source": "https://www.impawards.com/1985/after_hours.html",
+    "image": "https://www.impawards.com/1985/posters/after_hours.jpg",
+    "changes": "Resized to fit 360x540; WebP quality 85. Artwork belongs to its respective rights holders."
+  },
+  "catch-me-if-you-can-2002": {
+    "source": "https://www.impawards.com/2002/catch_me_if_you_can.html",
+    "image": "https://www.impawards.com/2002/posters/catch_me_if_you_can.jpg",
+    "changes": "Resized to fit 360x540; WebP quality 85. Artwork belongs to its respective rights holders."
+  },
+  "infernal-affairs": {
+    "source": "https://www.impawards.com/2004/infernal_affairs.html",
+    "image": "https://www.impawards.com/2004/posters/infernal_affairs.jpg",
+    "changes": "Resized to fit 360x540; WebP quality 85. Artwork belongs to its respective rights holders."
+  },
+  "rope": {
+    "source": "https://www.impawards.com/1948/rope.html",
+    "image": "https://www.impawards.com/1948/posters/rope.jpg",
+    "changes": "Resized to fit 360x540; WebP quality 85. Artwork belongs to its respective rights holders."
+  }
+}

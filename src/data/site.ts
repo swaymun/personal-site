@@ -36,7 +36,7 @@ export const devices = [
     game: "Margin Hopper",
     genre: "How high can a doodle go?",
     instructions:
-      "Jumping is automatic. Move left and right with arrows, A/D, or the touch buttons. Wrap around the sides. Land on platforms and keep climbing.",
+      "Jumping is automatic. Move left and right with arrows, A/D, or by holding the left or right half of the screen. Wrap around the sides. Land on platforms and keep climbing.",
     width: 560,
     height: 1052,
     screen: [40, 168, 480, 720],
@@ -53,7 +53,7 @@ export const devices = [
       "Move with arrows or WASD. A / Z swings your sword. Clear each room, travel through the right doorway, collect the key in room two, and unlock the last exit.",
     width: 582,
     height: 589,
-    screen: [157, 337, 263, 197],
+    screen: [160, 331, 260, 191],
   },
   {
     id: "switch",
@@ -95,9 +95,9 @@ export const titles: Record<AppId, string> = {
   settings: "Settings",
 };
 export const bio =
-  "I'm a software engineer at Meta based in New York. Previously I was at Cash App and Amazon. Outside of work, I enjoy learning about agentic coding tools through vibe coding, playing tennis, and watching movies.";
+  "I'm a software engineer based in New York. Previously I worked at Meta, Cash App, and Amazon. Outside of work, I enjoy learning about agentic coding tools through vibe coding, playing tennis, and watching movies.";
 export const experience = [
-  ["Meta", "Software Engineer", "Jun 2024 – Present", "AI Glasses"],
+  ["Meta", "Software Engineer", "Jun 2024 – May 2026", "AI Glasses"],
   [
     "Block",
     "Software Engineer",
@@ -137,3 +137,25 @@ export const project = {
   description:
     "Collection of diagrams and notes for system design interviews, covering Netflix, WhatsApp, Google Maps, and more.",
 };
+
+export const companyUrls: Record<string, string> = {
+  Meta: "https://www.meta.com/",
+  Block: "https://cash.app/",
+  Amazon: "https://www.amazon.com/",
+  PNC: "https://www.pnc.com/",
+  "John Deere": "https://www.deere.com/",
+};
+export const projects = [
+  {
+    title: "Stagehand Animation Studio",
+    url: "https://stagehand-animation-studio.saimun-h-shahee.chatgpt.site",
+    description:
+      "A local-first, frame-by-frame animation studio with WebMCP tools.",
+  },
+  project,
+  {
+    title: "Cube Recall",
+    url: "https://cube-recall.saimun-h-shahee.chatgpt.site",
+    description: "An Anki-style Rubik’s Cube algorithm trainer.",
+  },
+];
