@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "Astro production build passed",
+    "21 tests passed",
+    "24 spine image references resolve locally",
+    "No turntable or vinyl markup in built Home",
+    "All eight iOS grid icons measured 40.109375px square at desktop and 360px viewport",
+    "Album selection updated to U and Bonito Generation through native labels",
+    "360px page has no horizontal overflow or broken loaded images"
+  ],
+  "scope": "Album display, image spines and iOS icon sizing; no full game/audio regression this pass"
+}

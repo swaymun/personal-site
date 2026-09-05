@@ -1,7 +1,7 @@
 ---
 import { bio, experience, links, projects, companyUrls, devices } from "../data/site";
 import type { Section } from "../data/site";
-import VinylShelf from "./VinylShelf.astro";
+import AlbumShelf from "./AlbumShelf.astro";
 import GameShelf from "./GameShelf.astro";
 import MovieShelf from "./MovieShelf.astro";
 interface Props {
@@ -84,7 +84,7 @@ const posts = Object.values(
     section === "music" && (
       <>
         <h1>Music</h1>
-        <VinylShelf />
+        <AlbumShelf />
       </>
     )
   }
