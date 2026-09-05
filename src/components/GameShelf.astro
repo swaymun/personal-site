@@ -1,6 +1,6 @@
 ---
 import { favoriteGames } from '../data/collection';
 import MediaShelf from './MediaShelf.astro';
-const items = favoriteGames.map(game=>({...game,subtitle:game.platform,thickness:game.spine,spine:`/games/spines/${game.id}.webp`,cover:`/games/${game.id}.webp`}));
+const items = favoriteGames.map(game=>({...game,subtitle:game.platform,height:game.id === "temple-run" ? game.width : game.height,cover:`/games/${game.id}.webp`}));
 ---
 <MediaShelf kind="game" label="Favorite games" items={items}/>

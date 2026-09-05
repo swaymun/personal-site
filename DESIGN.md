@@ -103,6 +103,16 @@ The outer site uses ordinary text and links without decorative containers. Hardw
 - **App content:** a toolbar above a scrolling text body and pager. Notes use a yellow textarea. Games use a pixel-rendered canvas, pause control, and centered overlay; expanded overlays use clamped, readable text.
 - **Accessibility:** keep the skip link, text fallback, reduced-motion overrides, and readable expanded view. Do not rely on device color or tiny hardware labels as the only way to operate the content.
 
+### Collection galleries
+
+Movies, albums, and games share `MediaShelf.astro`: overlapping, bottom-aligned front covers replace spines. Existing local artwork supplies the color, with a slight perspective and soft cast shadow confined to the covers. Keep the existing cover files and source manifests; this treatment requires no generated assets.
+
+Each collection is a native radio group. Clicking a cover or using arrow keys selects it, brings it forward, and reveals one caption with the existing title link and artist or platform when supplied. Keyboard focus outlines the corresponding cover. The caption uses a polite live region; selection and links remain functional without JavaScript.
+
+The selected cover faces forward and lifts 10px above the fan, with extra separation and a deeper shadow. Other covers shrink slightly and soften in brightness and saturation; hover restores their color. Keyboard focus uses a thin blue outline. Compact views reduce the lift to 2px.
+
+The fan scrolls horizontally within its own region. Selection scrolls the chosen cover into view without moving the page or handheld screen. Desktop cover heights are 240px for movies and games and 210px for albums; at 600px and below they become 200px and 175px. Compact handheld galleries derive their height from available collection and caption space, capped at 180px, and tighten the overlap. Reduced-motion preferences disable cover transitions.
+
 ## Do's and Don'ts
 
 - Do keep the outer page white, centered, and typographically restrained.

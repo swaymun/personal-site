@@ -10,13 +10,14 @@ test("built Home preserves the name, biography and text navigation", () => {
   for (const page of ["work", "movies", "music", "games", "writing", "links"])
     assert.ok(s.includes(`href="#${page}"`));
 });
-test("Work preserves project and education; every text page has a heading and no script", () => {
+test("Work preserves project and education; text pages retain semantic headings", () => {
   const s = html("work");
   assert.ok(s.includes("https://github.com/swaymun/system-design-excalidraws"));
   assert.ok(s.includes("Penn State"));
   for (const page of ["work", "movies", "music", "games", "writing", "links"]) {
     assert.match(html(page), /<h1>/);
-    assert.doesNotMatch(html(page), /<script/);
+    if (!["movies", "music", "games"].includes(page))
+      assert.doesNotMatch(html(page), /<script/);
   }
 });
 test("device routes load their controller but do not preload games or audio", () => {
@@ -46,7 +47,7 @@ test("collections include the clarified favorites and omit songs", () => {
     "Shin Budokai",
   ])
     assert.ok(s.includes(title));
-  assert.equal((s.match(/class="record-choice sr-only"/g) || []).length, 16);
+  assert.equal((s.match(/name="record"/g) || []).length, 16);
   assert.doesNotMatch(s, /Top 10 songs|Blonde/);
 });
 
@@ -63,7 +64,8 @@ test("annotation cleanup preserves only requested collection content", () => {
     assert.ok(!s.includes(copy));
   assert.match(s, /href="#links">Elsewhere/);
   assert.ok(s.includes('href="https://www.psu.edu/"'));
-  assert.equal((s.match(/spines\/[^" ]+\.webp/g) || []).length, 28);
+  assert.doesNotMatch(s, /spines\/[^" ]+\.webp/);
+  assert.equal((s.match(/class="cover-gallery"/g) || []).length, 3);
 });
 test("each device preloads exactly its own hashed hardware image", () => {
   assert.doesNotMatch(html(""), /rel="preload" as="image"/);
@@ -84,5 +86,5 @@ test("Home warms hardware after load without loading games or sound", () => {
   assert.ok(s.includes("scheduleWarmup"));
   for (const id of ["gba", "psp", "ipod", "3ds", "switch"])
     assert.ok(s.includes(`/_astro/${id}.`));
-  assert.doesNotMatch(s, /<script[^>]+src=|\/video\/|\/audio\//);
+  assert.doesNotMatch(s, /\/video\/|\/audio\//);
 });

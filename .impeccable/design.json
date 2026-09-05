@@ -13,6 +13,11 @@
         "name": "physical-button-pressed",
         "value": "inset 0 1px 5px #0008",
         "purpose": "Pressed overlay on the photographed control; idle controls are transparent."
+      },
+      {
+        "name": "collection-cover-cast",
+        "value": "3px 4px 6px #0003",
+        "purpose": "Local depth for overlapping front covers in movie, album, and game galleries."
       }
     ],
     "breakpoints": [
@@ -27,6 +32,13 @@
       {
         "name": "short-landscape-height",
         "value": "500px"
+      }
+    ],
+    "motion": [
+      {
+        "name": "collection-cover-selection",
+        "value": "transform .3s ease-out",
+        "purpose": "Cover perspective and hover movement; transitions are disabled for reduced motion. Gallery selection scrolling is instant."
       }
     ]
   },

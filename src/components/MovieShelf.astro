@@ -1,6 +1,6 @@
 ---
 import { movies } from '../data/site';
 import MediaShelf from './MediaShelf.astro';
-const items = movies.map(([title,,id])=>({id,title,spine:`/movies/spines/${id}.webp`,cover:`/movies/${id}.webp`,url:`https://letterboxd.com/film/${id}/`,height:190,width:127,thickness:17}));
+const items = movies.map(([title,,id])=>({id,title,cover:`/movies/${id}.webp`,url:`https://letterboxd.com/film/${id}/`,height:190,width:127}));
 ---
 <MediaShelf kind="film" label="Four favorite films" items={items}/>

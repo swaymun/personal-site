@@ -1,0 +1,171 @@
+{
+  "scope": "Local collection gallery redesign, not full game/audio regression",
+  "build": "pass",
+  "tests": {
+    "passed": 24,
+    "failed": 0
+  },
+  "viewports": [
+    1280,
+    569,
+    360
+  ],
+  "pageOverflow": "none observed at 360 and 569",
+  "visualReview": "ship",
+  "handheldGalleries": [
+    "gba music",
+    "psp games",
+    "ipod games",
+    "3ds games",
+    "switch games"
+  ],
+  "interactionChecks": [
+    "Home movie ArrowRight selection",
+    "Home album ArrowLeft wrap to U and gallery scroll",
+    "GBA left hardware button wraps to U",
+    "iPod ArrowRight selects Super Mario 3D Land"
+  ],
+  "coverAssets": [
+    {
+      "path": "/games/ace-attorney.webp",
+      "status": 200,
+      "bytes": 45990
+    },
+    {
+      "path": "/games/ghost-of-sparta.webp",
+      "status": 200,
+      "bytes": 28964
+    },
+    {
+      "path": "/games/kid-icarus.webp",
+      "status": 200,
+      "bytes": 59732
+    },
+    {
+      "path": "/games/mario-3d-land.webp",
+      "status": 200,
+      "bytes": 45462
+    },
+    {
+      "path": "/games/mario-kart.webp",
+      "status": 200,
+      "bytes": 59112
+    },
+    {
+      "path": "/games/shin-budokai.webp",
+      "status": 200,
+      "bytes": 43302
+    },
+    {
+      "path": "/games/sly-cooper.webp",
+      "status": 200,
+      "bytes": 28160
+    },
+    {
+      "path": "/games/temple-run.webp",
+      "status": 200,
+      "bytes": 23264
+    },
+    {
+      "path": "/movies/after-hours.webp",
+      "status": 200,
+      "bytes": 32082
+    },
+    {
+      "path": "/movies/catch-me-if-you-can-2002.webp",
+      "status": 200,
+      "bytes": 34610
+    },
+    {
+      "path": "/movies/infernal-affairs.webp",
+      "status": 200,
+      "bytes": 38026
+    },
+    {
+      "path": "/movies/rope.webp",
+      "status": 200,
+      "bytes": 26196
+    },
+    {
+      "path": "/music/birds-in-the-trap-sing-mcknight.webp",
+      "status": 200,
+      "bytes": 34124
+    },
+    {
+      "path": "/music/bonito-generation.webp",
+      "status": 200,
+      "bytes": 44274
+    },
+    {
+      "path": "/music/care-package.webp",
+      "status": 200,
+      "bytes": 15432
+    },
+    {
+      "path": "/music/ctrl.webp",
+      "status": 200,
+      "bytes": 86932
+    },
+    {
+      "path": "/music/flower-boy.webp",
+      "status": 200,
+      "bytes": 56408
+    },
+    {
+      "path": "/music/good-kid-m-a-a-d-city.webp",
+      "status": 200,
+      "bytes": 43438
+    },
+    {
+      "path": "/music/number-1-angel.webp",
+      "status": 200,
+      "bytes": 25142
+    },
+    {
+      "path": "/music/songs-in-the-key-of-life.webp",
+      "status": 200,
+      "bytes": 36750
+    },
+    {
+      "path": "/music/sweetener.webp",
+      "status": 200,
+      "bytes": 19714
+    },
+    {
+      "path": "/music/the-college-dropout.webp",
+      "status": 200,
+      "bytes": 60004
+    },
+    {
+      "path": "/music/the-life-of-pablo.webp",
+      "status": 200,
+      "bytes": 73496
+    },
+    {
+      "path": "/music/the-wizrd.webp",
+      "status": 200,
+      "bytes": 64726
+    },
+    {
+      "path": "/music/thriller.webp",
+      "status": 200,
+      "bytes": 32004
+    },
+    {
+      "path": "/music/trapsoul.webp",
+      "status": 200,
+      "bytes": 5196
+    },
+    {
+      "path": "/music/u.webp",
+      "status": 200,
+      "bytes": 99408
+    },
+    {
+      "path": "/music/yellow-dancer.webp",
+      "status": 200,
+      "bytes": 32230
+    }
+  ],
+  "deployment": "not deployed"
+}

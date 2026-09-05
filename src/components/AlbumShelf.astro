@@ -1,16 +1,6 @@
 ---
 import { albums } from '../data/collection';
-const rules = albums.map((album,i)=>`#record-${album.id}:checked ~ .album-layout .record-${i}{display:block} #record-${album.id}:checked ~ .album-layout label[for="record-${album.id}"]{transform:translateY(-8px);outline:2px solid currentColor;outline-offset:2px} #record-${album.id}:focus-visible ~ .album-layout label[for="record-${album.id}"]{outline:3px solid #245d9c;outline-offset:3px}`).join('\n');
+import MediaShelf from './MediaShelf.astro';
+const items = albums.map(album => ({ ...album, subtitle:album.artist, cover:`/music/${album.id}.webp`, width:160, height:160 }));
 ---
-<fieldset class="album-collection" data-collection>
-<legend class="sr-only">Choose an album</legend>
-{albums.map((album,i)=><input class="record-choice sr-only" type="radio" name="record" id={`record-${album.id}`} checked={i===0} aria-label={`${album.title} — ${album.artist}`}/>)}
-<div class="album-layout">
-  <div class="record-rack" aria-label="Record shelf">{albums.map(album=><label for={`record-${album.id}`} title={`${album.title} — ${album.artist}`} style={`--sleeve-color:${album.color};--sleeve-ink:${album.ink}`}><img src={`/music/spines/${album.id}.webp`} alt={`${album.title} — ${album.artist}`} width="64" height="1067" loading="lazy"/></label>)}</div>
-  <div class="album-selection">
-    <div class="album-display">{albums.map((album,i)=><a class={`selected-record record-${i}`} href={album.url} aria-label={`${album.title} by ${album.artist}`}><img src={`/music/${album.id}.webp`} alt={`${album.title} album cover`} width="320" height="320" loading="lazy"/></a>)}</div>
-    <div class="record-caption">{albums.map((album,i)=><p class={`selected-record record-${i}`}><strong>{album.title}</strong><br/><span class="muted">{album.artist}</span></p>)}</div>
-  </div>
-</div>
-<style set:html={rules}/>
-</fieldset>
+<MediaShelf kind="record" label="Favorite albums" items={items}/>

@@ -1,18 +1,60 @@
 ---
-interface Item { id: string; title: string; subtitle?: string; spine: string; cover: string; url: string; height: number; width: number; thickness: number; }
+interface Item { id: string; title: string; subtitle?: string; cover: string; url: string; height: number; width: number; }
 interface Props { kind: string; label: string; items: Item[]; }
-const {kind,label,items} = Astro.props;
-const rules = items.map((item,i)=>`#${kind}-${item.id}:checked ~ .media-layout .media-${i}{display:block} #${kind}-${item.id}:checked ~ .media-layout label[for="${kind}-${item.id}"]{transform:translateY(-5px);outline:2px solid currentColor;outline-offset:2px} #${kind}-${item.id}:focus-visible ~ .media-layout label[for="${kind}-${item.id}"]{outline:3px solid #245d9c;outline-offset:3px}`).join('\n');
+const { kind, label, items } = Astro.props;
+const rules = items.map((item, i) => `
+#${kind}-${item.id}:checked ~ .cover-gallery label[for="${kind}-${item.id}"] { z-index:30; padding-right:var(--selection-space); }
+#${kind}-${item.id}:checked ~ .cover-gallery label[for="${kind}-${item.id}"] img { transform:perspective(800px) rotateY(0deg) translateY(calc(-1 * var(--selection-lift))); filter:none; box-shadow:0 10px 16px #0004; }
+#${kind}-${item.id}:focus-visible ~ .cover-gallery label[for="${kind}-${item.id}"] img { outline:2px solid #246bc1; outline-offset:5px; }
+#${kind}-${item.id}:checked ~ .record-caption .caption-${i} { display:block; }
+`).join('\n');
 ---
-<fieldset class={`media-collection media-${kind}`} data-collection>
-  <legend class="sr-only">{label}. Use arrow keys to choose.</legend>
-  {items.map((item,i)=><input class="media-choice sr-only" type="radio" name={kind} id={`${kind}-${item.id}`} checked={i===0} aria-label={item.title}/>)}
-  <div class="media-layout">
-    <div class="media-rack" aria-label={`${label} spines`}>{items.map(item=><label for={`${kind}-${item.id}`} title={item.title} style={`--spine-height:${item.height};--spine-thickness:${item.thickness}`}><img src={item.spine} alt={item.title} width={item.thickness*4} height={item.height*4} loading="lazy"/></label>)}</div>
-    <div class="media-selection">
-      <div class="media-display">{items.map((item,i)=><a class={`selected-media media-${i}`} href={item.url} aria-label={item.title}><img src={item.cover} alt={`${item.title} cover`} width={item.width*4} height={item.height*4} loading="lazy" style={`--cover-width:${item.width};--cover-height:${item.id==='temple-run'?item.width:item.height}`}/></a>)}</div>
-      <div class="record-caption">{items.map((item,i)=><p class={`selected-media media-${i}`}><strong>{item.title}</strong>{item.subtitle && <><br/><span class="muted">{item.subtitle}</span></>}</p>)}</div>
-    </div>
+<fieldset class={`cover-collection covers-${kind}`} data-collection>
+  <legend class="sr-only">{label}. Select a cover; use arrow keys to browse.</legend>
+  {items.map((item, i) => <input class="sr-only" type="radio" name={kind} id={`${kind}-${item.id}`} checked={i === 0} aria-label={item.subtitle ? `${item.title} — ${item.subtitle}` : item.title} />)}
+  <div class="cover-gallery" aria-label={`${label} covers`}>
+    {items.map((item, i) => <label for={`${kind}-${item.id}`} title={item.title} style={`--ratio:${item.width / item.height};--depth:${Math.max(.76, 1 - i * .025)};--order:${items.length - i}`}>
+      <img src={item.cover} alt={`${item.title} cover`} width={item.width * 4} height={item.height * 4} loading="lazy" />
+    </label>)}
+  </div>
+  <div class="record-caption" aria-live="polite">
+    {items.map((item, i) => <p class={`cover-caption caption-${i}`}><a href={item.url}>{item.title}</a>{item.subtitle && <><br/><span class="muted">{item.subtitle}</span></>}</p>)}
   </div>
   <style set:html={rules}/>
 </fieldset>
+<style>
+  .cover-collection { --cover-height:240px; --selection-lift:10px; --selection-space:20px; border:0; min-width:0; margin:16px 0 0; padding:0; position:relative; }
+  .covers-record { --cover-height:210px; }
+  .cover-gallery { display:flex; align-items:end; overflow-x:auto; overflow-y:hidden; padding:24px 12px 20px 7px; min-width:0; scrollbar-width:thin; scrollbar-color:#aaa transparent; }
+  .cover-gallery label { box-sizing:content-box; position:relative; z-index:var(--order); flex:0 0 48px; height:var(--cover-height); cursor:pointer; }
+  .cover-gallery label:last-child { margin-right:calc(var(--cover-height) * var(--ratio) - 48px); }
+  .cover-gallery img { position:absolute; bottom:0; left:0; height:100%; width:calc(var(--cover-height) * var(--ratio)); max-width:none; object-fit:contain; border-radius:3px; transform-origin:left bottom; transform:perspective(800px) rotateY(-22deg) scale(calc(var(--depth) * .92)); filter:brightness(.82) saturate(.8); box-shadow:3px 4px 6px #0003; transition:transform .3s ease-out, filter .3s ease-out, box-shadow .3s ease-out; }
+  .cover-gallery label:hover img { transform:perspective(800px) rotateY(-10deg) translateY(-5px) scale(var(--depth)); filter:brightness(.95) saturate(1); }
+  .record-caption { min-height:3.3em; margin:0; text-align:left; font-size:13px; line-height:1.5; }
+  .record-caption p { margin:0; }
+  .cover-caption { display:none; }
+  :global(.compact) .cover-collection { --selection-lift:2px; --selection-space:4px; --cover-height:max(16px, min(180px, calc(var(--collection-height, 160px) - var(--caption-height, 42px) - 12px))); margin:0; }
+  :global(.compact) .cover-gallery { padding:4px 5px 6px; }
+  :global(.compact) .cover-gallery label { flex-basis:clamp(10px, calc(var(--cover-height) * .24), 28px); }
+  :global(.compact) .cover-gallery label:last-child { margin-right:calc(var(--cover-height) * var(--ratio) - clamp(10px, calc(var(--cover-height) * .24), 28px)); }
+  :global(.compact) .record-caption { font-size:inherit; line-height:1.35; min-height:0; }
+  @media (max-width:600px) { .cover-collection { --cover-height:200px; } .covers-record { --cover-height:175px; } .cover-gallery label { flex-basis:44px; } .cover-gallery label:last-child { margin-right:calc(var(--cover-height) * var(--ratio) - 44px); } }
+  @media (prefers-reduced-motion:reduce) { .cover-gallery label, .cover-gallery img { transition:none; } }
+</style>
+<script>
+  document.addEventListener('change', (event) => {
+    const input = event.target;
+    if (!(input instanceof HTMLInputElement) || !input.matches('.cover-collection input[type=radio]')) return;
+    const gallery = input.parentElement?.querySelector('.cover-gallery');
+    const cover = gallery?.querySelector<HTMLLabelElement>(`label[for="${input.id}"]`);
+    if (!(gallery instanceof HTMLElement) || !cover) return;
+    // Scroll only the gallery, leaving the page and handheld screen in place.
+    requestAnimationFrame(() => {
+      const left = cover.offsetLeft;
+      const width = cover.querySelector('img')?.getBoundingClientRect().width ?? cover.offsetWidth;
+      if (left < gallery.scrollLeft || left + width > gallery.scrollLeft + gallery.clientWidth) {
+        gallery.scrollTo({ left: Math.max(0, left - 8), behavior:'instant' });
+      }
+    });
+  });
+</script>
