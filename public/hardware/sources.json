@@ -1,0 +1,71 @@
+{
+  "notes": "Product artwork remains the property of its respective creators. No open license is asserted where none is specified. Source screens are covered by live HTML.",
+  "assets": [
+    {
+      "id": "gba",
+      "file": "/hardware/gba.webp",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Game_Boy_Advance_SP_blue.JPG",
+      "creator": "Danny Fenton",
+      "license": "Public domain",
+      "changes": "ImageGen restoration based on Danny Fenton photograph, authorized by owner of this website. Blank inactive LCD, cleaned cobalt shell and sharper controls. Generated background removed with four-corner flood mask at 15% tolerance; width 765, WebP quality 90. Screen and controls recalibrated against output; this is AI-restored artwork, not an untouched photograph."
+    },
+    {
+      "id": "psp",
+      "file": "/hardware/psp.webp",
+      "source": "https://static.gamesmen.com.au/media/catalog/product/p/s/psp_3000b.jpg",
+      "creator": "Sony; distributed by The Gamesmen",
+      "changes": "White edge flood mask at 4% tolerance; trim; width 1400; WebP quality 88."
+    },
+    {
+      "id": "ipod",
+      "file": "/hardware/ipod.webp",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/2/25/4th_Generation_iPod_touch.png",
+      "creator": "iEatSoxLikeAnimal",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "changes": "Crop 756x1420+0+0 to omit reflected base, trim, width 560, WebP quality 90. Adapted image remains CC BY-SA 3.0."
+    },
+    {
+      "id": "3ds",
+      "file": "/hardware/3ds.webp",
+      "source": "https://www.thevideogamecompany.com/cdn/shop/products/3DS-CONS-0004.png?v=1680631397",
+      "creator": "Nintendo; distributed by The Video Game Company",
+      "changes": "White edge flood mask at 5% tolerance; trim; WebP quality 90."
+    },
+    {
+      "id": "switch",
+      "file": "/hardware/switch.webp",
+      "source": "https://assets.nintendo.com/image/upload/f_png/ncom/en_US/products/hardware/nintendo-switch-acnh/112183-nintendo-switch-animal-crossing-bundle-console-joy-con-front-screen-on-1200x675",
+      "creator": "Nintendo",
+      "changes": "White background flood mask from four corners at 5% tolerance; trim; WebP quality 90."
+    },
+    {
+      "id": "ios-icons",
+      "files": "/ui/ios/{app}.webp",
+      "source": "https://github.com/zagnut531/iOS-6-Icons/tree/main/iPhone%20%26%20iPod%20touch/Uncropped%20icons",
+      "creator": "Apple; archived by zagnut531",
+      "changes": "Original exports, mapped to site apps: Contacts \u2192 Home; Reminders \u2192 Work; Videos \u2192 Movies; Music \u2192 Music; Game Center \u2192 Games; Mail \u2192 Writing; Safari \u2192 Links; Notes \u2192 Notes; Settings \u2192 Settings. Converted losslessly to WebP and stripped metadata."
+    },
+    {
+      "id": "ios-wallpaper",
+      "file": "/ui/ios/wallpaper.webp",
+      "source": "https://github.com/SniperGER/iOS-Wallpapers/blob/master/iPhone/3.5%22%20%402x/iOS%206/Stills/100%402x~iphone.png",
+      "creator": "Apple; archived by SniperGER",
+      "changes": "CgBI PNG converted by macOS sips to standard PNG; 640x960 WebP quality 85."
+    },
+    {
+      "id": "3ds-icons",
+      "files": "/ui/3ds/*.png",
+      "source": "https://www.spriters-resource.com/3ds/systembios/",
+      "creator": "Nintendo; sprite sheets extracted by NH1507",
+      "changes": "48x48 crop at +6+6: Activity Log 149133 \u2192 Work; Camera 149125 \u2192 Movies; Sound 149126 \u2192 Music; Settings 149135 \u2192 Settings."
+    },
+    {
+      "id": "psp-wave",
+      "file": "/ui/psp-wave.svg",
+      "creator": "Original geometry authored for this website",
+      "reference": "https://www.gamesmen.com.au/console-psp-3000-black",
+      "changes": "Wave contour and muted violet palette based on the visible XMB in the source product image; original SVG, not extracted firmware."
+    }
+  ]
+}

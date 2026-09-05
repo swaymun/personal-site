@@ -59,7 +59,7 @@ components:
 
 A plain personal page with a collection of playable handhelds. The outer site is quiet and direct: white space, system Arial, underlined blue links, and centered navigation. Detailed hardware and era-specific menus carry the visual personality.
 
-The pinned references are Nat.org and knarfeel.com. This is a code-led system: preserve the actual SVG silhouettes and working layouts rather than introducing generated comps.
+The pinned references are Nat.org and knarfeel.com. This is a code-led system: use accurate product cutouts, calibrated hit areas, and working layouts rather than introducing generated comps.
 
 Key characteristics: readable text, generous page margins, modest headings, tactile handheld controls, and distinct menus for each device.
 
@@ -114,3 +114,11 @@ The outer site uses ordinary text and links without decorative containers. Hardw
 - Don't let selection rings, app labels, or game overlay focus disappear behind screen edges.
 
 Source of truth: `src/styles/global.css`, `src/layouts/Site.astro`, `src/components/Handheld.astro`, and `src/components/Hardware.astro`. Companion extensions live in `.impeccable/design.json`.
+
+## Hardware fidelity revision
+
+Device artwork is now an optimized, locally served WebP cutout. Coordinates in the device definitions and button overlays follow the photographed screen and controls. The GBA photograph was restored and upscaled with ImageGen under explicit user authorization; its overlay was recalibrated against the resulting cutout.
+
+PSP uses a sliding horizontal category axis anchored at 30% of the screen and vertical category entries. iPod uses the original iOS 6 ripple wallpaper and icon exports, a four-column grid, and reflective dock. 3DS separates the upper app preview from the lower software grid and utility strip, with four original system icons. Switch uses a selected software heading, square software strip, utility circles, and bottom command row. Site-specific icons remain original. App titles are still the site's personal sections.
+
+Attribution and transformations: `/credits/` and `/hardware/sources.json`. Expanded menus preserve native aspect ratios; expanded reading and gameplay retain their existing accessible layouts.

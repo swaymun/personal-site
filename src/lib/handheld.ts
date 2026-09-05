@@ -84,7 +84,16 @@ function renderXmb() {
   list.replaceChildren();
   xmbLabels[apps[selected]].forEach((label, i) => {
     const b = document.createElement("button");
-    b.textContent = label;
+    const icon = document.createElement("span");
+    icon.className = "xmb-item-icon";
+    const source = root.querySelector(
+      `[data-app="${apps[selected]}"] .app-icon`,
+    );
+    if (source)
+      icon.append(...[...source.childNodes].map((n) => n.cloneNode(true)));
+    const text = document.createElement("span");
+    text.textContent = label;
+    b.append(icon, text);
     b.classList.toggle("selected", i === subSelected);
     b.addEventListener("click", () => openXmb(i));
     list.append(b);
@@ -128,7 +137,8 @@ function choose(index: number, focus = false) {
   const chosen = buttons[index];
   if (chosen) {
     const grid = chosen.parentElement!;
-    if (grid.scrollWidth > grid.clientWidth)
+    if (id === "psp") grid.style.setProperty("--selected-index", String(index));
+    if (id !== "psp" && grid.scrollWidth > grid.clientWidth)
       grid.scrollLeft =
         chosen.offsetLeft -
         grid.offsetLeft -
@@ -137,7 +147,15 @@ function choose(index: number, focus = false) {
     if (focus) chosen.focus({ preventScroll: true });
   }
   const upper = $("#upper-title");
-  if (upper) upper.textContent = titles[apps[index]];
+  if (upper) {
+    upper.textContent = titles[apps[index]];
+    const icon = chosen?.querySelector(".app-icon");
+    if (icon)
+      $(".upper-icon").replaceChildren(
+        ...[...icon.childNodes].map((n) => n.cloneNode(true)),
+      );
+  }
+  if (id === "switch") $(".launcher-heading").textContent = titles[apps[index]];
 }
 function setUrl(app: AppId | null) {
   const url = new URL(location.href);
@@ -159,6 +177,7 @@ function stopGame() {
 function menu(historyUpdate = true) {
   stopGame();
   currentApp = null;
+  root.removeAttribute("data-current-app");
   view.hidden = true;
   launcher.hidden = false;
   boot.hidden = true;
@@ -185,6 +204,7 @@ function updatePage() {
 function openApp(app: AppId, historyUpdate = true) {
   stopGame();
   currentApp = app;
+  root.dataset.currentApp = app;
   selected = apps.indexOf(app);
   choose(selected);
   launcher.hidden = true;
@@ -260,7 +280,13 @@ root
 root.querySelectorAll<HTMLButtonElement>("[data-app]").forEach((button, i) => {
   button.addEventListener("click", () => {
     choose(i);
-    openApp(apps[i]);
+    if (id !== "psp") openApp(apps[i]);
+  });
+  button.addEventListener("keydown", (event) => {
+    if (id === "psp" && (event.key === "Enter" || event.key === " ")) {
+      event.preventDefault();
+      openXmb(subSelected);
+    }
   });
   button.addEventListener("focus", () => choose(i));
 });

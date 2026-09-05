@@ -9,9 +9,9 @@ export const devices = [
     genre: "A little platform adventure",
     instructions:
       "Move with ← → or A/D. A / Z / Space jumps. Reach the flag in all three stages. Yellow diamonds are worth 10 points; the halfway flag is a checkpoint.",
-    width: 360,
-    height: 640,
-    screen: [48, 58, 264, 176],
+    width: 255,
+    height: 440,
+    screen: [41, 39, 171, 112],
   },
   {
     id: "psp",
@@ -23,9 +23,9 @@ export const devices = [
     genre: "One arena. Three waves. One guardian.",
     instructions:
       "Move with arrows or WASD. × / Z attacks. ○ / X dodges. Defeat three waves and the guardian. Dodge through danger; collect the green healing drops.",
-    width: 900,
-    height: 390,
-    screen: [190, 54, 520, 294],
+    width: 1000,
+    height: 421,
+    screen: [213, 32, 574, 329],
   },
   {
     id: "ipod",
@@ -37,9 +37,9 @@ export const devices = [
     genre: "How high can a doodle go?",
     instructions:
       "Jumping is automatic. Move left and right with arrows, A/D, or the touch buttons. Wrap around the sides. Land on platforms and keep climbing.",
-    width: 320,
-    height: 610,
-    screen: [34, 89, 252, 378],
+    width: 560,
+    height: 1052,
+    screen: [40, 168, 480, 720],
   },
   {
     id: "3ds",
@@ -51,9 +51,9 @@ export const devices = [
     genre: "Three rooms and a hidden key",
     instructions:
       "Move with arrows or WASD. A / Z swings your sword. Clear each room, travel through the right doorway, collect the key in room two, and unlock the last exit.",
-    width: 520,
-    height: 630,
-    screen: [140, 350, 240, 180],
+    width: 582,
+    height: 589,
+    screen: [157, 337, 263, 197],
   },
   {
     id: "switch",
@@ -66,8 +66,8 @@ export const devices = [
     instructions:
       "Move along the shore with arrows or WASD. A / Z casts. Wait for BITE!, then press A again to reel in. Catch five fish. Three missed bites end the session.",
     width: 1000,
-    height: 440,
-    screen: [172, 36, 656, 369],
+    height: 426,
+    screen: [213, 54, 572, 322],
   },
 ] as const;
 export type DeviceId = (typeof devices)[number]["id"];

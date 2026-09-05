@@ -10,14 +10,9 @@
         "purpose": "CSS drop-shadow for device silhouette; removed in expanded view."
       },
       {
-        "name": "physical-button",
-        "value": "0 2px 2px #0008",
-        "purpose": "Raised physical control."
-      },
-      {
         "name": "physical-button-pressed",
-        "value": "inset 0 2px 3px #0009",
-        "purpose": "Depressed physical control."
+        "value": "inset 0 1px 5px #0008",
+        "purpose": "Pressed overlay on the photographed control; idle controls are transparent."
       }
     ],
     "breakpoints": [

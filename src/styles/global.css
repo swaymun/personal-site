@@ -367,275 +367,6 @@ input:focus-visible,
   font-size: 3.2cqw;
   letter-spacing: 0.03em;
 }
-.psp .screen {
-  background: radial-gradient(
-    ellipse at 60% 130%,
-    #bddcea 0%,
-    #759fac 30%,
-    #315563 65%,
-    #243d50 100%
-  );
-  color: #fff;
-}
-.psp .screen:before {
-  content: "";
-  position: absolute;
-  width: 150%;
-  height: 60%;
-  left: -20%;
-  top: 35%;
-  border-top: 1px solid #c0e2e6;
-  border-radius: 50%;
-  transform: rotate(-8deg);
-  pointer-events: none;
-  opacity: 0.65;
-}
-.psp .screen-status {
-  background: transparent;
-  color: white;
-  font-size: 2.2cqw;
-}
-.psp .launcher {
-  padding: 7% 6% 3%;
-  position: relative;
-}
-.psp .launcher-heading {
-  font-size: 3cqw;
-  font-weight: normal;
-}
-.psp .app-grid {
-  display: flex;
-  align-items: center;
-  overflow-x: auto;
-  scrollbar-width: none;
-  gap: 5cqw;
-  flex: 1;
-  padding: 3cqw;
-}
-.psp .app-button {
-  flex: 0 0 12cqw;
-  font-size: 2.7cqw;
-  gap: 2cqw;
-}
-.psp .app-button.selected {
-  outline: 0;
-  transform: scale(1.15);
-  text-shadow: 0 2px 3px #000;
-}
-.psp .app-button.selected:after {
-  content: "◆";
-  font-size: 1.7cqw;
-}
-.psp .app-icon {
-  color: #fff;
-  width: 9cqw;
-  height: 9cqw;
-}
-.psp .launcher-footer {
-  text-align: left;
-  font-size: 2.4cqw;
-}
-.ipod .screen {
-  background: linear-gradient(#718b9b, #cbd3d4);
-  color: white;
-}
-.ipod .screen-status {
-  height: 5%;
-  background: #171c22;
-  color: white;
-  font-size: 3.2cqw;
-}
-.ipod .launcher {
-  height: 95%;
-  padding: 6% 5% 0;
-}
-.ipod .launcher-heading {
-  display: none;
-}
-.ipod .app-grid {
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  align-content: start;
-  gap: 5cqw 4cqw;
-  flex: 0 0 77%;
-}
-.ipod .app-icon {
-  width: 21cqw;
-  height: 21cqw;
-  border-radius: 4.2cqw;
-  border: 1px solid #ffffff70;
-  box-shadow:
-    0 2px 3px #18253070,
-    inset 0 1px 1px #fff8;
-  background: linear-gradient(#5ba5ed, #2166b4);
-  color: white;
-  position: relative;
-  overflow: hidden;
-}
-.ipod .app-icon:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 45%;
-  background: #fff3;
-  border-radius: 0 0 50% 50%;
-}
-.ipod .app-icon svg {
-  width: 60%;
-  height: 60%;
-  z-index: 1;
-}
-.ipod .icon-work {
-  background: linear-gradient(#8c8e96, #404652);
-}
-.ipod .icon-movies {
-  background: linear-gradient(#4b5869, #121922);
-}
-.ipod .icon-music {
-  background: linear-gradient(#ffb340, #ed6c11);
-}
-.ipod .icon-games {
-  background: linear-gradient(#7bc356, #2d803c);
-}
-.ipod .icon-writing,
-.ipod .icon-notes {
-  background: linear-gradient(#f1d982, #d9b54e);
-  color: #574025;
-}
-.ipod .icon-links {
-  background: linear-gradient(#83d7f4, #217bad);
-}
-.ipod .icon-settings {
-  background: linear-gradient(#bbbfc5, #686e76);
-}
-.ipod .app-button {
-  font-size: 3.9cqw;
-  text-shadow: 0 1px 2px #0008;
-  gap: 2cqw;
-}
-.ipod .launcher-footer {
-  margin-top: auto;
-  margin-inline: -6%;
-  padding: 7% 0 6%;
-  border-top: 1px solid #fff6;
-  background: linear-gradient(#d8e4e875, #66778399);
-  font-size: 3.1cqw;
-}
-.upper-screen {
-  position: absolute;
-  left: 19.23%;
-  top: 8.1%;
-  width: 61.54%;
-  height: 30%;
-  background: radial-gradient(#fff, #dfe5ed);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #454a51;
-  line-height: 1.35;
-  container-type: inline-size;
-  font-size: 4cqw;
-  gap: 3%;
-  overflow: hidden;
-}
-.upper-screen > svg {
-  width: 22%;
-  height: 35%;
-  color: #5696b8;
-  filter: drop-shadow(0 4px 2px #8596a950);
-}
-.upper-screen > span {
-  font-size: 3.3cqw;
-}
-.upper-time {
-  position: absolute;
-  top: 5%;
-  left: 5%;
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-  font-size: 3cqw;
-  color: #5b6470;
-}
-.\33 ds .screen {
-  background: #f6f6f6;
-}
-.\33 ds .screen-status {
-  background: #e7e9ea;
-  font-size: 3cqw;
-}
-.\33 ds .launcher-heading {
-  display: none;
-}
-.\33 ds .app-grid {
-  gap: 2.5cqw;
-}
-.\33 ds .app-icon {
-  border-radius: 2cqw;
-  width: 17cqw;
-  height: 13cqw;
-  background: #fff;
-  box-shadow: 0 1px 2px #0003;
-  color: #3686a8;
-}
-.\33 ds .app-button.selected {
-  outline: 2px solid #25a7ba;
-}
-.switch .screen {
-  background: #f0f1f2;
-}
-.switch .screen-status {
-  background: transparent;
-  height: 13%;
-  font-size: 2.3cqw;
-  padding-inline: 5%;
-}
-.switch .launcher {
-  height: 87%;
-  padding: 5% 4% 3%;
-}
-.switch .launcher-heading {
-  font-size: 2.5cqw;
-  font-weight: normal;
-  margin-bottom: 5%;
-}
-.switch .app-grid {
-  display: flex;
-  overflow: auto;
-  scrollbar-width: none;
-  gap: 2cqw;
-  align-items: center;
-  padding: 1cqw;
-}
-.switch .app-button {
-  flex: 0 0 23cqw;
-  font-size: 3cqw;
-  gap: 2cqw;
-}
-.switch .app-icon {
-  width: 22cqw;
-  height: 22cqw;
-  background: #fafafa;
-  border: 1px solid #d4d9da;
-  color: #435c69;
-}
-.switch .app-button.selected {
-  outline: 0;
-  color: #00687b;
-}
-.switch .app-button.selected .app-icon {
-  outline: 3px solid #25a8b4;
-  outline-offset: 1px;
-}
-.switch .launcher-footer {
-  text-align: right;
-  font-size: 2.2cqw;
-  border-top: 1px solid #c5c9cc;
-  padding-top: 2%;
-}
 .device-caption {
   display: flex;
   justify-content: center;
@@ -1119,163 +850,6 @@ input:focus-visible,
     transition: none !important;
   }
 }
-/* Device-specific menu affordances. */
-.upper-screen > strong {
-  font-size: 5cqw;
-}
-.switch .app-icon {
-  width: 18cqw;
-  height: 18cqw;
-}
-.switch .app-button {
-  flex-basis: 20cqw;
-}
-.switch .app-grid {
-  padding-block: 2cqw;
-  align-items: flex-start;
-}
-.psp .app-grid {
-  flex: 0 0 45%;
-  padding-block: 2cqw;
-}
-.xmb-items {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.5cqw;
-  padding: 0 5%;
-  font-size: 2.5cqw;
-  min-height: 23%;
-  overflow: auto;
-  scrollbar-width: none;
-}
-.xmb-items button {
-  border: 0;
-  background: none;
-  color: #e1edf2;
-  padding: 0;
-}
-.xmb-items button.selected {
-  color: #fff;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-.ipod .launcher-footer {
-  display: none;
-}
-.ipod .app-grid {
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  flex-basis: 73%;
-  gap: 4cqw 2cqw;
-}
-.ipod .app-icon {
-  width: 18cqw;
-  height: 18cqw;
-}
-.ipod .app-button {
-  font-size: 3.1cqw;
-}
-.ipod-dock {
-  display: flex;
-  justify-content: space-around;
-  margin-top: auto;
-  margin-inline: -6%;
-  padding: 4% 3%;
-  background: linear-gradient(#dfe8eb80, #788a98bb);
-  border-top: 1px solid #ffffff80;
-}
-.ipod-dock button {
-  padding: 0;
-  background: none;
-  border: 0;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1cqw;
-  font-size: 3cqw;
-  text-shadow: 0 1px 2px #263746;
-}
-.ipod-dock .app-icon {
-  width: 17cqw;
-  height: 17cqw;
-}
-.switch-utilities {
-  display: flex;
-  justify-content: center;
-  gap: 3cqw;
-  padding: 2cqw 0;
-  flex-shrink: 0;
-}
-.switch-utilities button {
-  padding: 1.5cqw;
-  border: 1px solid #c3cdcf;
-  background: #fafbfb;
-  border-radius: 50%;
-  color: #386979;
-  width: 7cqw;
-  height: 7cqw;
-}
-.switch-utilities svg {
-  width: 100%;
-  height: 100%;
-}
-.switch .launcher-heading {
-  margin-bottom: 3%;
-}
-.switch .launcher-footer {
-  margin-top: 0;
-}
-.\33 ds.is-playing:not(.expanded) .screen {
-  left: 19.23%;
-  top: 8.1%;
-  width: 61.54%;
-  height: 30%;
-}
-.\33 ds.is-playing:not(.expanded) .upper-screen {
-  display: none;
-}
-.lower-game-help {
-  display: none;
-}
-.\33 ds.is-playing:not(.expanded) .lower-game-help {
-  display: flex;
-  position: absolute;
-  left: 26.92%;
-  top: 55.55%;
-  width: 46.15%;
-  height: 28.57%;
-  background: #e7eee8;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 8%;
-  font-size: clamp(8px, 1.3vw, 13px);
-  color: #344d42;
-  text-align: center;
-  padding: 4%;
-}
-.lower-game-help strong {
-  font-size: 1.3em;
-}
-.switch .launcher {
-  padding: 2% 4%;
-}
-.switch .launcher-heading {
-  margin-bottom: 1%;
-}
-.switch .app-grid {
-  padding: 1cqw;
-}
-.switch-utilities {
-  padding: 1cqw 0;
-}
-.switch-utilities button {
-  width: 6cqw;
-  height: 6cqw;
-  padding: 1.2cqw;
-}
 .expanded .screen #game-overlay {
   font-size: clamp(12px, 2.5cqw, 18px);
   gap: clamp(6px, 2cqw, 16px);
@@ -1352,5 +926,715 @@ input:focus-visible,
     min-height: 32px;
     font-size: 14px;
     padding: 5px 15px;
+  }
+}
+
+/* Front-facing product cutouts; hit areas follow the photographed controls. */
+.gba .device {
+  max-width: 255px;
+}
+.psp .device {
+  max-width: 950px;
+}
+.ipod .device {
+  max-width: 260px;
+}
+.\33 ds .device {
+  max-width: 460px;
+}
+.switch .device {
+  max-width: 1000px;
+}
+.device .hardware-button,
+.device .hardware-button.dpad,
+.device .hardware-button.pill,
+.device .hardware-button.shoulder {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: transparent;
+}
+.device .hardware-button:hover {
+  background: #ffffff16;
+}
+.device .hardware-button.pressed {
+  background: #0004;
+  box-shadow: inset 0 1px 5px #0008;
+}
+.device .hardware-button:focus-visible {
+  outline: 2px solid #38c4ed;
+  outline-offset: 1px;
+}
+.device .analog-stick span {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+.device .analog-stick:active span {
+  background: #ffffff25;
+  border: 1px solid #fff8;
+}
+.app-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.battery {
+  width: 4.3cqw;
+  height: 2cqw;
+  border: 1px solid currentColor;
+  padding: 0.3cqw;
+  position: relative;
+}
+.battery:before {
+  content: "";
+  display: block;
+  height: 100%;
+  background: currentColor;
+}
+.battery:after {
+  content: "";
+  position: absolute;
+  right: -0.6cqw;
+  top: 25%;
+  height: 50%;
+  width: 0.4cqw;
+  background: currentColor;
+}
+/* PSP: the category stays at the crossing of the horizontal and vertical axes. */
+.psp .screen {
+  background: #25232f url("/ui/psp-wave.svg") center/cover;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+.psp .screen-status {
+  background: transparent;
+  color: white;
+  font-size: 2.3cqw;
+  height: 10%;
+  padding-right: 5%;
+  justify-content: flex-end;
+  gap: 3cqw;
+  text-shadow: 0 1px 2px #0008;
+}
+.psp .screen-status > span:first-child {
+  display: none;
+}
+.psp .launcher {
+  padding: 0;
+  height: 90%;
+  position: relative;
+  overflow: hidden;
+}
+.psp .launcher-heading {
+  display: none;
+}
+.psp .app-grid {
+  position: absolute;
+  display: flex;
+  flex: none;
+  gap: 0;
+  width: max-content;
+  height: 22%;
+  top: 17%;
+  left: calc(30% - 7.5cqw - var(--selected-index, 0) * 15cqw);
+  overflow: visible;
+  padding: 0;
+  transition: left 190ms ease-out;
+}
+.psp .app-button {
+  width: 15cqw;
+  flex: 0 0 15cqw;
+  height: 100%;
+  gap: 1.5cqw;
+  justify-content: flex-start;
+  font-size: 2.6cqw;
+  color: #f6f5fa;
+  text-shadow: 0 1px 2px #000;
+  opacity: 0.62;
+}
+.psp .app-button > span:last-child {
+  visibility: hidden;
+}
+.psp .app-icon {
+  width: 8cqw;
+  height: 7cqw;
+  color: white;
+  filter: drop-shadow(0 2px 1px #14101b80);
+}
+.psp .app-icon svg {
+  stroke-width: 2;
+}
+.psp .app-button.selected {
+  outline: none;
+  opacity: 1;
+}
+.psp .app-button.selected > span:last-child {
+  visibility: visible;
+}
+.psp .app-button.selected .app-icon {
+  filter: drop-shadow(0 1px 4px #fff8);
+}
+.psp .xmb-items {
+  position: absolute;
+  top: 43%;
+  left: 25%;
+  right: 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 1cqw;
+  font-size: 2.8cqw;
+}
+.psp .xmb-items button {
+  display: flex;
+  align-items: center;
+  gap: 3cqw;
+  background: transparent;
+  border: 0;
+  color: #d2d0db;
+  text-align: left;
+  padding: 0;
+  min-height: 7.5cqw;
+}
+.psp .xmb-items button.selected {
+  color: #fff;
+  text-shadow: 0 1px 3px #fff7;
+}
+.xmb-item-icon {
+  width: 7cqw;
+  height: 6cqw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.xmb-item-icon svg {
+  width: 65%;
+  height: 80%;
+}
+.psp .launcher-footer {
+  position: absolute;
+  bottom: 3%;
+  left: 6%;
+  font-size: 2.2cqw;
+  color: #d0cfd7;
+}
+.psp .screen #app-view {
+  background: #292733ef;
+  color: #fff;
+}
+.psp .screen .app-toolbar,
+.psp .screen .app-pager {
+  background: #ffffff0d;
+  color: #eee;
+}
+.psp .screen .app-toolbar button,
+.psp .screen .app-pager button,
+.psp .screen #app-body a {
+  color: #c4e2ff;
+}
+.psp .screen #app-body .muted,
+.psp .screen #app-body .empty-list {
+  color: #cbc7d5;
+}
+/* iPod touch: iOS 6 SpringBoard, original icon exports and water wallpaper. */
+.ipod .screen {
+  background: #698caa url("/ui/ios/wallpaper.webp") center/cover;
+  color: white;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.ipod .screen-status {
+  height: 4.167%;
+  background: #171c22ed;
+  color: white;
+  font-size: 3.3cqw;
+  font-weight: 700;
+  padding: 0 2%;
+}
+.ipod .screen-status .clock {
+  position: absolute;
+  left: 35%;
+  width: 30%;
+  text-align: center;
+}
+.ipod .launcher {
+  height: 95.833%;
+  padding: 5% 4% 0;
+}
+.ipod .launcher-heading {
+  display: none;
+}
+.ipod .app-grid {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 22cqw);
+  flex: 1;
+  gap: 2cqw;
+  align-content: start;
+}
+.ipod .app-button {
+  justify-content: flex-start;
+  font-size: 3.4cqw;
+  font-weight: 600;
+  gap: 1.3cqw;
+  text-shadow: 0 1px 2px #000b;
+}
+.ipod .app-icon {
+  width: 18cqw;
+  height: 18cqw;
+  border-radius: 3.2cqw;
+  overflow: hidden;
+  box-shadow: 0 2px 3px #0006;
+}
+.ipod .app-button.selected {
+  outline: none;
+}
+.ipod .app-button.selected .app-icon {
+  filter: brightness(1.1);
+}
+.ipod .app-button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+.ios-page-dots {
+  display: flex;
+  justify-content: center;
+  gap: 3cqw;
+  padding: 3cqw 0;
+}
+.ios-page-dots i {
+  width: 1.7cqw;
+  height: 1.7cqw;
+  border-radius: 50%;
+  background: #ffffff60;
+  box-shadow: 0 1px 1px #0005;
+}
+.ios-page-dots i:first-child {
+  background: white;
+}
+.ipod-dock {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 -4.35%;
+  padding: 4cqw 2cqw 2cqw;
+  background: linear-gradient(#d6d9dddc, #939aa2dd 50%, #525d68e8);
+  border-top: 1px solid #fff9;
+  box-shadow: 0 -2px 4px #0004;
+}
+.ipod-dock button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1cqw;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: white;
+  font-size: 3.3cqw;
+  font-weight: 600;
+  text-shadow: 0 1px 2px #000;
+}
+.ipod-dock .app-icon {
+  width: 18cqw;
+  height: 18cqw;
+}
+.ipod .launcher-footer {
+  display: none;
+}
+.ipod .screen .app-toolbar {
+  background: linear-gradient(#b2bfd0 0%, #899eb8 48%, #6f88a6 50%, #7b93ae);
+  border-bottom: 1px solid #476078;
+  text-shadow: 0 -1px #506780;
+  justify-content: center;
+  min-height: 10%;
+  font-size: 5cqw;
+}
+.ipod .screen .app-toolbar button {
+  position: absolute;
+  left: 3%;
+  border: 1px solid #476078;
+  border-radius: 1.5cqw;
+  padding: 1cqw 2cqw;
+  background: linear-gradient(#91a6bf, #587494);
+  font-size: 3.5cqw;
+}
+.ipod .app-pager {
+  background: linear-gradient(#e9edf0, #bcc6d0);
+}
+.ipod[data-current-app="notes"] #app-body {
+  background: #fff3b6;
+}
+.ipod[data-current-app="notes"] .app-toolbar {
+  background: linear-gradient(#b7a17d, #776044);
+  border-color: #564328;
+}
+.ipod .notes-app textarea {
+  border: 0;
+  background: repeating-linear-gradient(
+    #fff3b6 0,
+    #fff3b6 calc(1.6em - 1px),
+    #cbbd89 calc(1.6em - 1px),
+    #cbbd89 1.6em
+  );
+  font-family: Georgia, serif;
+}
+/* 3DS: separate preview above, compact software grid and system strip below. */
+.upper-screen {
+  position: absolute;
+  left: 21.65%;
+  top: 10.87%;
+  width: 56.01%;
+  height: 33.28%;
+  background: radial-gradient(
+    ellipse at 50% 82%,
+    #d7d8dd 0,
+    #f3f4f6 30%,
+    #fff 70%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #4a4e54;
+  line-height: 1.3;
+  container-type: inline-size;
+  gap: 3%;
+  overflow: hidden;
+}
+.upper-time {
+  position: absolute;
+  top: 4%;
+  left: 4%;
+  width: 92%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 3cqw;
+  color: #777;
+}
+.upper-icon {
+  width: 24%;
+  height: 40%;
+  margin-top: 5%;
+  color: #43a7bc;
+  filter: drop-shadow(0 6px 3px #969ca54d);
+}
+.upper-icon > * {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.upper-screen > strong {
+  font-size: 5cqw;
+}
+.upper-screen > span {
+  font-size: 3cqw;
+  color: #777;
+}
+.\33 ds .screen {
+  background: linear-gradient(#fdfdfd, #e4e6e8);
+  color: #4c5155;
+}
+.\33 ds .screen-status {
+  display: none;
+}
+.\33 ds .launcher {
+  height: 100%;
+  padding: 0 5%;
+}
+.\33 ds .launcher-heading {
+  display: none;
+}
+.ds-utilities {
+  display: flex;
+  gap: 3cqw;
+  align-items: center;
+  height: 13%;
+  margin: 0 -5.6% 3%;
+  padding: 1% 5%;
+  border-bottom: 1px solid #bfc4c8;
+  background: linear-gradient(#fafafa, #e1e5e7);
+}
+.ds-utilities button {
+  width: 7cqw;
+  height: 6cqw;
+  color: #799b9b;
+  padding: 0;
+  border: none;
+  background: none;
+}
+.ds-utilities button:nth-child(1) {
+  color: #c4af3f;
+}
+.ds-utilities svg {
+  height: 100%;
+  width: 100%;
+}
+.\33 ds .app-grid {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 1cqw 8cqw;
+  gap: 2cqw 4cqw;
+}
+.\33 ds .app-button {
+  padding: 0;
+  border-radius: 3cqw;
+}
+.\33 ds .app-button > span:last-child {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.\33 ds .app-icon {
+  width: 17cqw;
+  height: 17cqw;
+  background: linear-gradient(#fff, #f5f5f5);
+  border: 1px solid #c2c5c7;
+  border-radius: 2.4cqw;
+  padding: 1.3cqw;
+  box-shadow: 0 2px 2px #9aa1a650;
+  color: #df9347;
+}
+.\33 ds .app-button.selected {
+  outline: none;
+}
+.\33 ds .app-button.selected .app-icon {
+  outline: 2px solid #40cbd2;
+  outline-offset: 1px;
+}
+.\33 ds .launcher-footer {
+  height: 13%;
+  margin: 3% -5.6% 0;
+  background: linear-gradient(#fefefe, #dce1e4);
+  border-top: 1px solid #bfc5ca;
+  font-size: 4cqw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.\33 ds .screen #app-view {
+  height: 100%;
+}
+.\33 ds.is-playing:not(.expanded) .screen {
+  left: 21.65%;
+  top: 10.87%;
+  width: 56.01%;
+  height: 33.28%;
+}
+.\33 ds.is-playing:not(.expanded) .upper-screen {
+  display: none;
+}
+.lower-game-help {
+  display: none;
+}
+.\33 ds.is-playing:not(.expanded) .lower-game-help {
+  display: flex;
+  position: absolute;
+  left: 26.975%;
+  top: 57.216%;
+  width: 45.189%;
+  height: 33.446%;
+  background: #edf0e9;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8%;
+  font-size: clamp(8px, 1.3vw, 13px);
+  color: #344d42;
+  text-align: center;
+  padding: 4%;
+}
+/* Switch: profile, selected software name, horizontal covers, utilities, footer. */
+.switch .screen {
+  background: #ededed;
+  color: #303030;
+}
+.switch .screen-status {
+  height: 16%;
+  background: transparent;
+  padding: 0 5%;
+  font-size: 2.5cqw;
+  gap: 2cqw;
+}
+.switch .screen-status > span:first-child {
+  margin-right: auto;
+  width: 5cqw;
+  height: 5cqw;
+  border-radius: 50%;
+  background: #87cbbb;
+  color: #173d36;
+  font-size: 0;
+  display: grid;
+  place-items: center;
+}
+.switch .screen-status > span:first-child:before {
+  content: "S";
+  font-size: 2.9cqw;
+}
+.switch .launcher {
+  height: 84%;
+  padding: 0;
+}
+.switch .launcher-heading {
+  font-size: 3.3cqw;
+  color: #007f9d;
+  font-weight: normal;
+  padding: 0 5%;
+  margin: 0;
+  height: 12%;
+  line-height: 1.4;
+}
+.switch .app-grid {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+  gap: 2cqw;
+  padding: 1cqw 5cqw;
+  flex: 0 0 49%;
+}
+.switch .app-button {
+  flex: 0 0 23cqw;
+  height: 23cqw;
+}
+.switch .app-button > span:last-child {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.switch .app-icon {
+  width: 23cqw;
+  height: 23cqw;
+  background: #77b9ab;
+  color: white;
+  border: 1px solid #b9b9b9;
+}
+.switch .app-icon svg {
+  width: 53%;
+  height: 53%;
+  stroke-width: 1.4;
+  filter: drop-shadow(0 2px 1px #0002);
+}
+.switch .icon-work {
+  background: #637991;
+}
+.switch .icon-movies {
+  background: #bb6757;
+}
+.switch .icon-music {
+  background: #e3ac42;
+}
+.switch .icon-games {
+  background: #5e9ca7;
+}
+.switch .icon-writing {
+  background: #8d799a;
+}
+.switch .icon-links {
+  background: #638cb6;
+}
+.switch .icon-notes {
+  background: #b49f73;
+}
+.switch .icon-settings {
+  background: #737980;
+}
+.switch .app-button.selected {
+  outline: none;
+}
+.switch .app-button.selected .app-icon {
+  outline: 2px solid #13b4cc;
+  outline-offset: 1px;
+}
+.switch-utilities {
+  display: flex;
+  justify-content: center;
+  gap: 3cqw;
+  flex: 1;
+  align-items: center;
+  padding: 1cqw 0;
+}
+.switch-utilities button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #72777b;
+  width: 7cqw;
+  height: 7cqw;
+  padding: 1.6cqw;
+  box-shadow: 0 1px 1px #0001;
+}
+.switch-utilities button:first-child {
+  color: #e86858;
+}
+.switch-utilities button:nth-child(2) {
+  color: #df9b38;
+}
+.switch-utilities svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.switch .launcher-footer {
+  margin: 0 4%;
+  padding: 1.4cqw 1cqw;
+  border-top: 1px solid #bbb;
+  text-align: right;
+  font-size: 2.5cqw;
+}
+
+@media (max-width: 600px) {
+  .gba .device {
+    max-width: 255px;
+  }
+}
+.psp .screen #app-view {
+  height: 90%;
+}
+.switch .screen #app-view {
+  height: 84%;
+}
+.switch .app-grid {
+  flex-basis: 26cqw;
+}
+.switch .app-button,
+.switch .app-icon {
+  width: 22cqw;
+  height: 22cqw;
+}
+.switch .app-button {
+  flex-basis: 22cqw;
+}
+/* Preserve the OS proportions when expanding its menu. Reading views stay tall. */
+.handheld-page.expanded:not([data-current-app]):not(.is-playing) .device {
+  height: auto !important;
+  aspect-ratio: 16 / 9 !important;
+}
+.handheld-page.expanded.ipod:not([data-current-app]):not(.is-playing) .device {
+  aspect-ratio: 2 / 3 !important;
+}
+.handheld-page.expanded.\33
+  ds:not([data-current-app]):not(.is-playing)
+  .device {
+  aspect-ratio: 4 / 3 !important;
+}
+.handheld-page.expanded.gba:not([data-current-app]):not(.is-playing) .device {
+  aspect-ratio: 3 / 2 !important;
+}
+.expanded .screen #app-view {
+  height: 94%;
+}
+.expanded.\33 ds .screen #app-view {
+  height: 100%;
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .handheld-page.expanded:not([data-current-app]):not(.is-playing) .device {
+    height: calc(100dvh - 120px) !important;
+    width: auto !important;
+    max-width: 100% !important;
   }
 }
