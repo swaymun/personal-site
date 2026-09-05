@@ -1,0 +1,31 @@
+[
+  {
+    "id": "sly-cooper",
+    "source": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_2/master/Named_Boxarts/Sly%20Cooper%20and%20the%20Thievius%20Raccoonus%20%28USA%29.png"
+  },
+  {
+    "id": "mario-3d-land",
+    "source": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_3DS/master/Named_Boxarts/Super%20Mario%203D%20Land%20%28USA%29%20%28En%2CFr%2CEs%29.png"
+  },
+  {
+    "id": "shin-budokai",
+    "source": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_Portable/master/Named_Boxarts/Dragon%20Ball%20Z%20-%20Shin%20Budokai%20%28USA%29.png"
+  },
+  {
+    "id": "kid-icarus",
+    "source": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_3DS/master/Named_Boxarts/Kid%20Icarus%20-%20Uprising%20%28USA%29.png"
+  },
+  {
+    "id": "ghost-of-sparta",
+    "source": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_Portable/master/Named_Boxarts/God%20of%20War%20-%20Ghost%20of%20Sparta%20%28USA%29%20%28En%2CFr%2CEs%29.png"
+  },
+  {
+    "id": "mario-kart",
+    "source": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Mario%20Kart%20-%20Super%20Circuit%20%28USA%29.png"
+  },
+  {
+    "id": "ace-attorney",
+    "source": "https://cdn.mobygames.com/covers/8307435-phoenix-wright-ace-attorney-trilogy-nintendo-switch-front-cover.jpg",
+    "note": "Japanese Switch retail cover; not a claim about owned edition."
+  }
+]

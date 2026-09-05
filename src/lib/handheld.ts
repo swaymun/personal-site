@@ -13,6 +13,7 @@ import type { Action } from "./input";
 import { readValue, writeValue, readScore, saveScore } from "./storage";
 import { DeviceAudio } from "./audio";
 import { browserUrl } from "./browser-url";
+import { albums, favoriteGames } from "../data/collection";
 import type { Game } from "../games/core";
 const root = document.querySelector<HTMLElement>("[data-device]")!;
 const id = root.dataset.device as DeviceId;
@@ -84,8 +85,8 @@ const xmbLabels: Record<AppId, string[]> = {
   home: ["About Saimun"],
   work: ["Experience", "Education", "Projects"],
   movies: ["Favorite films"],
-  music: ["Top albums", "Top songs"],
-  games: ["Favorite games"],
+  music: ["Record collection"],
+  games: ["Game shelf"],
   play: [device.game],
   phone: ["Contacts"],
   browser: ["Browse"],
@@ -104,11 +105,8 @@ function updateXmbPreview() {
       projects.map((p) => p.title).join("\n"),
     ],
     movies: [movies.map(([title]) => title).join("\n")],
-    music: [
-      "My ten favorite albums. List still to come.",
-      "My ten favorite songs. List still to come.",
-    ],
-    games: ["My ten favorite games. List still to come."],
+    music: [albums.map((a) => `${a.title} · ${a.artist}`).join("\n")],
+    games: [favoriteGames.map((g) => g.title).join("\n")],
     play: [device.genre + " Move with the D-pad. × attacks; ○ dodges."],
     phone: ["A few very fictional contacts."],
     browser: ["A tiny browser."],
@@ -129,6 +127,13 @@ function updateXmbPreview() {
   const text = document.createElement("p");
   text.textContent = descriptions[app][subSelected];
   preview.replaceChildren(heading, text);
+  if (app === "play") {
+    const art = document.createElement("img");
+    art.src = "/ui/psp-game-preview.webp";
+    art.alt = "Ash & Bronze arena artwork";
+    art.className = "xmb-game-art";
+    preview.prepend(art);
+  }
   $(".xmb-items")
     .querySelectorAll("button")
     .forEach((b, i) => b.classList.toggle("selected", i === subSelected));
@@ -708,7 +713,7 @@ document.addEventListener("keydown", (e) => {
   if (
     (e.key === "Enter" || e.key === " ") &&
     e.target instanceof HTMLElement &&
-    e.target.closest("button,a")
+    e.target.closest("button,a,summary")
   )
     return;
   if (e.key === "Escape" && game && !paused) {

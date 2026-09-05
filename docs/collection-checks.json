@@ -1,0 +1,19 @@
+{
+  "checks": [
+    "Astro check: zero errors/warnings",
+    "Production build passed",
+    "21 tests passed",
+    "Desktop native album selection: Bonito Generation and U update cover and record label",
+    "390px game shelf: opens Mario Kart case, no page overflow",
+    "360px music: no page overflow or broken loaded images",
+    "DVD Catch Me If You Can cover opened; spine filename corrected",
+    "PSP era preview visually checked; reduced image height to retain description",
+    "3DS compact music visually checked; changed to side-by-side shelf/player"
+  ],
+  "limitations": [
+    "Game spines are platform-styled HTML, not scans; image generation was rejected",
+    "Vinyl is a generic illustration with cover-derived labels, not authentic pressing photos",
+    "Original Sly Cooper assumed; unnamed additional Kanye album omitted",
+    "No new full device/input/audio regression sweep in this refinement"
+  ]
+}

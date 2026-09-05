@@ -1,0 +1,21 @@
+---
+import { albums } from '../data/collection';
+const rules = albums.map((album,i)=>`#record-${album.id}:checked ~ .vinyl-layout .record-${i}{display:block} #record-${album.id}:checked ~ .vinyl-layout label[for="record-${album.id}"]{transform:translateY(-8px);outline:2px solid currentColor;outline-offset:2px} #record-${album.id}:focus-visible ~ .vinyl-layout label[for="record-${album.id}"]{outline:3px solid #245d9c;outline-offset:3px}`).join('\n');
+---
+<fieldset class="vinyl-collection">
+<legend class="sr-only">Choose an album to put on the turntable</legend>
+{albums.map((album,i)=><input class="record-choice sr-only" type="radio" name="record" id={`record-${album.id}`} checked={i===0} aria-label={`${album.title} — ${album.artist}`}/>)}
+<div class="vinyl-layout">
+  <div class="record-rack" aria-label="Record shelf">{albums.map(album=><label for={`record-${album.id}`} title={`${album.title} — ${album.artist}`} style={`--sleeve-color:${album.color};--sleeve-ink:${album.ink}`}><span>{album.artist}</span><strong>{album.title}</strong></label>)}</div>
+  <div class="turntable-scene">
+    <div class="album-display">{albums.map((album,i)=><a class={`selected-record record-${i}`} href={album.url} aria-label={`${album.title} by ${album.artist}`}><img src={`/music/${album.id}.webp`} alt={`${album.title} album cover`} width="320" height="320" loading="lazy"/></a>)}</div>
+    <div class="record-player"><img class="turntable-art" src="/music/turntable.webp" alt="Walnut turntable" width="900" height="600" loading="lazy"/>
+      <div class="vinyl-disc" aria-hidden="true">{albums.map((album,i)=><img class={`selected-record record-${i} record-label`} src={`/music/${album.id}.webp`} alt="" width="64" height="64" loading="lazy"/>)}</div>
+    </div>
+    <div class="record-caption">{albums.map((album,i)=><p class={`selected-record record-${i}`}><strong>{album.title}</strong><br/><span class="muted">{album.artist}</span></p>)}</div>
+  </div>
+</div>
+<style set:html={rules}/>
+</fieldset>
+<p class="muted shelf-hint">Choose a sleeve to put its record on the turntable.</p>
+<details class="collection-titles"><summary>All favorite albums</summary><ul>{albums.map(album=><li><a href={album.url}>{album.title}</a> <span class="muted">· {album.artist}</span></li>)}</ul></details>

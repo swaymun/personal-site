@@ -1874,5 +1874,339 @@ input:focus-visible,
   object-fit: cover;
   border-radius: 50%;
 }
-.psp .xmb-item-icon img { width:100%; height:100%; object-fit:contain; }
-.device-tools button:disabled { opacity:.4; cursor:default; }
+.psp .xmb-item-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.device-tools button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+/* Physical collections stay native HTML: details for cases, radios for records. */
+.movie-shelf summary,
+.compact .movie-shelf summary {
+  padding: 0;
+  writing-mode: initial;
+}
+.dvd-spine {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  border-radius: 2px;
+}
+.game-shelf {
+  --case-scale: 1.28px;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  overflow-x: auto;
+  padding: 12px 4px 0;
+  border-bottom: 3px solid #b1a38f;
+  max-width: 100%;
+}
+.game-case {
+  position: relative;
+  flex: none;
+  height: calc(var(--case-height) * var(--case-scale));
+  width: calc(var(--spine-width) * var(--case-scale));
+  background: #f1f0e9;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  color: #222;
+  box-sizing: content-box;
+}
+.game-case[open] {
+  width: calc((var(--case-width) + var(--spine-width)) * var(--case-scale));
+}
+.game-case summary {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: calc(var(--spine-width) * var(--case-scale));
+  writing-mode: vertical-rl;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  list-style: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-size: 9px;
+  line-height: 1.1;
+}
+.game-case summary::-webkit-details-marker {
+  display: none;
+}
+.case-platform {
+  font-size: 7px;
+  flex: none;
+}
+.case-title {
+  font-size: inherit;
+  max-height: 78%;
+  font-weight: 600;
+}
+.case-ps2 {
+  background: #171b26;
+  color: white;
+}
+.case-switch {
+  background: #db1929;
+  color: white;
+}
+.case-gba {
+  background: #314787;
+  color: white;
+}
+.case-digital {
+  background: #363128;
+  color: #f4d46c;
+}
+.game-cover {
+  position: absolute;
+  left: calc(var(--spine-width) * var(--case-scale));
+  top: 0;
+  bottom: 0;
+  width: calc(var(--case-width) * var(--case-scale));
+  display: block;
+}
+.game-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+.case-digital .game-cover img {
+  height: auto;
+  border-radius: 12px;
+}
+.game-cover small {
+  display: block;
+  text-align: center;
+  font-size: 9px;
+  margin-top: 7px;
+  line-height: 1.2;
+}
+.collection-titles {
+  font-size: 0.85em;
+  margin: 12px 0 24px;
+}
+.collection-titles summary {
+  cursor: pointer;
+  color: var(--muted, #666);
+}
+.vinyl-collection {
+  border: 0;
+  margin: 24px 0 0;
+  padding: 0;
+  min-width: 0;
+  position: relative;
+}
+.vinyl-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 28px;
+  align-items: end;
+}
+.record-rack {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  border-bottom: 5px solid #b5a18a;
+  padding: 12px 3px 0;
+  min-width: 0;
+  height: 235px;
+}
+.record-rack label {
+  height: 100%;
+  flex: 1;
+  min-width: 0;
+  max-width: 22px;
+  writing-mode: vertical-rl;
+  background: var(--sleeve-color);
+  color: var(--sleeve-ink);
+  font-size: 9px;
+  line-height: 1.15;
+  border: 1px solid #0003;
+  box-shadow: inset 2px 0 #fff2;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 7px 2px;
+  box-sizing: border-box;
+  transition: transform 0.18s;
+  border-radius: 1px;
+}
+.record-rack label span {
+  font-size: 7px;
+  flex: none;
+}
+.record-rack label strong {
+  font-weight: 500;
+  overflow: hidden;
+}
+.selected-record {
+  display: none;
+}
+.album-display {
+  width: 58%;
+  aspect-ratio: 1;
+  margin: 0 auto -4%;
+  position: relative;
+  z-index: 1;
+}
+.album-display img {
+  display: block;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 2px 6px #0003;
+}
+.record-player {
+  position: relative;
+  width: 100%;
+}
+.turntable-art {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.vinyl-disc {
+  position: absolute;
+  left: 40.5%;
+  top: 44.5%;
+  width: 57%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: repeating-radial-gradient(
+    circle,
+    #171717 0 1px,
+    #292929 2px,
+    #111 3px
+  );
+  box-shadow: 0 2px 4px #0008;
+}
+.record-label {
+  position: absolute;
+  left: 34%;
+  top: 34%;
+  width: 32%;
+  height: 32%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.vinyl-disc:after {
+  content: "";
+  position: absolute;
+  left: 49%;
+  top: 49%;
+  width: 2%;
+  height: 2%;
+  border-radius: 50%;
+  background: #ccc;
+}
+.record-caption {
+  font-size: 12px;
+  text-align: center;
+  min-height: 3.5em;
+  line-height: 1.4;
+}
+.record-caption p {
+  margin: 8px 0 0;
+}
+.compact .game-shelf {
+  --case-scale: 0.7px;
+}
+.compact .vinyl-layout {
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.compact .record-rack {
+  height: 125px;
+}
+.compact .record-rack label {
+  font-size: 6px;
+  padding: 3px 0;
+  gap: 4px;
+}
+.compact .record-rack label span {
+  display: none;
+}
+.compact .turntable-scene {
+  max-width: 190px;
+  width: 100%;
+  margin: auto;
+}
+.compact .record-caption {
+  font-size: 9px;
+}
+.psp .xmb-game-art {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  margin-bottom: 5px;
+  border: 1px solid #ffffff40;
+}
+.gba .app-icon img {
+  image-rendering: pixelated;
+}
+@media (max-width: 500px) {
+  .vinyl-layout {
+    gap: 14px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  }
+  .record-rack {
+    height: 190px;
+  }
+  .record-rack label {
+    font-size: 7px;
+    padding: 5px 0;
+    gap: 5px;
+  }
+  .record-rack label span {
+    display: none;
+  }
+  .record-caption {
+    font-size: 10px;
+  }
+  .game-shelf {
+    --case-scale: 1px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .record-rack label {
+    transition: none;
+  }
+}
+.psp .xmb-game-art {
+  max-height: 15cqw;
+  object-position: center 35%;
+  aspect-ratio: 3/1;
+}
+.psp .xmb-preview:has(.xmb-game-art) p {
+  font-size: 1.8cqw;
+  line-height: 1.3;
+  margin-top: 3px;
+}
+.compact .vinyl-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 8px;
+}
+.compact .record-rack {
+  height: 90px;
+}
+.compact .record-rack label {
+  font-size: 5px;
+}
+.compact .vinyl-collection {
+  margin-top: 8px;
+}
+.compact .record-caption {
+  font-size: 7px;
+}

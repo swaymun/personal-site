@@ -4,17 +4,15 @@ import { movies } from "../data/site";
 
 <div class="movie-shelf" aria-label="Four favorite films">
   {
-    movies.map(([title, year, slug], i) => (
+    movies.map(([title, , slug], i) => (
       <details
         name="favorite-film"
         open={i === 0}
         style={`--case-color:${["#253b59", "#d1bc85", "#3b4b4b", "#773f39"][i]}`}
       >
         <summary aria-label={`Show ${title} cover`}>
-          <>
-            <span>{title}</span>
-            <small>{year}</small>
-          </>
+          <img class="dvd-spine" src={`/movies/spines/${slug}.webp`} alt="" loading="lazy" />
+          <span class="sr-only">{title}</span>
         </summary>
         <a
           class="movie-cover"

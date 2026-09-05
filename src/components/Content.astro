@@ -1,6 +1,8 @@
 ---
 import { bio, experience, links, projects, companyUrls, devices } from "../data/site";
 import type { Section } from "../data/site";
+import VinylShelf from "./VinylShelf.astro";
+import GameShelf from "./GameShelf.astro";
 import MovieShelf from "./MovieShelf.astro";
 interface Props {
   section: Section;
@@ -82,19 +84,7 @@ const posts = Object.values(
     section === "music" && (
       <>
         <h1>Music</h1>
-        <p>Lists still to come. These are empty slots, not recommendations.</p>
-        {["Top 10 albums", "Top 10 songs"].map((title) => (
-          <section>
-            <h2>{title}</h2>
-            <ol class="empty-list">
-              {Array.from({ length: 10 }, () => (
-                <li>
-                  <span>Not added yet</span>
-                </li>
-              ))}
-            </ol>
-          </section>
-        ))}
+        <VinylShelf />
       </>
     )
   }
@@ -112,15 +102,7 @@ const posts = Object.values(
               </li>
             ))}
           </ul>}
-          <h2>Top 10 games</h2>
-          <p>My favorites will go here.</p>
-          <ol class="empty-list">
-            {Array.from({ length: 10 }, () => (
-              <li>
-                <span>Not added yet</span>
-              </li>
-            ))}
-          </ol>
+          <GameShelf />
         </>
       </>
     )

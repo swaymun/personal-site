@@ -1,0 +1,130 @@
+[
+  {
+    "id": "the-college-dropout",
+    "title": "The College Dropout",
+    "artist": "Kanye West",
+    "url": "https://music.apple.com/us/album/the-college-dropout/1437467864?uo=4",
+    "color": "#B88E6B",
+    "ink": "#fff"
+  },
+  {
+    "id": "birds-in-the-trap-sing-mcknight",
+    "title": "Birds in the Trap Sing McKnight",
+    "artist": "Travis Scott",
+    "url": "https://music.apple.com/us/album/birds-in-the-trap-sing-mcknight/1151481435?uo=4",
+    "color": "#372F31",
+    "ink": "#fff"
+  },
+  {
+    "id": "songs-in-the-key-of-life",
+    "title": "Songs in the Key of Life",
+    "artist": "Stevie Wonder",
+    "url": "https://music.apple.com/us/album/songs-in-the-key-of-life/1440788438?uo=4",
+    "color": "#D07052",
+    "ink": "#fff"
+  },
+  {
+    "id": "yellow-dancer",
+    "title": "Yellow Dancer",
+    "artist": "Gen Hoshino",
+    "url": "https://music.apple.com/us/album/yellow-dancer/1062215238?uo=4",
+    "color": "#8F394E",
+    "ink": "#fff"
+  },
+  {
+    "id": "flower-boy",
+    "title": "Flower Boy",
+    "artist": "Tyler, The Creator",
+    "url": "https://music.apple.com/us/album/1254572564",
+    "color": "#B27538",
+    "ink": "#fff"
+  },
+  {
+    "id": "trapsoul",
+    "title": "TRAPSOUL",
+    "artist": "Bryson Tiller",
+    "url": "https://music.apple.com/us/album/t-r-a-p-s-o-u-l/1031334412?uo=4",
+    "color": "#222021",
+    "ink": "#fff"
+  },
+  {
+    "id": "the-wizrd",
+    "title": "The WIZRD",
+    "artist": "Future",
+    "url": "https://music.apple.com/us/album/future-hndrxx-presents-the-wizrd/1449909236?uo=4",
+    "color": "#5F2A27",
+    "ink": "#fff"
+  },
+  {
+    "id": "thriller",
+    "title": "Thriller",
+    "artist": "Michael Jackson",
+    "url": "https://music.apple.com/us/album/thriller/269572838?uo=4",
+    "color": "#7B7971",
+    "ink": "#fff"
+  },
+  {
+    "id": "good-kid-m-a-a-d-city",
+    "title": "good kid, m.A.A.d city",
+    "artist": "Kendrick Lamar",
+    "url": "https://music.apple.com/us/album/good-kid-m-a-a-d-city/1471277623?uo=4",
+    "color": "#90927D",
+    "ink": "#fff"
+  },
+  {
+    "id": "care-package",
+    "title": "Care Package",
+    "artist": "Drake",
+    "url": "https://music.apple.com/us/album/care-package/1475179452?uo=4",
+    "color": "#202123",
+    "ink": "#fff"
+  },
+  {
+    "id": "bonito-generation",
+    "title": "Bonito Generation",
+    "artist": "Kero Kero Bonito",
+    "url": "https://music.apple.com/us/album/bonito-generation/1145025782?uo=4",
+    "color": "#9DBC6D",
+    "ink": "#171717"
+  },
+  {
+    "id": "ctrl",
+    "title": "Ctrl",
+    "artist": "SZA",
+    "url": "https://music.apple.com/us/album/ctrl/1239977075?uo=4",
+    "color": "#646857",
+    "ink": "#fff"
+  },
+  {
+    "id": "the-life-of-pablo",
+    "title": "The Life of Pablo",
+    "artist": "Kanye West",
+    "url": "https://music.apple.com/us/album/the-life-of-pablo/1442966257?uo=4",
+    "color": "#C9754E",
+    "ink": "#fff"
+  },
+  {
+    "id": "sweetener",
+    "title": "Sweetener",
+    "artist": "Ariana Grande",
+    "url": "https://music.apple.com/us/album/sweetener/1399202900?uo=4",
+    "color": "#DCB397",
+    "ink": "#171717"
+  },
+  {
+    "id": "number-1-angel",
+    "title": "Number 1 Angel",
+    "artist": "Charli XCX",
+    "url": "https://music.apple.com/us/album/1210513679",
+    "color": "#981C21",
+    "ink": "#fff"
+  },
+  {
+    "id": "u",
+    "title": "U",
+    "artist": "underscores",
+    "url": "https://music.apple.com/us/album/1878382378",
+    "color": "#C1C3BD",
+    "ink": "#171717"
+  }
+]
